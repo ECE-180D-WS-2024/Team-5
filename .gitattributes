@@ -1,0 +1,8 @@
+Bruin[[:space:]]Brawlers/* filter=lfs diff=lfs merge=lfs -text
+Bruin[[:space:]]Brawlers/Library/PackageCache/* filter=lfs diff=lfs merge=lfs -text
+Bruin[[:space:]]Brawlers/Library/PackageCache/com.unity.2d.pixel-perfect@5.0.3/Documentation~/images/.gitkeep filter=lfs diff=lfs merge=lfs -text
+Bruin[[:space:]]Brawlers/Library/PackageCache/com.unity.collab-proxy@2.2.0/.gitattributes filter=lfs diff=lfs merge=lfs -text
+Bruin[[:space:]]Brawlers/Library/PackageCache/com.unity.ext.nunit@1.0.6/.gitlab-ci.yml filter=lfs diff=lfs merge=lfs -text
+Bruin[[:space:]]Brawlers/Library/PackageCache/com.unity.ide.visualstudio@2.0.22/Editor/Plugins/.gitattributes filter=lfs diff=lfs merge=lfs -text
+Bruin[[:space:]]Brawlers/Library/PackageCache/com.unity.burst@1.8.12/.Runtime/libburst-llvm-16.dylib filter=lfs diff=lfs merge=lfs -text
+Bruin[[:space:]]Brawlers filter=lfs diff=lfs merge=lfs -text
