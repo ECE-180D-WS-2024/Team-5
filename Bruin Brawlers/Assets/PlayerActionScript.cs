@@ -20,12 +20,12 @@ public class PlayerActionScript : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {   
+    {
         if (Input.GetKeyDown(KeyCode.W))
         {
             myRigidBody.velocity = Vector2.up * 5;
         }
-        if(Input.GetKeyDown(KeyCode.A))
+        if (Input.GetKeyDown(KeyCode.A))
         {
             myRigidBody.velocity = Vector2.left * 15;
         }
@@ -48,6 +48,10 @@ public class PlayerActionScript : MonoBehaviour
         {
             Debug.Log("KICK!");
         }
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            Debug.Log("BLOCK!");
+        }
 
         time += Time.deltaTime;
         Debug.Log(time);
@@ -56,6 +60,20 @@ public class PlayerActionScript : MonoBehaviour
         {
             GetComponent<SpriteRenderer>().sprite = idle;
             Debug.Log("return to idle");
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            Debug.Log("Collision with Enemy");
+            Rigidbody enemyRigidbody = collision.gameObject.GetComponent<Rigidbody>();
+            enemyRigidbody.velocity = Vector2.right * 15;
+        }
+        else
+        {
+            Debug.Log(collision.gameObject.tag);
         }
     }
 }
