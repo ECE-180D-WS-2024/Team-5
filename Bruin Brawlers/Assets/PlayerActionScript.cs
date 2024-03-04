@@ -24,12 +24,13 @@ public class PlayerActionScript : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.W) && lastMove != "JUMP")
         {
+            StartCoroutine(runAnimation("isJumping", 0.5f));
             myRigidBody.velocity = Vector2.up * 5;
             lastMove = "JUMP";
         }
         if (Input.GetKeyDown(KeyCode.A))
         {
-            StartCoroutine(runAnimation("isMoving"));
+            StartCoroutine(runAnimation("isMoving", 2f));
             myRigidBody.velocity = Vector2.left * 15;
             //animator.SetBool("isMoving", true);
         }
@@ -42,12 +43,12 @@ public class PlayerActionScript : MonoBehaviour
         {
             myRigidBody.velocity = Vector2.right * 15;
             //animator.SetBool("isMoving", true);
-            StartCoroutine(runAnimation("isMoving"));
+            StartCoroutine(runAnimation("isMoving", 2f));
         }
         if (Input.GetKeyDown(KeyCode.P))
         {
             Debug.Log("PUNCH!");
-            StartCoroutine(runAnimation("isPunching"));
+            StartCoroutine(runAnimation("isPunching", 0.05f));
         }
         if (Input.GetKeyDown(KeyCode.K))
         {
@@ -67,14 +68,14 @@ public class PlayerActionScript : MonoBehaviour
         //Debug.Log(collision);
     }
 
-    private IEnumerator runAnimation(string animation)
+    private IEnumerator runAnimation(string animation, float time)
     {
         // Set the boolean to true to indicate the transition is in progress
         animator.SetBool(animation, true);
 
         // Call your transition method here (e.g., using Unity's UI or animation system)
         // Replace the WaitForSeconds duration with the actual duration of your transition
-        yield return new WaitForSeconds(2.0f); // Adjust this duration as needed
+        yield return new WaitForSeconds(time); // Adjust this duration as needed
 
         // Reset the boolean after the transition is complete
         animator.SetBool(animation, false);
