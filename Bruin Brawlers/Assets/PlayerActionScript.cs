@@ -10,20 +10,23 @@ public class PlayerActionScript : MonoBehaviour
     public Sprite punch;
     public float time;
     public float lastSwitch;
+    public string lastMove;
 
     // Start is called before the first frame update
     void Start()
     {
         time = 0;
         lastSwitch = 0;
+        lastMove = "";
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.W))
+        if (Input.GetKeyDown(KeyCode.W) && lastMove != "JUMP")
         {
             myRigidBody.velocity = Vector2.up * 5;
+            lastMove = "JUMP";
         }
         if (Input.GetKeyDown(KeyCode.A))
         {
@@ -61,6 +64,12 @@ public class PlayerActionScript : MonoBehaviour
             GetComponent<SpriteRenderer>().sprite = idle;
             Debug.Log("return to idle");
         }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        lastMove = "";
+        Debug.Log(collision);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
