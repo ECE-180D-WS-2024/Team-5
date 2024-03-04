@@ -6,8 +6,7 @@ using UnityEngine;
 public class PlayerActionScript : MonoBehaviour
 {
     public Rigidbody2D myRigidBody;
-    public Sprite idle;
-    public Sprite punch;
+    public Animator animator;
     public float time;
     public float lastSwitch;
     public string lastMove;
@@ -30,22 +29,25 @@ public class PlayerActionScript : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.A))
         {
+            StartCoroutine(runAnimation("isMoving"));
             myRigidBody.velocity = Vector2.left * 15;
+            //animator.SetBool("isMoving", true);
         }
         if (Input.GetKeyDown(KeyCode.S))
         {
-            myRigidBody.velocity = Vector2.down * 5;
+            myRigidBody.velocity = Vector2.down * 15;
+            //animator.SetBool("isMoving", true);
         }
         if (Input.GetKeyDown(KeyCode.D))
         {
             myRigidBody.velocity = Vector2.right * 15;
+            //animator.SetBool("isMoving", true);
+            StartCoroutine(runAnimation("isMoving"));
         }
         if (Input.GetKeyDown(KeyCode.P))
         {
             Debug.Log("PUNCH!");
-            GetComponent<SpriteRenderer>().sprite = punch;
-            lastSwitch = 40 * Time.deltaTime;
-            time = 0;
+            StartCoroutine(runAnimation("isPunching"));
         }
         if (Input.GetKeyDown(KeyCode.K))
         {
@@ -56,33 +58,25 @@ public class PlayerActionScript : MonoBehaviour
             Debug.Log("BLOCK!");
         }
 
-        time += Time.deltaTime;
-        Debug.Log(time);
-        Debug.Log(lastSwitch);
-        if (time >= lastSwitch)
-        {
-            GetComponent<SpriteRenderer>().sprite = idle;
-            Debug.Log("return to idle");
-        }
+        //animator.SetBool("isMoving", false);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
         lastMove = "";
-        Debug.Log(collision);
+        //Debug.Log(collision);
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private IEnumerator runAnimation(string animation)
     {
-        if (collision.gameObject.CompareTag("Player"))
-        {
-            Debug.Log("Collision with Enemy");
-            Rigidbody enemyRigidbody = collision.gameObject.GetComponent<Rigidbody>();
-            enemyRigidbody.velocity = Vector2.right * 15;
-        }
-        else
-        {
-            Debug.Log(collision.gameObject.tag);
-        }
+        // Set the boolean to true to indicate the transition is in progress
+        animator.SetBool(animation, true);
+
+        // Call your transition method here (e.g., using Unity's UI or animation system)
+        // Replace the WaitForSeconds duration with the actual duration of your transition
+        yield return new WaitForSeconds(2.0f); // Adjust this duration as needed
+
+        // Reset the boolean after the transition is complete
+        animator.SetBool(animation, false);
     }
 }
