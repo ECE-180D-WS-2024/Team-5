@@ -70,6 +70,15 @@ public class PlayerActionScript : MonoBehaviour
         //Debug.Log(collision);
     }
 
+    void OnTriggerEnter2D(Collider2D target)
+    {
+        if (target.tag == "Player")
+        {
+            Debug.Log("Hit ENEMY!!!");
+        }
+
+    }
+
     private IEnumerator runAnimation(string animation, float time)
     {
         // Set the boolean to true to indicate the transition is in progress
