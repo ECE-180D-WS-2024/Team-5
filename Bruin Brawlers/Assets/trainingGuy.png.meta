@@ -1,0 +1,2415 @@
+fileFormatVersion: 2
+guid: 7fbe7b9aa90ab64428b9c855e36f8b2d
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 12
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 20
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: trainingGuy_0
+      rect:
+        serializedVersion: 2
+        x: 39
+        y: 2034
+        width: 88
+        height: 152
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6dea880e1deb5ef4fbe4256c035cd44f
+      internalID: 522248188
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: trainingGuy_1
+      rect:
+        serializedVersion: 2
+        x: 231
+        y: 2034
+        width: 88
+        height: 151
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b2bc1c0a9954176489ac0ad870fe9738
+      internalID: 51551465
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: trainingGuy_2
+      rect:
+        serializedVersion: 2
+        x: 423
+        y: 2034
+        width: 87
+        height: 150
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b935604af750724458d23c55be229111
+      internalID: 158721418
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: trainingGuy_3
+      rect:
+        serializedVersion: 2
+        x: 637
+        y: 2033
+        width: 88
+        height: 153
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b49f4448619ab594cb3e45c38f444e15
+      internalID: 1378264861
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: trainingGuy_4
+      rect:
+        serializedVersion: 2
+        x: 829
+        y: 2035
+        width: 87
+        height: 149
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c8feae98b8c3c4548ae3141cb85480c8
+      internalID: -1620079956
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: trainingGuy_5
+      rect:
+        serializedVersion: 2
+        x: 1021
+        y: 2033
+        width: 88
+        height: 153
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cc16dba1b42559b4bb93abf21c89b647
+      internalID: 273854225
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: trainingGuy_6
+      rect:
+        serializedVersion: 2
+        x: 1213
+        y: 2034
+        width: 87
+        height: 150
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d21124aad68c60649865e5197bf8a260
+      internalID: 209230606
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: trainingGuy_7
+      rect:
+        serializedVersion: 2
+        x: 1410
+        y: 2034
+        width: 88
+        height: 149
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 85e05d033849bbf49907b2a5c251785a
+      internalID: -1920272062
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: trainingGuy_8
+      rect:
+        serializedVersion: 2
+        x: 1602
+        y: 2047
+        width: 87
+        height: 140
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 11c93643ba199174396d7eb07d811b25
+      internalID: 280087902
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: trainingGuy_9
+      rect:
+        serializedVersion: 2
+        x: 1792
+        y: 2033
+        width: 90
+        height: 152
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0f32f22be8bfc1e4b94d06b4abd85fe5
+      internalID: 625730851
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: trainingGuy_10
+      rect:
+        serializedVersion: 2
+        x: 65
+        y: 1840
+        width: 89
+        height: 151
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4afe4d6306df0b34ea5f9ecd9b8cd785
+      internalID: -1804350405
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: trainingGuy_11
+      rect:
+        serializedVersion: 2
+        x: 252
+        y: 1852
+        width: 94
+        height: 143
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 72de4a4ebf06e8844b43b928bfc9046c
+      internalID: 1332665183
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: trainingGuy_12
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 1841
+        width: 90
+        height: 152
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 39079b79002df2a4eacb492dac2f9e0a
+      internalID: -62202581
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: trainingGuy_13
+      rect:
+        serializedVersion: 2
+        x: 635
+        y: 1842
+        width: 78
+        height: 121
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a7560d650026cef45a63d61dfc80a49c
+      internalID: 1275945772
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: trainingGuy_14
+      rect:
+        serializedVersion: 2
+        x: 827
+        y: 1842
+        width: 78
+        height: 121
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8237dce990829e4458a18001b63ce5a6
+      internalID: 2036715267
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: trainingGuy_15
+      rect:
+        serializedVersion: 2
+        x: 1010
+        y: 1842
+        width: 92
+        height: 122
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 62fd03da853df024ba31812f8a3c1bd7
+      internalID: -633537095
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: trainingGuy_16
+      rect:
+        serializedVersion: 2
+        x: 1200
+        y: 1842
+        width: 106
+        height: 147
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aa6863adf05746542aa147e4a84ef5ad
+      internalID: 31968997
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: trainingGuy_17
+      rect:
+        serializedVersion: 2
+        x: 1411
+        y: 1842
+        width: 87
+        height: 153
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0779a7f3a02bb704284ff19be26af939
+      internalID: 171234334
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: trainingGuy_18
+      rect:
+        serializedVersion: 2
+        x: 1598
+        y: 1842
+        width: 87
+        height: 148
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9517b67ddc64e5f4eb17f165a6cf3321
+      internalID: 1155501812
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: trainingGuy_19
+      rect:
+        serializedVersion: 2
+        x: 1782
+        y: 1843
+        width: 95
+        height: 121
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 22443244ca26df74d8c8effc4c0bd891
+      internalID: 530127667
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: trainingGuy_20
+      rect:
+        serializedVersion: 2
+        x: 82
+        y: 1650
+        width: 71
+        height: 156
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4372dfc8e5566a44089c4d45b4ecac96
+      internalID: 1709396929
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: trainingGuy_21
+      rect:
+        serializedVersion: 2
+        x: 274
+        y: 1650
+        width: 70
+        height: 155
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ddf069241777b2a46af3b0cec0216d56
+      internalID: 700784954
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: trainingGuy_22
+      rect:
+        serializedVersion: 2
+        x: 465
+        y: 1650
+        width: 71
+        height: 154
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 978e64554834bc64aa00280ec13e888e
+      internalID: 1731283783
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: trainingGuy_23
+      rect:
+        serializedVersion: 2
+        x: 642
+        y: 1650
+        width: 71
+        height: 156
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f8975119562af0544bb9463094ab114d
+      internalID: 1110638171
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: trainingGuy_24
+      rect:
+        serializedVersion: 2
+        x: 835
+        y: 1651
+        width: 70
+        height: 154
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2b190abdaac0d0145875817de401106b
+      internalID: -492675665
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: trainingGuy_25
+      rect:
+        serializedVersion: 2
+        x: 1027
+        y: 1650
+        width: 70
+        height: 156
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 514a91dcadb3dd849acc540eaa0f317a
+      internalID: 558764804
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: trainingGuy_26
+      rect:
+        serializedVersion: 2
+        x: 1214
+        y: 1651
+        width: 75
+        height: 154
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 015c940ae308a7146be97a0b01a01cd1
+      internalID: -404911568
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: trainingGuy_27
+      rect:
+        serializedVersion: 2
+        x: 1411
+        y: 1650
+        width: 70
+        height: 162
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a10782c33caf1bd48947184a7034a874
+      internalID: 766755334
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: trainingGuy_28
+      rect:
+        serializedVersion: 2
+        x: 1590
+        y: 1672
+        width: 102
+        height: 147
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4254c0c65d0043642b8186c1d285633c
+      internalID: -2082802018
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: trainingGuy_29
+      rect:
+        serializedVersion: 2
+        x: 1788
+        y: 1657
+        width: 84
+        height: 158
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8a2fd38d197811b4e90c371c37f92e2f
+      internalID: -1132661908
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: trainingGuy_30
+      rect:
+        serializedVersion: 2
+        x: 67
+        y: 1461
+        width: 70
+        height: 159
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8a5ff1de52f91504d9d6d1c4dc06de5e
+      internalID: -294744311
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: trainingGuy_31
+      rect:
+        serializedVersion: 2
+        x: 242
+        y: 1479
+        width: 104
+        height: 148
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 15efa63e508561545b57cf4cee871b43
+      internalID: 1154179015
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: trainingGuy_32
+      rect:
+        serializedVersion: 2
+        x: 441
+        y: 1466
+        width: 92
+        height: 157
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ae41b37483ab48140b004f820b13856f
+      internalID: -360437622
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: trainingGuy_33
+      rect:
+        serializedVersion: 2
+        x: 643
+        y: 1458
+        width: 79
+        height: 168
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a65074135d0b4db4ab4c51eae7a2de21
+      internalID: -1946084029
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: trainingGuy_34
+      rect:
+        serializedVersion: 2
+        x: 835
+        y: 1458
+        width: 79
+        height: 168
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6a04c2e619639a2468253b8e634e1e90
+      internalID: -2009658425
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: trainingGuy_35
+      rect:
+        serializedVersion: 2
+        x: 1029
+        y: 1458
+        width: 75
+        height: 143
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 622a5bddb36e2b247ac326d7ccb686ec
+      internalID: -443871566
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: trainingGuy_36
+      rect:
+        serializedVersion: 2
+        x: 1223
+        y: 1458
+        width: 86
+        height: 152
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3abc640c6d6d3a647be05590593ffec1
+      internalID: 951029879
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: trainingGuy_37
+      rect:
+        serializedVersion: 2
+        x: 1410
+        y: 1458
+        width: 90
+        height: 152
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6cd5d30b736a6854bb87134665448659
+      internalID: 322672144
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: trainingGuy_38
+      rect:
+        serializedVersion: 2
+        x: 1588
+        y: 1458
+        width: 102
+        height: 151
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d7a95510fe7dc05428f8d1e4e0f67f95
+      internalID: -1667274238
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: trainingGuy_39
+      rect:
+        serializedVersion: 2
+        x: 1790
+        y: 1458
+        width: 92
+        height: 150
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 69f30989ba3a2914f8908118f2199819
+      internalID: 961805449
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: trainingGuy_40
+      rect:
+        serializedVersion: 2
+        x: 37
+        y: 1266
+        width: 118
+        height: 180
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 524f94f14b58b5e4bb30514483799b0f
+      internalID: -790241062
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: trainingGuy_41
+      rect:
+        serializedVersion: 2
+        x: 214
+        y: 1266
+        width: 128
+        height: 136
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8a829ff24c9e8104783bdd132330cefe
+      internalID: -940577491
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: trainingGuy_42
+      rect:
+        serializedVersion: 2
+        x: 406
+        y: 1266
+        width: 128
+        height: 136
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6498a935443743d4e804c09bca9c00e1
+      internalID: -886142224
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: trainingGuy_43
+      rect:
+        serializedVersion: 2
+        x: 579
+        y: 1274
+        width: 103
+        height: 140
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6ec21b516977f5f4799fa313be70f1a7
+      internalID: -1371777688
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: trainingGuy_44
+      rect:
+        serializedVersion: 2
+        x: 770
+        y: 1285
+        width: 140
+        height: 103
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a8f28cf412ff3c84b83f9eb8cb76f03d
+      internalID: 1541857504
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: trainingGuy_45
+      rect:
+        serializedVersion: 2
+        x: 988
+        y: 1277
+        width: 103
+        height: 140
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2d41496d0a4368c4392fb01cbc639665
+      internalID: 1152473750
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: trainingGuy_46
+      rect:
+        serializedVersion: 2
+        x: 1181
+        y: 1266
+        width: 153
+        height: 82
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 827b3f11cd9f5024d9730a61d7bafc56
+      internalID: -520247688
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: trainingGuy_47
+      rect:
+        serializedVersion: 2
+        x: 1368
+        y: 1273
+        width: 166
+        height: 76
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 86340de803e7137488810d216d16c5e2
+      internalID: 1751457414
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: trainingGuy_48
+      rect:
+        serializedVersion: 2
+        x: 1562
+        y: 1267
+        width: 155
+        height: 67
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2a00003c49ca862449c02d009a6ab8e1
+      internalID: 1459121395
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: trainingGuy_49
+      rect:
+        serializedVersion: 2
+        x: 1733
+        y: 1281
+        width: 170
+        height: 133
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 52f372599703b754db45d85b74aaf296
+      internalID: -1293015802
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: trainingGuy_50
+      rect:
+        serializedVersion: 2
+        x: 7
+        y: 1076
+        width: 161
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2bd14aa50ab2a43438fde3e0e798846c
+      internalID: -785195949
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: trainingGuy_51
+      rect:
+        serializedVersion: 2
+        x: 197
+        y: 1085
+        width: 166
+        height: 108
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4b238e1f608c45144b8b6671165d7b04
+      internalID: -1161410601
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: trainingGuy_52
+      rect:
+        serializedVersion: 2
+        x: 391
+        y: 1100
+        width: 167
+        height: 99
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dc3d08b41f67ff84195e5db23b7a0150
+      internalID: 1688387494
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: trainingGuy_53
+      rect:
+        serializedVersion: 2
+        x: 629
+        y: 1104
+        width: 109
+        height: 85
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8f61de2b396d4fe418a3443a956e8da9
+      internalID: 927720815
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: trainingGuy_54
+      rect:
+        serializedVersion: 2
+        x: 816
+        y: 1083
+        width: 84
+        height: 108
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d37249cd628a9754c8c7169eb39c9aea
+      internalID: -769514488
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: trainingGuy_55
+      rect:
+        serializedVersion: 2
+        x: 985
+        y: 1108
+        width: 108
+        height: 83
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ebb813b1ad4605747841871030e502e9
+      internalID: -709774900
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: trainingGuy_56
+      rect:
+        serializedVersion: 2
+        x: 1202
+        y: 1106
+        width: 85
+        height: 108
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b7c4d5fc2dc66914abcd7ef637c8a6ef
+      internalID: 2110839012
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: trainingGuy_57
+      rect:
+        serializedVersion: 2
+        x: 1381
+        y: 1074
+        width: 92
+        height: 149
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ca8feb80a2c2e2349a2960b2ee3da96d
+      internalID: 151495333
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: trainingGuy_58
+      rect:
+        serializedVersion: 2
+        x: 1572
+        y: 1074
+        width: 92
+        height: 148
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ab7783e6e9021d743a74064050137bd3
+      internalID: -393370794
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: trainingGuy_59
+      rect:
+        serializedVersion: 2
+        x: 1766
+        y: 1074
+        width: 92
+        height: 148
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b69dbb6e9cd170743a1d9c8d56603ff9
+      internalID: -1308312308
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: trainingGuy_60
+      rect:
+        serializedVersion: 2
+        x: 39
+        y: 882
+        width: 92
+        height: 149
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4412b92e74133144e8ecdde485d06c8a
+      internalID: 1936763933
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: trainingGuy_61
+      rect:
+        serializedVersion: 2
+        x: 212
+        y: 882
+        width: 156
+        height: 65
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 73509232dc2f4a04d9245a51739c0244
+      internalID: 638411904
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: trainingGuy_62
+      rect:
+        serializedVersion: 2
+        x: 399
+        y: 882
+        width: 154
+        height: 67
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ad63734ec8ab47944b0707153b394edb
+      internalID: 1092082873
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: trainingGuy_63
+      rect:
+        serializedVersion: 2
+        x: 589
+        y: 885
+        width: 169
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2bad7248425b1cf44b522e6f39ad0feb
+      internalID: 1734141929
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: trainingGuy_64
+      rect:
+        serializedVersion: 2
+        x: 819
+        y: 882
+        width: 127
+        height: 138
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 71cf000874d352a45ae41ff2cbace449
+      internalID: -1850522183
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: trainingGuy_65
+      rect:
+        serializedVersion: 2
+        x: 1011
+        y: 882
+        width: 126
+        height: 139
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e1492e909febc7843be2731a80f9619e
+      internalID: -1181432248
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: trainingGuy_66
+      rect:
+        serializedVersion: 2
+        x: 1204
+        y: 882
+        width: 127
+        height: 136
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ff121a0347ac16f40a6f72ad53c12553
+      internalID: 1941070986
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: trainingGuy_67
+      rect:
+        serializedVersion: 2
+        x: 1397
+        y: 882
+        width: 127
+        height: 136
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cea3175ccfb29c945b0d65eb222b4bd7
+      internalID: -13955437
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: trainingGuy_68
+      rect:
+        serializedVersion: 2
+        x: 1597
+        y: 882
+        width: 85
+        height: 152
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 25706d5241ad712409963146f8574d20
+      internalID: 534575793
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: trainingGuy_69
+      rect:
+        serializedVersion: 2
+        x: 1776
+        y: 882
+        width: 92
+        height: 155
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a56934265aacf974b9d7911564b419b6
+      internalID: 1198990550
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: trainingGuy_70
+      rect:
+        serializedVersion: 2
+        x: 49
+        y: 690
+        width: 83
+        height: 152
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1a996501af5d73b4cb69cfbc1b56134f
+      internalID: -332109734
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: trainingGuy_71
+      rect:
+        serializedVersion: 2
+        x: 253
+        y: 690
+        width: 59
+        height: 154
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 617e75c64469225418549df504855557
+      internalID: 841639991
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: trainingGuy_72
+      rect:
+        serializedVersion: 2
+        x: 423
+        y: 690
+        width: 88
+        height: 152
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e9bb084e4d9f1ce448ae6a8dfd3f75d7
+      internalID: -639039351
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: trainingGuy_73
+      rect:
+        serializedVersion: 2
+        x: 614
+        y: 690
+        width: 113
+        height: 147
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e132aa1e3af40714f9be61fa981c4b1b
+      internalID: 2084276335
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: trainingGuy_74
+      rect:
+        serializedVersion: 2
+        x: 811
+        y: 690
+        width: 90
+        height: 161
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 78ca1eb0a775269448932bcc60ff9c11
+      internalID: 1939254547
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: trainingGuy_75
+      rect:
+        serializedVersion: 2
+        x: 1000
+        y: 690
+        width: 113
+        height: 147
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ae40ebace4ee85346831f3202b8fac0c
+      internalID: 1324127808
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: trainingGuy_76
+      rect:
+        serializedVersion: 2
+        x: 1192
+        y: 690
+        width: 103
+        height: 148
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f18292be9fdf2bd49b3d03d96e59947f
+      internalID: 1106505977
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: trainingGuy_77
+      rect:
+        serializedVersion: 2
+        x: 1406
+        y: 689
+        width: 91
+        height: 144
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e720977ff9c62eb4d98cd2e48b3c2e8e
+      internalID: 1108126688
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: trainingGuy_78
+      rect:
+        serializedVersion: 2
+        x: 1604
+        y: 687
+        width: 110
+        height: 132
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ab1a3ea8fde3ab0429a8056e0ccef3fe
+      internalID: -1248607137
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: trainingGuy_79
+      rect:
+        serializedVersion: 2
+        x: 1802
+        y: 689
+        width: 96
+        height: 133
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b89807c9018572145bd2e0e442fb41aa
+      internalID: -433317174
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: trainingGuy_80
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 498
+        width: 91
+        height: 161
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f46ea4429dccc1a42a996a0e160bb4c4
+      internalID: 1084270609
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: trainingGuy_81
+      rect:
+        serializedVersion: 2
+        x: 259
+        y: 498
+        width: 113
+        height: 143
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e6eec152d1467d7488eccf5c351bd475
+      internalID: -1183737208
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: trainingGuy_82
+      rect:
+        serializedVersion: 2
+        x: 451
+        y: 498
+        width: 105
+        height: 132
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 50645c34649423d4cbaa75d40753d6b0
+      internalID: 957768779
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: trainingGuy_83
+      rect:
+        serializedVersion: 2
+        x: 636
+        y: 498
+        width: 90
+        height: 143
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2f1982804d7e3864681b93909e178248
+      internalID: 1277242985
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: trainingGuy_84
+      rect:
+        serializedVersion: 2
+        x: 839
+        y: 496
+        width: 109
+        height: 132
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 514a8cf0953af7247966a28d77d91080
+      internalID: -1277469116
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: trainingGuy_85
+      rect:
+        serializedVersion: 2
+        x: 1035
+        y: 496
+        width: 94
+        height: 131
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5d97e519935a4db47ba94d01fd14432d
+      internalID: -328142420
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: trainingGuy_86
+      rect:
+        serializedVersion: 2
+        x: 1196
+        y: 498
+        width: 71
+        height: 156
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f2f4ea5e13a2f9349868d60566d984fd
+      internalID: -151271647
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: trainingGuy_87
+      rect:
+        serializedVersion: 2
+        x: 1390
+        y: 498
+        width: 73
+        height: 154
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 869b09d27556da541861af369d12b084
+      internalID: 385822387
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: trainingGuy_88
+      rect:
+        serializedVersion: 2
+        x: 1584
+        y: 498
+        width: 139
+        height: 148
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 62b974de928d43f469abf75e3da63f5d
+      internalID: 312703482
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: trainingGuy_89
+      rect:
+        serializedVersion: 2
+        x: 1774
+        y: 498
+        width: 121
+        height: 156
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 39fb8d7951fdc7e468b5afd87078c5f9
+      internalID: -922375733
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: trainingGuy_90
+      rect:
+        serializedVersion: 2
+        x: 28
+        y: 306
+        width: 79
+        height: 169
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 23bb6b27c7aa736458f78acf8611e0c8
+      internalID: -1784227753
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: trainingGuy_91
+      rect:
+        serializedVersion: 2
+        x: 219
+        y: 307
+        width: 84
+        height: 163
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 354787a2901dd9f4c8bdc0116b44a5c9
+      internalID: -1461806700
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: trainingGuy_92
+      rect:
+        serializedVersion: 2
+        x: 412
+        y: 309
+        width: 136
+        height: 155
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7852504e9a0debe4e87d17c5d2c15f9c
+      internalID: -831782439
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: trainingGuy_93
+      rect:
+        serializedVersion: 2
+        x: 603
+        y: 307
+        width: 111
+        height: 163
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 189bb095095b0f947861b1b9b6e2c189
+      internalID: 1643580557
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: trainingGuy_94
+      rect:
+        serializedVersion: 2
+        x: 834
+        y: 306
+        width: 79
+        height: 169
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0374124c7f69f724e9fdef2e5a2d0858
+      internalID: -1575981532
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: trainingGuy_95
+      rect:
+        serializedVersion: 2
+        x: 1026
+        y: 308
+        width: 84
+        height: 163
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9a08cf29ea6031945915a01519354b73
+      internalID: 1500088307
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: trainingGuy_96
+      rect:
+        serializedVersion: 2
+        x: 1208
+        y: 309
+        width: 125
+        height: 155
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0c50a6327b6dc9a43be80a2dedcd7f82
+      internalID: 2143667206
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: trainingGuy_97
+      rect:
+        serializedVersion: 2
+        x: 1405
+        y: 306
+        width: 70
+        height: 156
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0f8c77ebe11e3264791ff88853ecbe06
+      internalID: -1274116488
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: trainingGuy_98
+      rect:
+        serializedVersion: 2
+        x: 1598
+        y: 306
+        width: 75
+        height: 154
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8ad04e02b319ae449a830d05443cf3dd
+      internalID: -1682741662
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: trainingGuy_99
+      rect:
+        serializedVersion: 2
+        x: 1793
+        y: 306
+        width: 127
+        height: 144
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5cff7f2e3229eca459d65bd4a1fcf500
+      internalID: -1172693895
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: trainingGuy_100
+      rect:
+        serializedVersion: 2
+        x: 28
+        y: 114
+        width: 137
+        height: 124
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ccb1d81bcbfabda4bae4a8488ffe9974
+      internalID: 317970487
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: trainingGuy_101
+      rect:
+        serializedVersion: 2
+        x: 231
+        y: 114
+        width: 98
+        height: 130
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 009eaf400b301c74d814c120d33f6dbe
+      internalID: 1428903908
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: trainingGuy_102
+      rect:
+        serializedVersion: 2
+        x: 452
+        y: 111
+        width: 110
+        height: 132
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9b326add27c311f419d2bf4371505bff
+      internalID: 1867251557
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: trainingGuy_103
+      rect:
+        serializedVersion: 2
+        x: 602
+        y: 1
+        width: 246
+        height: 271
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: af61581eaec579642b3e9c6191bb032f
+      internalID: -1684871077
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      trainingGuy_0: 522248188
+      trainingGuy_1: 51551465
+      trainingGuy_10: -1804350405
+      trainingGuy_100: 317970487
+      trainingGuy_101: 1428903908
+      trainingGuy_102: 1867251557
+      trainingGuy_103: -1684871077
+      trainingGuy_11: 1332665183
+      trainingGuy_12: -62202581
+      trainingGuy_13: 1275945772
+      trainingGuy_14: 2036715267
+      trainingGuy_15: -633537095
+      trainingGuy_16: 31968997
+      trainingGuy_17: 171234334
+      trainingGuy_18: 1155501812
+      trainingGuy_19: 530127667
+      trainingGuy_2: 158721418
+      trainingGuy_20: 1709396929
+      trainingGuy_21: 700784954
+      trainingGuy_22: 1731283783
+      trainingGuy_23: 1110638171
+      trainingGuy_24: -492675665
+      trainingGuy_25: 558764804
+      trainingGuy_26: -404911568
+      trainingGuy_27: 766755334
+      trainingGuy_28: -2082802018
+      trainingGuy_29: -1132661908
+      trainingGuy_3: 1378264861
+      trainingGuy_30: -294744311
+      trainingGuy_31: 1154179015
+      trainingGuy_32: -360437622
+      trainingGuy_33: -1946084029
+      trainingGuy_34: -2009658425
+      trainingGuy_35: -443871566
+      trainingGuy_36: 951029879
+      trainingGuy_37: 322672144
+      trainingGuy_38: -1667274238
+      trainingGuy_39: 961805449
+      trainingGuy_4: -1620079956
+      trainingGuy_40: -790241062
+      trainingGuy_41: -940577491
+      trainingGuy_42: -886142224
+      trainingGuy_43: -1371777688
+      trainingGuy_44: 1541857504
+      trainingGuy_45: 1152473750
+      trainingGuy_46: -520247688
+      trainingGuy_47: 1751457414
+      trainingGuy_48: 1459121395
+      trainingGuy_49: -1293015802
+      trainingGuy_5: 273854225
+      trainingGuy_50: -785195949
+      trainingGuy_51: -1161410601
+      trainingGuy_52: 1688387494
+      trainingGuy_53: 927720815
+      trainingGuy_54: -769514488
+      trainingGuy_55: -709774900
+      trainingGuy_56: 2110839012
+      trainingGuy_57: 151495333
+      trainingGuy_58: -393370794
+      trainingGuy_59: -1308312308
+      trainingGuy_6: 209230606
+      trainingGuy_60: 1936763933
+      trainingGuy_61: 638411904
+      trainingGuy_62: 1092082873
+      trainingGuy_63: 1734141929
+      trainingGuy_64: -1850522183
+      trainingGuy_65: -1181432248
+      trainingGuy_66: 1941070986
+      trainingGuy_67: -13955437
+      trainingGuy_68: 534575793
+      trainingGuy_69: 1198990550
+      trainingGuy_7: -1920272062
+      trainingGuy_70: -332109734
+      trainingGuy_71: 841639991
+      trainingGuy_72: -639039351
+      trainingGuy_73: 2084276335
+      trainingGuy_74: 1939254547
+      trainingGuy_75: 1324127808
+      trainingGuy_76: 1106505977
+      trainingGuy_77: 1108126688
+      trainingGuy_78: -1248607137
+      trainingGuy_79: -433317174
+      trainingGuy_8: 280087902
+      trainingGuy_80: 1084270609
+      trainingGuy_81: -1183737208
+      trainingGuy_82: 957768779
+      trainingGuy_83: 1277242985
+      trainingGuy_84: -1277469116
+      trainingGuy_85: -328142420
+      trainingGuy_86: -151271647
+      trainingGuy_87: 385822387
+      trainingGuy_88: 312703482
+      trainingGuy_89: -922375733
+      trainingGuy_9: 625730851
+      trainingGuy_90: -1784227753
+      trainingGuy_91: -1461806700
+      trainingGuy_92: -831782439
+      trainingGuy_93: 1643580557
+      trainingGuy_94: -1575981532
+      trainingGuy_95: 1500088307
+      trainingGuy_96: 2143667206
+      trainingGuy_97: -1274116488
+      trainingGuy_98: -1682741662
+      trainingGuy_99: -1172693895
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
