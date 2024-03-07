@@ -25,15 +25,15 @@ public class PlayerActionScript : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.W) && lastMove != "JUMP")
         {
             Debug.Log("JUMP");
-            StartCoroutine(runAnimation("isJumping", 0.5f));
+            animator.SetTrigger("isJumping");
             myRigidBody.velocity = Vector2.up * 5;
             lastMove = "JUMP";
         }
         if (Input.GetKeyDown(KeyCode.A))
         {
-            StartCoroutine(runAnimation("isMoving", 2f));
-            myRigidBody.velocity = Vector2.left * 15;
             //animator.SetBool("isMoving", true);
+            myRigidBody.velocity = Vector2.left * 15;
+            animator.SetBool("isMoving", true);
         }
         if (Input.GetKeyDown(KeyCode.S))
         {
@@ -42,6 +42,7 @@ public class PlayerActionScript : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.D))
         {
+            //animator.SetBool("isMoving", true);
             myRigidBody.velocity = Vector2.right * 15;
             //animator.SetBool("isMoving", true);
             StartCoroutine(runAnimation("isMoving", 2f));
@@ -49,7 +50,7 @@ public class PlayerActionScript : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.P))
         {
             Debug.Log("PUNCH!");
-            StartCoroutine(runAnimation("isPunching", 0.03f));
+            animator.SetTrigger("isPunching");
         }
         if (Input.GetKeyDown(KeyCode.K))
         {
@@ -59,8 +60,6 @@ public class PlayerActionScript : MonoBehaviour
         {
             Debug.Log("BLOCK!");
         }
-
-        //animator.SetBool("isMoving", false);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
