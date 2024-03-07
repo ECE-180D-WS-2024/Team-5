@@ -1,10 +1,14 @@
+"""
+Important: mp_pose.Pose() only seems to runs on MacOS using Python 3.9 and below
+"""
+
 import cv2
 import mediapipe as mp
 
 # Initialize MediaPipe Pose solution.
 mp_pose = mp.solutions.pose
 pose = mp_pose.Pose(
-    static_image_mode=False, min_detection_confidence=0.5, min_tracking_confidence=0.5
+    static_image_mode=False, min_detection_confidence=0.5, min_tracking_confidence=0.9
 )
 mp_drawing = mp.solutions.drawing_utils
 
