@@ -5,10 +5,13 @@ using System.Linq;
 using System.Xml.Serialization;
 using UnityEngine;
 using UnityEngine.Windows.Speech;
+using static UnityEngine.GraphicsBuffer;
 
 public class PlayerActionScript : MonoBehaviour
 {
     public Rigidbody2D myRigidBody;
+    public BoxCollider2D myCollider;
+    public BoxCollider2D enemyCollider;
     public Animator animator;
     public float time;
     public float lastSwitch;
@@ -39,6 +42,10 @@ public class PlayerActionScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (enemyCollider.IsTouching(myCollider))
+        {
+            animator.SetTrigger("isHurt");
+        }
         if (Input.GetKeyDown(KeyCode.W) && lastMove != "JUMP")
         {
             Debug.Log("JUMP");
@@ -68,6 +75,10 @@ public class PlayerActionScript : MonoBehaviour
         {
             Debug.Log("PUNCH!");
             animator.SetTrigger("isPunching");
+            if (myCollider.IsTouching(enemyCollider))
+            {
+                Debug.Log("Hit ENEMY!");
+            }
         }
         if (Input.GetKeyDown(KeyCode.K))
         {
@@ -81,9 +92,10 @@ public class PlayerActionScript : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        lastMove = "";
-        Debug.Log("RESET LAST MOVE");
-        //Debug.Log(collision);
+        if (collision.gameObject.tag == "Ground")
+        {
+            lastMove = "";
+        }
     }
 
     void OnTriggerEnter2D(Collider2D target)
