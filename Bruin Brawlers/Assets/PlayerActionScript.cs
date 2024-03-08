@@ -1,7 +1,10 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using System.Xml.Serialization;
 using UnityEngine;
+using UnityEngine.Windows.Speech;
 
 public class PlayerActionScript : MonoBehaviour
 {
@@ -11,12 +14,26 @@ public class PlayerActionScript : MonoBehaviour
     public float lastSwitch;
     public string lastMove;
 
+    private KeywordRecognizer keywordRecognizer;
+    private Dictionary<string, Action> actions = new Dictionary<string, Action>();
+
     // Start is called before the first frame update
     void Start()
     {
         time = 0;
         lastSwitch = 0;
         lastMove = "";
+
+        actions.Add("bombastic", superMove);
+
+        keywordRecognizer = new KeywordRecognizer(actions.Keys.ToArray());
+        keywordRecognizer.OnPhraseRecognized += RecognizedSpeech;
+        keywordRecognizer.Start();
+    }
+    private void RecognizedSpeech(PhraseRecognizedEventArgs speech)
+    {
+        Debug.Log(speech.text);
+        actions[speech.text].Invoke();
     }
 
     // Update is called once per frame
@@ -89,5 +106,11 @@ public class PlayerActionScript : MonoBehaviour
 
         // Reset the boolean after the transition is complete
         animator.SetBool(animation, false);
+    }
+
+    private void superMove()
+    {
+        myRigidBody.transform.localScale += new Vector3(1f, 1f, 1f);
+        GetComponent<SpriteRenderer>().color = new Color(1, 0, 0, 1);
     }
 }
