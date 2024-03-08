@@ -1833,6 +1833,7 @@ GameObject:
   - component: {fileID: 1743646138}
   - component: {fileID: 1743646137}
   - component: {fileID: 1743646136}
+  - component: {fileID: 1743646140}
   m_Layer: 0
   m_Name: trainingGuy_0
   m_TagString: Player
@@ -2000,6 +2001,23 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1743646140
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1743646134}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6226759ac31400b439ee7c9c9886bcd4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myRigidBody: {fileID: 1743646138}
+  animator: {fileID: 1743646136}
+  time: 0
+  lastSwitch: 0
+  lastMove: 
 --- !u!1 &1845855498
 GameObject:
   m_ObjectHideFlags: 0
@@ -2262,6 +2280,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4149982558261667740, guid: 4341e005f38ae4644bec209f74e04f8a, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4149982558261667740, guid: 4341e005f38ae4644bec209f74e04f8a, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4149982558261667740, guid: 4341e005f38ae4644bec209f74e04f8a, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4650031845660193214, guid: 4341e005f38ae4644bec209f74e04f8a, type: 3}
       propertyPath: m_Name
       value: Player Character
