@@ -18,6 +18,10 @@ public class Player2ActionScript : MonoBehaviour
 
     private KeywordRecognizer keywordRecognizer;
     private Dictionary<string, Action> actions = new Dictionary<string, Action>();
+    private Vector3 originalScale;
+    private Color originalColor;
+    private bool activeSM = false;
+    private bool cooldownSM = false;
 
     // Start is called before the first frame update
     void Start()
@@ -26,11 +30,14 @@ public class Player2ActionScript : MonoBehaviour
         lastSwitch = 0;
         lastMove = "";
 
-        actions.Add("fergalicious", superMove);
+        actions.Add("fergalicious", () => superMove());
 
         keywordRecognizer = new KeywordRecognizer(actions.Keys.ToArray());
         keywordRecognizer.OnPhraseRecognized += RecognizedSpeech;
         keywordRecognizer.Start();
+
+        originalScale = myRigidBody.transform.localScale;
+        originalColor = GetComponent<SpriteRenderer>().color;
     }
     private void RecognizedSpeech(PhraseRecognizedEventArgs speech)
     {
@@ -88,6 +95,11 @@ public class Player2ActionScript : MonoBehaviour
         {
             Debug.Log("BLOCK!");
         }
+        if (activeSM)
+        {
+            StartCoroutine(SuperMoveCoroutine());
+            activeSM = false;
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -122,7 +134,23 @@ public class Player2ActionScript : MonoBehaviour
 
     private void superMove()
     {
+        if (!cooldownSM)
+        {
+            activeSM = true;
+            cooldownSM = true;
+        }
+    }
+
+    private IEnumerator SuperMoveCoroutine()
+    {
         myRigidBody.transform.localScale += new Vector3(1f, 1f, 1f);
         GetComponent<SpriteRenderer>().color = new Color(0, 1, 0, 1);
+
+        yield return new WaitForSeconds(10f);   //wait for 10 seconds
+
+        myRigidBody.transform.localScale = originalScale;
+        GetComponent<SpriteRenderer>().color = originalColor;
+
+        cooldownSM = false;
     }
 }
