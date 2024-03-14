@@ -2,13 +2,19 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Xml.Serialization;
 using UnityEngine;
 using UnityEngine.Windows.Speech;
-using static UnityEngine.GraphicsBuffer;
+using System.Net;
+using System.Net.Sockets;
+using System.Text;
+using System.Threading;
 
 public class PlayerActionScript : MonoBehaviour
 {
+    Thread receiveThread;
+    UdpClient client;
+    public int port = 5000; // Select a port to listen on
+
     public Rigidbody2D myRigidBody;
     public BoxCollider2D myCollider;
     public BoxCollider2D enemyCollider;
@@ -17,7 +23,9 @@ public class PlayerActionScript : MonoBehaviour
     public int maxHP = 100;
     public int currentHP;
     public HealthBar enemyHealthBar;
-    public HealthBar healthBar; 
+    public HealthBar healthBar;
+    public String move;
+
     private KeywordRecognizer keywordRecognizer;
     private Dictionary<string, Action> actions = new Dictionary<string, Action>();
     private Vector3 originalScale;
@@ -28,6 +36,12 @@ public class PlayerActionScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        StartReceiving();
+
+        lastMove = "";
+        currentHP = maxHP;
+        healthBar.SetMaxHealth(maxHP);
+
         lastMove = "";
         currentHP = maxHP;
         healthBar.SetMaxHealth(maxHP);
@@ -41,6 +55,50 @@ public class PlayerActionScript : MonoBehaviour
         originalScale = myRigidBody.transform.localScale;
         originalColor = GetComponent<SpriteRenderer>().color;
     }
+
+    private void StartReceiving()
+    {
+        receiveThread = new Thread(new ThreadStart(ReceiveData));
+        receiveThread.IsBackground = true;
+        receiveThread.Start();
+    }
+
+    private void ReceiveData()
+    {
+        client = new UdpClient(port);
+        while (true)
+        {
+            try
+            {
+                // Blocks until a message returns on this socket from a remote host.
+                IPEndPoint anyIP = new IPEndPoint(IPAddress.Any, 0);
+                byte[] data = client.Receive(ref anyIP);
+
+                string text = Encoding.UTF8.GetString(data);
+                move = text;
+                Debug.Log(">> " + text);
+
+                // Process the data received (e.g., by parsing text) here
+            }
+            catch (Exception e)
+            {
+                Debug.LogError(e.ToString());
+            }
+        }
+    }
+
+    void OnApplicationQuit()
+    {
+        if (receiveThread != null && receiveThread.IsAlive)
+        {
+            receiveThread.Abort();
+        }
+
+        if (client != null)
+        {
+            client.Close();
+        }
+    }
     private void RecognizedSpeech(PhraseRecognizedEventArgs speech)
     {
         Debug.Log(speech.text);
@@ -53,8 +111,6 @@ public class PlayerActionScript : MonoBehaviour
         if (enemyCollider.IsTouching(myCollider))
         {
             animator.SetTrigger("isHurt");
-            //currentHP--;
-            //healthBar.SetHealth(currentHP);
         }
         if (Input.GetKeyDown(KeyCode.W) && lastMove != "JUMP")
         {
@@ -65,23 +121,19 @@ public class PlayerActionScript : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.A))
         {
-            //animator.SetBool("isMoving", true);
             myRigidBody.velocity = Vector2.left * 15;
             animator.SetBool("isMoving", true);
         }
         if (Input.GetKeyDown(KeyCode.S))
         {
             myRigidBody.velocity = Vector2.down * 15;
-            //animator.SetBool("isMoving", true);
         }
         if (Input.GetKeyDown(KeyCode.D))
         {
-            //animator.SetBool("isMoving", true);
             myRigidBody.velocity = Vector2.right * 15;
-            //animator.SetBool("isMoving", true);
             StartCoroutine(runAnimation("isMoving", 2f));
         }
-        if (Input.GetKeyDown(KeyCode.P))
+        if (move == "Punch")
         {
             Debug.Log("PUNCH!");
             animator.SetTrigger("isPunching");

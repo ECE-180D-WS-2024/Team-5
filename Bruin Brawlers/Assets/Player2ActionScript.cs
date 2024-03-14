@@ -2,10 +2,8 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Xml.Serialization;
 using UnityEngine;
 using UnityEngine.Windows.Speech;
-using UnityEngine.Networking;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
@@ -120,20 +118,16 @@ public class Player2ActionScript : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.LeftArrow))
         {
-            //animator.SetBool("isMoving", true);
             myRigidBody.velocity = Vector2.left * 15;
             animator.SetBool("isMoving", true);
         }
         if (Input.GetKeyDown(KeyCode.DownArrow))
         {
             myRigidBody.velocity = Vector2.down * 15;
-            //animator.SetBool("isMoving", true);
         }
         if (Input.GetKeyDown(KeyCode.RightArrow))
         {
-            //animator.SetBool("isMoving", true);
             myRigidBody.velocity = Vector2.right * 15;
-            //animator.SetBool("isMoving", true);
             StartCoroutine(runAnimation("isMoving", 2f));
         }
         if (move == "Punch")
