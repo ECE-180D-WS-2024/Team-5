@@ -6,12 +6,21 @@ import cv2
 import mediapipe as mp
 import socket
 
-HOST = "127.0.0.1"  # Localhost
-PORT = 5000  # Port to listen on (non-privileged ports are > 1023)
+# Create a UDP socket
+sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 
-with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
-    s.connect((HOST, PORT))
-    s.sendall(b"Hello, Unity!")
+# Server address and port
+server_address = ('127.0.0.1', 5000) # Example port, change as needed
+
+# Message to send
+message = 'Hello, Unity!'
+
+try:
+    # Send data
+    print(f"Sending: {message}")
+    sent = sock.sendto(message.encode(), server_address)
+except Exception as e:
+    print(e)
 
 # Initialize MediaPipe Pose solution.
 mp_pose = mp.solutions.pose
@@ -79,7 +88,7 @@ def is_kick(landmarks):
 
 # Capture video from the webcam.
 cap = cv2.VideoCapture(0)
-
+last_move = ""
 while cap.isOpened():
     success, image = cap.read()
     if not success:
@@ -112,6 +121,15 @@ while cap.isOpened():
                 2,
                 cv2.LINE_AA,
             )
+            if last_move != "Punch":
+                last_move = "Punch"
+                message = "Punch"
+                try:
+                    # Send data
+                    print(f"Sending: {message}")
+                    sent = sock.sendto(message.encode(), server_address)
+                except Exception as e:
+                    print(e)
 
         if is_kick(results.pose_landmarks):
             cv2.putText(
@@ -148,9 +166,20 @@ while cap.isOpened():
                 2,
                 cv2.LINE_AA,
             )
+            if last_move != "Block":
+                last_move = "Block"
+                message = "Block"
+                try:
+                    # Send data
+                    print(f"Sending: {message}")
+                    sent = sock.sendto(message.encode(), server_address)
+                except Exception as e:
+                    print(e)
+            
 
     cv2.imshow("MediaPipe Pose with Gesture Recognition", image)
     if cv2.waitKey(5) & 0xFF == 27:
+        sock.close()
         break
 
 cap.release()
