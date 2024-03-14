@@ -12,9 +12,11 @@ public class Player2ActionScript : MonoBehaviour
     public BoxCollider2D myCollider;
     public BoxCollider2D enemyCollider;
     public Animator animator;
-    public float time;
-    public float lastSwitch;
     public string lastMove;
+    public int maxHP = 100;
+    public int currentHP;
+    public HealthBar enemyHealthBar;
+    public HealthBar healthBar;
 
     private KeywordRecognizer keywordRecognizer;
     private Dictionary<string, Action> actions = new Dictionary<string, Action>();
@@ -26,9 +28,9 @@ public class Player2ActionScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        time = 0;
-        lastSwitch = 0;
         lastMove = "";
+        currentHP = maxHP;
+        healthBar.SetMaxHealth(maxHP);
 
         actions.Add("fergalicious", () => superMove());
 
@@ -85,6 +87,8 @@ public class Player2ActionScript : MonoBehaviour
             if (myCollider.IsTouching(enemyCollider))
             {
                 Debug.Log("Hit ENEMY!");
+                int enemyHP = enemyHealthBar.GetHealth() - 4;
+                enemyHealthBar.SetHealth(enemyHP);
             }
         }
         if (Input.GetKeyDown(KeyCode.K))
