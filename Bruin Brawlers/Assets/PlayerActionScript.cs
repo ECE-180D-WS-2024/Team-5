@@ -101,6 +101,7 @@ public class PlayerActionScript : MonoBehaviour
         {
             currentHP--;
             healthBar.SetHealth(currentHP);
+        }
         if (activeSM)
         {
             StartCoroutine(SuperMoveCoroutine());       //if keyword is recognized start coroutine and set active to false
@@ -116,7 +117,7 @@ public class PlayerActionScript : MonoBehaviour
         }
     }
 
-    void OnTriggerEnter2D(Collider2D target)
+    private void OnTriggerEnter2D(Collider2D target)
     {
         if (target.tag == "Player")
         {
