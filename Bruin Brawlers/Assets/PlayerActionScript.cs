@@ -13,19 +13,19 @@ public class PlayerActionScript : MonoBehaviour
     public BoxCollider2D myCollider;
     public BoxCollider2D enemyCollider;
     public Animator animator;
-    public float time;
-    public float lastSwitch;
     public string lastMove;
-
+    public int maxHP = 100;
+    public int currentHP;
+    public HealthBar healthBar; 
     private KeywordRecognizer keywordRecognizer;
     private Dictionary<string, Action> actions = new Dictionary<string, Action>();
 
     // Start is called before the first frame update
     void Start()
     {
-        time = 0;
-        lastSwitch = 0;
         lastMove = "";
+        currentHP = maxHP;
+        healthBar.SetMaxHealth(maxHP);
 
         actions.Add("bombastic", superMove);
 
@@ -45,6 +45,8 @@ public class PlayerActionScript : MonoBehaviour
         if (enemyCollider.IsTouching(myCollider))
         {
             animator.SetTrigger("isHurt");
+            currentHP--;
+            healthBar.SetHealth(currentHP);
         }
         if (Input.GetKeyDown(KeyCode.W) && lastMove != "JUMP")
         {
@@ -87,6 +89,11 @@ public class PlayerActionScript : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.L))
         {
             Debug.Log("BLOCK!");
+        }
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            currentHP--;
+            healthBar.SetHealth(currentHP);
         }
     }
 
