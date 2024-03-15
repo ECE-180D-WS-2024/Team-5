@@ -5,22 +5,39 @@ Important: mp_pose.Pose() only seems to runs on MacOS using Python 3.9 and below
 import cv2
 import mediapipe as mp
 import socket
+import threading
+import argparse
+
+# Set up argument parsing
+parser = argparse.ArgumentParser(description="Process player argument.")
+parser.add_argument(
+    "--player",
+    type=str,
+    choices=["p1", "p2"],
+    required=True,
+    help="Player identifier (p1 or p2)",
+)
+args = parser.parse_args()
+
+# Now you can use args.player to access the "player" variable
+player = args.player
+print(f"Player set to: {player}")
 
 # Create a UDP socket
 sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 
 # Server address and port
-server_address = ('127.0.0.1', 5000) # Example port, change as needed
+server_address = ("127.0.0.1", 5000)  # Example port, change as needed
 
-# Message to send
-message = 'Hello, Unity!'
 
-try:
-    # Send data
-    print(f"Sending: {message}")
-    sent = sock.sendto(message.encode(), server_address)
-except Exception as e:
-    print(e)
+def send_message(message):
+    message = f"{player}-{message}"
+    try:
+        print(f"Sending: {message}")
+        sent = sock.sendto(message.encode(), server_address)
+    except Exception as e:
+        print(e)
+
 
 # Initialize MediaPipe Pose solution.
 mp_pose = mp.solutions.pose
@@ -88,7 +105,7 @@ def is_kick(landmarks):
 
 # Capture video from the webcam.
 cap = cv2.VideoCapture(0)
-last_move = ""
+last_move = None
 while cap.isOpened():
     success, image = cap.read()
     if not success:
@@ -124,12 +141,7 @@ while cap.isOpened():
             if last_move != "Punch":
                 last_move = "Punch"
                 message = "Punch"
-                try:
-                    # Send data
-                    print(f"Sending: {message}")
-                    sent = sock.sendto(message.encode(), server_address)
-                except Exception as e:
-                    print(e)
+                threading.Thread(target=send_message, args=(message)).start()
 
         if is_kick(results.pose_landmarks):
             cv2.putText(
@@ -145,12 +157,7 @@ while cap.isOpened():
             if last_move != "Kick":
                 last_move = "Kick"
                 message = "Kick"
-                try:
-                    # Send data
-                    print(f"Sending: {message}")
-                    sent = sock.sendto(message.encode(), server_address)
-                except Exception as e:
-                    print(e)
+                threading.Thread(target=send_message, args=(message)).start()
 
         if is_duck(results.pose_landmarks):
             cv2.putText(
@@ -163,6 +170,10 @@ while cap.isOpened():
                 2,
                 cv2.LINE_AA,
             )
+            if last_move != "Duck":
+                last_move = "Duck"
+                message = "Duck"
+                threading.Thread(target=send_message, args=(message)).start()
 
         if is_block(results.pose_landmarks):
             cv2.putText(
@@ -178,13 +189,7 @@ while cap.isOpened():
             if last_move != "Block":
                 last_move = "Block"
                 message = "Block"
-                try:
-                    # Send data
-                    print(f"Sending: {message}")
-                    sent = sock.sendto(message.encode(), server_address)
-                except Exception as e:
-                    print(e)
-            
+                threading.Thread(target=send_message, args=(message)).start()
 
     cv2.imshow("MediaPipe Pose with Gesture Recognition", image)
     if cv2.waitKey(5) & 0xFF == 27:
