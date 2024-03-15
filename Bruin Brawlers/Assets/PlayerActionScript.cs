@@ -24,6 +24,11 @@ public class PlayerActionScript : MonoBehaviour
     public int currentHP;
     public HealthBar enemyHealthBar;
     public HealthBar healthBar;
+    public int maxSM = 100;
+    public int currentSM;
+    public SMBar sm_bar;
+    public int count = 0;
+    public int mySM = 0;
     public String move;
 
     private KeywordRecognizer keywordRecognizer;
@@ -32,6 +37,7 @@ public class PlayerActionScript : MonoBehaviour
     private Color originalColor;
     private bool activeSM = false;
     private bool cooldownSM = false;
+    private bool sm_bar_full = false;
 
     // Start is called before the first frame update
     void Start()
@@ -45,6 +51,8 @@ public class PlayerActionScript : MonoBehaviour
         lastMove = "";
         currentHP = maxHP;
         healthBar.SetMaxHealth(maxHP);
+        currentSM = 0;
+        sm_bar.SetStartSM(0);
 
         actions.Add("bombastic", () => superMove());
 
@@ -142,6 +150,19 @@ public class PlayerActionScript : MonoBehaviour
                 Debug.Log("Hit ENEMY!");
                 int enemyHP = enemyHealthBar.GetHealth() - 4;
                 enemyHealthBar.SetHealth(enemyHP);
+                if (!cooldownSM)
+                {
+                    mySM = sm_bar.GetSM() + 10;
+                    sm_bar.SetSM(mySM);
+                    count++;
+                    if (count == 10)
+                    {
+                        sm_bar_full = true;
+                        count = 0;
+                    }
+                }
+                
+                
             }
         }
         if (Input.GetKeyDown(KeyCode.K))
@@ -196,10 +217,12 @@ public class PlayerActionScript : MonoBehaviour
 
     private void superMove()
     {
-        if (!cooldownSM)
+        if (!cooldownSM && sm_bar_full)
         {
             activeSM = true;
             cooldownSM = true;
+            sm_bar_full = false;
+            //sm_bar.SetSM(0);
         }
     }
 
@@ -208,7 +231,15 @@ public class PlayerActionScript : MonoBehaviour
         myRigidBody.transform.localScale += new Vector3(1f, 1f, 1f);
         GetComponent<SpriteRenderer>().color = new Color(1, 0, 0, 1);
 
-        yield return new WaitForSeconds(10f);   //wait for 10 seconds
+        for (int i = 100; i >= 0; i = i - 10)
+        {
+            sm_bar.SetSM(i);
+            yield return new WaitForSeconds(1f);
+        }
+
+        //yield return new WaitForSeconds(10f);   //wait for 10 seconds
+
+        
 
         myRigidBody.transform.localScale = originalScale;
         GetComponent<SpriteRenderer>().color = originalColor;
