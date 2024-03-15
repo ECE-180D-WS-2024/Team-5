@@ -18,7 +18,6 @@ public class Player2ActionScript : MonoBehaviour
     public HealthBar enemyHealthBar;
     public HealthBar healthBar;
 
-    public int maxSM = 100;
     public int currentSM;
     public SMBar sm_bar;
     public int count = 0;
