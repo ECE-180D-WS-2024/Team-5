@@ -141,7 +141,7 @@ public class PlayerActionScript : MonoBehaviour
             myRigidBody.velocity = Vector2.right * 15;
             StartCoroutine(runAnimation("isMoving", 2f));
         }
-        if (move == "Punch")
+        if (move == "Punch" || Input.GetKeyDown(KeyCode.P))
         {
             Debug.Log("PUNCH!");
             animator.SetTrigger("isPunching");
@@ -161,17 +161,38 @@ public class PlayerActionScript : MonoBehaviour
                         count = 0;
                     }
                 }
-                
-                
             }
         }
         if (Input.GetKeyDown(KeyCode.K))
         {
             Debug.Log("KICK!");
+            animator.SetTrigger("isKicking");
+            if (myCollider.IsTouching(enemyCollider))
+            {
+                Debug.Log("Hit ENEMY!");
+                int enemyHP = enemyHealthBar.GetHealth() - 8;
+                enemyHealthBar.SetHealth(enemyHP);
+                if (!cooldownSM)
+                {
+                    mySM = sm_bar.GetSM() + 10;
+                    sm_bar.SetSM(mySM);
+                    count++;
+                    if (count == 10)
+                    {
+                        sm_bar_full = true;
+                        count = 0;
+                    }
+                }
+            }
         }
-        if (Input.GetKeyDown(KeyCode.L))
-        {
+        if (Input.GetKeyDown(KeyCode.B))
+        {   
             Debug.Log("BLOCK!");
+            animator.SetTrigger("isBlocking");
+            if (myCollider.IsTouching(enemyCollider))
+            {
+                healthBar.SetHealth(healthBar.GetHealth());
+            }
         }
         if (Input.GetKeyDown(KeyCode.E))
         {

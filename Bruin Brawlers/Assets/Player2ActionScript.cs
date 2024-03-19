@@ -13,7 +13,7 @@ public class Player2ActionScript : MonoBehaviour
 {
     Thread receiveThread;
     UdpClient client;
-    public int port = 5000; // Select a port to listen on
+    public int port = 6000; // Select a port to listen on
 
     public Rigidbody2D myRigidBody;
     public BoxCollider2D myCollider;
@@ -160,13 +160,36 @@ public class Player2ActionScript : MonoBehaviour
                 }
             }
         }
-        if (Input.GetKeyDown(KeyCode.K))
+        if (Input.GetKeyDown(KeyCode.M))
         {
             Debug.Log("KICK!");
+            animator.SetTrigger("isKicking");
+            if (myCollider.IsTouching(enemyCollider))
+            {
+                Debug.Log("Hit ENEMY!");
+                int enemyHP = enemyHealthBar.GetHealth() - 8;
+                enemyHealthBar.SetHealth(enemyHP);
+                /*if (!cooldownSM)
+                {
+                    mySM = sm_bar.GetSM() + 10;
+                    sm_bar.SetSM(mySM);
+                    count++;
+                    if (count == 10)
+                    {
+                        sm_bar_full = true;
+                        count = 0;
+                    }
+                }*/
+            }
         }
         if (Input.GetKeyDown(KeyCode.L))
         {
             Debug.Log("BLOCK!");
+            animator.SetTrigger("isBlocking");
+            if (myCollider.IsTouching(enemyCollider))
+            {
+                healthBar.SetHealth(healthBar.GetHealth());
+            }
         }
         if (activeSM)
         {
