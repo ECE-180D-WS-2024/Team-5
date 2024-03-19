@@ -30,6 +30,7 @@ public class Player2ActionScript : MonoBehaviour
     public int currentSM;
     public SMBar sm_bar;
     public int count = 0;
+    public int mySM = 0;
 
     private KeywordRecognizer keywordRecognizer;
     private Dictionary<string, Action> actions = new Dictionary<string, Action>();
@@ -138,7 +139,7 @@ public class Player2ActionScript : MonoBehaviour
             myRigidBody.velocity = Vector2.right * 15;
             StartCoroutine(runAnimation("isMoving", 2f));
         }
-        if (move == "Punch")
+        if (move == "Punch" || Input.GetKeyDown(KeyCode.Space))
         {
             Debug.Log("PUNCH!");
             animator.SetTrigger("isPunching");
@@ -149,7 +150,7 @@ public class Player2ActionScript : MonoBehaviour
                 enemyHealthBar.SetHealth(enemyHP);
                 if (!cooldownSM)
                 {
-                    int mySM = sm_bar.GetSM() + 10;
+                    mySM = sm_bar.GetSM() + 10;
                     sm_bar.SetSM(mySM);
                     count++;
                     if (count == 10)
@@ -169,7 +170,7 @@ public class Player2ActionScript : MonoBehaviour
                 Debug.Log("Hit ENEMY!");
                 int enemyHP = enemyHealthBar.GetHealth() - 8;
                 enemyHealthBar.SetHealth(enemyHP);
-                /*if (!cooldownSM)
+                if (!cooldownSM)
                 {
                     mySM = sm_bar.GetSM() + 10;
                     sm_bar.SetSM(mySM);
@@ -179,7 +180,7 @@ public class Player2ActionScript : MonoBehaviour
                         sm_bar_full = true;
                         count = 0;
                     }
-                }*/
+                }
             }
         }
         if (Input.GetKeyDown(KeyCode.L))
