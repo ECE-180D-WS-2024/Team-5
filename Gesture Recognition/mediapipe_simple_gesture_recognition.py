@@ -22,8 +22,13 @@ print(f"Player set to: {player}")
 # Create a UDP socket
 sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 
-# Server address and port
-server_address = ("127.0.0.1", 5000)  # Example port, change as needed
+if player == "p1":
+    # Server address and port
+    server_address = ("127.0.0.1", 5000)  # Example port, change as needed
+
+else:
+    # Server address and port
+    server_address = ("127.0.0.1", 6000)  # Example port, change as needed
 
 
 def send_message(message):
@@ -71,7 +76,7 @@ def is_block(landmarks):
     head_top = landmarks.landmark[
         mp_pose.PoseLandmark.NOSE
     ]  # Can use NOSE as a proxy for the head's top position.
-    block = right_hand.y < head_top.y + 0.1 and left_hand.y < head_top.y + 0.1
+    block = right_hand.y < head_top.y and left_hand.y < head_top.y
     return block
 
 
@@ -93,7 +98,7 @@ def is_kick(landmarks):
     right_ankle = landmarks.landmark[mp_pose.PoseLandmark.RIGHT_ANKLE]
     left_ankle = landmarks.landmark[mp_pose.PoseLandmark.LEFT_ANKLE]
     # Kick detection logic.
-    # Assumes a kick when the ankle is significantly higher than the knee.
+    # Assumes a kick when the ankle is close to the knee.
     # The threshold for detection (e.g., 0.1 here) might need to be adjusted based on actual use cases.
     right_kick = right_ankle.y < right_knee.y + 0.1  # Adjust the threshold as needed.
     left_kick = left_ankle.y < left_knee.y + 0.1  # Adjust the threshold as needed.
@@ -101,7 +106,10 @@ def is_kick(landmarks):
 
 
 # Capture video from the webcam.
-cap = cv2.VideoCapture(0)
+if player == "p1":
+    cap = cv2.VideoCapture(0)
+else:
+    cap = cv2.VideoCapture(1)
 last_move = None
 while cap.isOpened():
     success, image = cap.read()
