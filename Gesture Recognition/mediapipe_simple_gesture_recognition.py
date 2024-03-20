@@ -47,15 +47,22 @@ mp_drawing = mp.solutions.drawing_utils
 def is_punch(landmarks):
     # Right punch detection.
     right_wrist = landmarks.landmark[mp_pose.PoseLandmark.RIGHT_WRIST]
+    right_shoulder = landmarks.landmark[mp_pose.PoseLandmark.RIGHT_SHOULDER]
     right_elbow = landmarks.landmark[mp_pose.PoseLandmark.RIGHT_ELBOW]
-    right_punch = right_wrist.x > right_elbow.x + 0.1
-    # Left punch detection (similar logic to right punch).
+
+    # Check if right wrist is above the right shoulder and in front of the right elbow
+    right_punch = right_wrist.y < right_shoulder.y and right_wrist.x > right_elbow.x
+
+    # Left punch detection (similar logic to right punch, but mirrored for left side).
     left_wrist = landmarks.landmark[mp_pose.PoseLandmark.LEFT_WRIST]
+    left_shoulder = landmarks.landmark[mp_pose.PoseLandmark.LEFT_SHOULDER]
     left_elbow = landmarks.landmark[mp_pose.PoseLandmark.LEFT_ELBOW]
-    left_punch = (
-        left_wrist.x < left_elbow.x - 0.1
-    )  # Note the direction of comparison for left side.
-    return right_punch or left_punch
+
+    # For the left side, check if left wrist is above the left shoulder and in front of the left elbow
+    left_punch = left_wrist.y < left_shoulder.y and left_wrist.x < left_elbow.x
+
+    # Using XOR to return True if either, but not both, punches are detected
+    return right_punch ^ left_punch
 
 
 def is_block(landmarks):
@@ -64,7 +71,7 @@ def is_block(landmarks):
     head_top = landmarks.landmark[
         mp_pose.PoseLandmark.NOSE
     ]  # Can use NOSE as a proxy for the head's top position.
-    block = right_hand.y < head_top.y and left_hand.y < head_top.y
+    block = right_hand.y < head_top.y + 0.1 and left_hand.y < head_top.y + 0.1
     return block
 
 
@@ -88,8 +95,8 @@ def is_kick(landmarks):
     # Kick detection logic.
     # Assumes a kick when the ankle is significantly higher than the knee.
     # The threshold for detection (e.g., 0.1 here) might need to be adjusted based on actual use cases.
-    right_kick = right_ankle.y < right_knee.y - 0.1  # Adjust the threshold as needed.
-    left_kick = left_ankle.y < left_knee.y - 0.1  # Adjust the threshold as needed.
+    right_kick = right_ankle.y < right_knee.y + 0.1  # Adjust the threshold as needed.
+    left_kick = left_ankle.y < left_knee.y + 0.1  # Adjust the threshold as needed.
     return right_kick or left_kick
 
 
@@ -128,9 +135,9 @@ while cap.isOpened():
             if last_move != "Punch":
                 last_move = "Punch"
                 message = "Punch"
-                threading.Thread(target=send_message, args=(message)).start()
+                threading.Thread(target=send_message, args=(message,)).start()
 
-        if is_kick(results.pose_landmarks):
+        elif is_kick(results.pose_landmarks):
             cv2.putText(
                 image,
                 "KICK!",
@@ -144,9 +151,9 @@ while cap.isOpened():
             if last_move != "Kick":
                 last_move = "Kick"
                 message = "Kick"
-                threading.Thread(target=send_message, args=(message)).start()
+                threading.Thread(target=send_message, args=(message,)).start()
 
-        if is_duck(results.pose_landmarks):
+        elif is_duck(results.pose_landmarks):
             cv2.putText(
                 image,
                 "DUCK!",
@@ -160,9 +167,9 @@ while cap.isOpened():
             if last_move != "Duck":
                 last_move = "Duck"
                 message = "Duck"
-                threading.Thread(target=send_message, args=(message)).start()
+                threading.Thread(target=send_message, args=(message,)).start()
 
-        if is_block(results.pose_landmarks):
+        elif is_block(results.pose_landmarks):
             cv2.putText(
                 image,
                 "BLOCK!",
@@ -176,7 +183,23 @@ while cap.isOpened():
             if last_move != "Block":
                 last_move = "Block"
                 message = "Block"
-                threading.Thread(target=send_message, args=(message)).start()
+                threading.Thread(target=send_message, args=(message,)).start()
+
+        else:
+            cv2.putText(
+                image,
+                "IDLE",
+                (50, 200),
+                cv2.FONT_HERSHEY_SIMPLEX,
+                1,
+                (0, 128, 128),
+                2,
+                cv2.LINE_AA,
+            )
+            if last_move != "IDLE":
+                last_move = "IDLE"
+                message = "IDLE"
+                threading.Thread(target=send_message, args=(message,)).start()
 
     cv2.imshow("MediaPipe Pose with Gesture Recognition", image)
     if cv2.waitKey(5) & 0xFF == 27:
