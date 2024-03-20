@@ -204,6 +204,8 @@ public class PlayerActionScript : MonoBehaviour
             StartCoroutine(SuperMoveCoroutine());       //if keyword is recognized start coroutine and set active to false
             activeSM = false;
         }
+
+        move = "";
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
