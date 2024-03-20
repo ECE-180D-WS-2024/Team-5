@@ -1,7 +1,3 @@
-"""
-Important: mp_pose.Pose() only seems to runs on MacOS using Python 3.9 and below
-"""
-
 import cv2
 import mediapipe as mp
 import socket
@@ -53,14 +49,12 @@ def is_punch(landmarks):
     right_wrist = landmarks.landmark[mp_pose.PoseLandmark.RIGHT_WRIST]
     right_elbow = landmarks.landmark[mp_pose.PoseLandmark.RIGHT_ELBOW]
     right_punch = right_wrist.x > right_elbow.x + 0.1
-
     # Left punch detection (similar logic to right punch).
     left_wrist = landmarks.landmark[mp_pose.PoseLandmark.LEFT_WRIST]
     left_elbow = landmarks.landmark[mp_pose.PoseLandmark.LEFT_ELBOW]
     left_punch = (
         left_wrist.x < left_elbow.x - 0.1
     )  # Note the direction of comparison for left side.
-
     return right_punch or left_punch
 
 
@@ -70,7 +64,6 @@ def is_block(landmarks):
     head_top = landmarks.landmark[
         mp_pose.PoseLandmark.NOSE
     ]  # Can use NOSE as a proxy for the head's top position.
-
     block = right_hand.y < head_top.y and left_hand.y < head_top.y
     return block
 
@@ -81,7 +74,6 @@ def is_duck(landmarks):
         landmarks.landmark[mp_pose.PoseLandmark.RIGHT_SHOULDER].y
         + landmarks.landmark[mp_pose.PoseLandmark.LEFT_SHOULDER].y
     ) / 2
-
     # Assuming a threshold for ducking (this might need adjustment).
     duck = nose.y > shoulders_midpoint_y + 0.1
     return duck
@@ -93,13 +85,11 @@ def is_kick(landmarks):
     left_knee = landmarks.landmark[mp_pose.PoseLandmark.LEFT_KNEE]
     right_ankle = landmarks.landmark[mp_pose.PoseLandmark.RIGHT_ANKLE]
     left_ankle = landmarks.landmark[mp_pose.PoseLandmark.LEFT_ANKLE]
-
     # Kick detection logic.
     # Assumes a kick when the ankle is significantly higher than the knee.
     # The threshold for detection (e.g., 0.1 here) might need to be adjusted based on actual use cases.
     right_kick = right_ankle.y < right_knee.y - 0.1  # Adjust the threshold as needed.
     left_kick = left_ankle.y < left_knee.y - 0.1  # Adjust the threshold as needed.
-
     return right_kick or left_kick
 
 
@@ -111,13 +101,11 @@ while cap.isOpened():
     if not success:
         print("Ignoring empty camera frame.")
         continue
-
     # Convert the BGR image to RGB, and process it with MediaPipe Pose.
     image_height, image_width, _ = image.shape
     image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
     image.flags.writeable = False
     results = pose.process(image)
-
     # Draw the pose annotations on the image.
     image.flags.writeable = True
     image = cv2.cvtColor(image, cv2.COLOR_RGB2BGR)
@@ -125,7 +113,6 @@ while cap.isOpened():
         mp_drawing.draw_landmarks(
             image, results.pose_landmarks, mp_pose.POSE_CONNECTIONS
         )
-
         # Check for punch gesture.
         if is_punch(results.pose_landmarks):
             cv2.putText(
@@ -195,5 +182,4 @@ while cap.isOpened():
     if cv2.waitKey(5) & 0xFF == 27:
         sock.close()
         break
-
 cap.release()
