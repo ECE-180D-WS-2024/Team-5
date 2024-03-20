@@ -22,6 +22,7 @@ public class PlayerActionScript : MonoBehaviour
     public string lastMove;
     public int maxHP = 100;
     public int currentHP;
+    public int prevHP;
     public HealthBar enemyHealthBar;
     public HealthBar healthBar;
     public int maxSM = 100;
@@ -51,6 +52,7 @@ public class PlayerActionScript : MonoBehaviour
         lastMove = "";
         currentHP = maxHP;
         healthBar.SetMaxHealth(maxHP);
+        prevHP = healthBar.GetHealth();
         currentSM = 0;
         sm_bar.SetStartSM(0);
 
@@ -116,10 +118,17 @@ public class PlayerActionScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (enemyCollider.IsTouching(myCollider))
+        //if (enemyCollider.IsTouching(myCollider))
+        //{
+        //    animator.SetTrigger("isHurt");
+        //}
+        currentHP = healthBar.GetHealth();
+        if (currentHP < prevHP)
         {
             animator.SetTrigger("isHurt");
+            prevHP = healthBar.GetHealth();
         }
+
         if (Input.GetKeyDown(KeyCode.W) && lastMove != "JUMP")
         {
             Debug.Log("JUMP");
