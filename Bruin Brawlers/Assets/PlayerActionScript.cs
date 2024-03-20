@@ -163,7 +163,7 @@ public class PlayerActionScript : MonoBehaviour
                 }
             }
         }
-        if (Input.GetKeyDown(KeyCode.K))
+        if (move == "Kick" || Input.GetKeyDown(KeyCode.K))
         {
             Debug.Log("KICK!");
             animator.SetTrigger("isKicking");
@@ -185,7 +185,7 @@ public class PlayerActionScript : MonoBehaviour
                 }
             }
         }
-        if (Input.GetKeyDown(KeyCode.B))
+        if (move == "Block" || Input.GetKeyDown(KeyCode.B))
         {   
             Debug.Log("BLOCK!");
             animator.SetTrigger("isBlocking");

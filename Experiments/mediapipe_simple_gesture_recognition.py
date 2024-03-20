@@ -142,6 +142,15 @@ while cap.isOpened():
                 2,
                 cv2.LINE_AA,
             )
+            if last_move != "Kick":
+                last_move = "Kick"
+                message = "Kick"
+                try:
+                    # Send data
+                    print(f"Sending: {message}")
+                    sent = sock.sendto(message.encode(), server_address)
+                except Exception as e:
+                    print(e)
 
         if is_duck(results.pose_landmarks):
             cv2.putText(
