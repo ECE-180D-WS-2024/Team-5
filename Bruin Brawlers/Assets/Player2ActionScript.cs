@@ -139,7 +139,7 @@ public class Player2ActionScript : MonoBehaviour
             myRigidBody.velocity = Vector2.right * 15;
             StartCoroutine(runAnimation("isMoving", 2f));
         }
-        if (move == "Punch" || Input.GetKeyDown(KeyCode.Space))
+        if (move == "p2-Punch" || Input.GetKeyDown(KeyCode.Space))
         {
             Debug.Log("PUNCH!");
             animator.SetTrigger("isPunching");
@@ -161,7 +161,7 @@ public class Player2ActionScript : MonoBehaviour
                 }
             }
         }
-        if (move == "Kick" || Input.GetKeyDown(KeyCode.M))
+        if (move == "p2-Kick" || Input.GetKeyDown(KeyCode.M))
         {
             Debug.Log("KICK!");
             animator.SetTrigger("isKicking");
@@ -183,7 +183,7 @@ public class Player2ActionScript : MonoBehaviour
                 }
             }
         }
-        if (move == "Block" ||Input.GetKeyDown(KeyCode.L))
+        if (move == "p2-Block" ||Input.GetKeyDown(KeyCode.L))
         {
             Debug.Log("BLOCK!");
             animator.SetTrigger("isBlocking");

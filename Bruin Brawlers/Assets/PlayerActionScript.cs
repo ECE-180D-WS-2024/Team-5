@@ -141,7 +141,7 @@ public class PlayerActionScript : MonoBehaviour
             myRigidBody.velocity = Vector2.right * 15;
             StartCoroutine(runAnimation("isMoving", 2f));
         }
-        if (move == "Punch" || Input.GetKeyDown(KeyCode.P))
+        if (move == "p1-Punch" || Input.GetKeyDown(KeyCode.P))
         {
             Debug.Log("PUNCH!");
             animator.SetTrigger("isPunching");
@@ -163,7 +163,7 @@ public class PlayerActionScript : MonoBehaviour
                 }
             }
         }
-        if (move == "Kick" || Input.GetKeyDown(KeyCode.K))
+        if (move == "p1-Kick" || Input.GetKeyDown(KeyCode.K))
         {
             Debug.Log("KICK!");
             animator.SetTrigger("isKicking");
@@ -185,7 +185,7 @@ public class PlayerActionScript : MonoBehaviour
                 }
             }
         }
-        if (move == "Block" || Input.GetKeyDown(KeyCode.B))
+        if (move == "p1-Block" || Input.GetKeyDown(KeyCode.B))
         {   
             Debug.Log("BLOCK!");
             animator.SetTrigger("isBlocking");
@@ -199,13 +199,16 @@ public class PlayerActionScript : MonoBehaviour
             currentHP--;
             healthBar.SetHealth(currentHP);
         }
+        if (move == "Idle")
+        {
+            move = "";
+        }
+
         if (activeSM)
         {
             StartCoroutine(SuperMoveCoroutine());       //if keyword is recognized start coroutine and set active to false
             activeSM = false;
         }
-
-        move = "";
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
