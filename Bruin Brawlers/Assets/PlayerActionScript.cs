@@ -220,14 +220,6 @@ public class PlayerActionScript : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.tag == "Ground")
-        {
-            lastMove = "";
-        }
-    }
-
     private void OnTriggerEnter2D(Collider2D target)
     {
         if (target.tag == "Player")

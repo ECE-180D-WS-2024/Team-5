@@ -41,6 +41,8 @@ public class Player2ActionScript : MonoBehaviour
     private bool cooldownSM = false;
     private bool sm_bar_full = false;
 
+    public GameOverScreen gameOverScreen;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -213,15 +215,6 @@ public class Player2ActionScript : MonoBehaviour
         {
             lastMove = "";
         }
-    }
-
-    void OnTriggerEnter2D(Collider2D target)
-    {
-        if (target.tag == "Player")
-        {
-            Debug.Log("Hit ENEMY!!!");
-        }
-
     }
 
     private IEnumerator runAnimation(string animation, float time)
