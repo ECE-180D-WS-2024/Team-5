@@ -31,6 +31,8 @@ public class PlayerActionScript : MonoBehaviour
     public int count = 0;
     public int mySM = 0;
     public String move;
+    public bool isDead;
+    public bool combo;
 
     private KeywordRecognizer keywordRecognizer;
     private Dictionary<string, Action> actions = new Dictionary<string, Action>();
@@ -49,7 +51,7 @@ public class PlayerActionScript : MonoBehaviour
         currentHP = maxHP;
         healthBar.SetMaxHealth(maxHP);
 
-        lastMove = "";
+        combo = false;
         currentHP = maxHP;
         healthBar.SetMaxHealth(maxHP);
         prevHP = healthBar.GetHealth();
@@ -118,115 +120,140 @@ public class PlayerActionScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //if (enemyCollider.IsTouching(myCollider))
-        //{
-        //    animator.SetTrigger("isHurt");
-        //}
         currentHP = healthBar.GetHealth();
         if (currentHP < prevHP)
         {
-            animator.SetTrigger("isHurt");
-            prevHP = healthBar.GetHealth();
+            //myRigidBody.velocity = Vector2.down * 15;
+
+            if (!isDead)
+            {
+                animator.SetBool("isDead", true);
+                isDead = true;
+            }
+            else
+            {
+                animator.SetTrigger("isHurt");
+                prevHP = healthBar.GetHealth();
+            }
         }
 
-        if (Input.GetKeyDown(KeyCode.W) && lastMove != "JUMP")
+        if (!isDead)
         {
-            Debug.Log("JUMP");
-            animator.SetTrigger("isJumping");
-            myRigidBody.velocity = Vector2.up * 5;
-            lastMove = "JUMP";
-        }
-        if (Input.GetKeyDown(KeyCode.A))
-        {
-            myRigidBody.velocity = Vector2.left * 15;
-            animator.SetBool("isMoving", true);
-        }
-        if (Input.GetKeyDown(KeyCode.S))
-        {
-            myRigidBody.velocity = Vector2.down * 15;
-        }
-        if (Input.GetKeyDown(KeyCode.D))
-        {
-            myRigidBody.velocity = Vector2.right * 15;
-            StartCoroutine(runAnimation("isMoving", 2f));
-        }
-        if (move == "p1-Punch" || Input.GetKeyDown(KeyCode.P))
-        {
-            Debug.Log("PUNCH!");
-            animator.SetTrigger("isPunching");
-            if (myCollider.IsTouching(enemyCollider))
+            if (Input.GetKeyDown(KeyCode.W) && lastMove != "JUMP")
             {
-                Debug.Log("Hit ENEMY!");
-                int enemyHP = enemyHealthBar.GetHealth() - 4;
-                enemyHealthBar.SetHealth(enemyHP);
-                if (!cooldownSM)
+                Debug.Log("JUMP");
+                animator.SetTrigger("isJumping");
+                myRigidBody.velocity = Vector2.up * 5;
+                lastMove = "JUMP";
+            }
+            if (Input.GetKeyDown(KeyCode.A))
+            {
+                myRigidBody.velocity = Vector2.left * 15;
+                animator.SetBool("isMoving", true);
+            }
+            if (Input.GetKeyDown(KeyCode.S))
+            {
+                myRigidBody.velocity = Vector2.down * 15;
+            }
+            if (Input.GetKeyDown(KeyCode.D))
+            {
+                //Vector3 m_Input = new Vector3(100, 0, 0);
+                //myRigidBody.MovePosition(transform.position + m_Input * Time.deltaTime * 10f);
+                myRigidBody.velocity = Vector2.right * 15;
+                StartCoroutine(runAnimation("isMoving", 2f));
+            }
+            if (move == "p1-Punch" || Input.GetKeyDown(KeyCode.P))
+            {
+                Debug.Log(lastMove);
+                if (!combo)
                 {
-                    mySM = sm_bar.GetSM() + 10;
-                    sm_bar.SetSM(mySM);
-                    count++;
-                    if (count == 10)
+                    animator.ResetTrigger("isCombo");
+                    lastMove = "Punch";
+                    animator.SetTrigger("isPunching");
+                    combo = true;
+                }
+                else
+                {
+                    animator.ResetTrigger("isPunching");
+                    lastMove = "Combo";
+                    animator.SetTrigger("isCombo");
+                    combo = false;
+                }
+                
+                if (myCollider.IsTouching(enemyCollider))
+                {
+                    Debug.Log("Hit ENEMY!");
+                    int enemyHP = enemyHealthBar.GetHealth() - 4;
+                    enemyHealthBar.SetHealth(enemyHP);
+                    if (!cooldownSM)
                     {
-                        sm_bar_full = true;
-                        count = 0;
+                        mySM = sm_bar.GetSM() + 10;
+                        sm_bar.SetSM(mySM);
+                        count++;
+                        if (count == 10)
+                        {
+                            sm_bar_full = true;
+                            count = 0;
+                        }
                     }
                 }
             }
-        }
-        if (move == "p1-Kick" || Input.GetKeyDown(KeyCode.K))
-        {
-            Debug.Log("KICK!");
-            animator.SetTrigger("isKicking");
-            if (myCollider.IsTouching(enemyCollider))
+
+            if (move == "p1-Kick" || Input.GetKeyDown(KeyCode.K))
             {
-                Debug.Log("Hit ENEMY!");
-                int enemyHP = enemyHealthBar.GetHealth() - 8;
-                enemyHealthBar.SetHealth(enemyHP);
-                if (!cooldownSM)
+                Debug.Log("KICK!");
+                animator.SetTrigger("isKicking");
+                if (myCollider.IsTouching(enemyCollider))
                 {
-                    mySM = sm_bar.GetSM() + 10;
-                    sm_bar.SetSM(mySM);
-                    count++;
-                    if (count == 10)
+                    Debug.Log("Hit ENEMY!");
+                    int enemyHP = enemyHealthBar.GetHealth() - 8;
+                    enemyHealthBar.SetHealth(enemyHP);
+                    if (!cooldownSM)
                     {
-                        sm_bar_full = true;
-                        count = 0;
+                        mySM = sm_bar.GetSM() + 10;
+                        sm_bar.SetSM(mySM);
+                        count++;
+                        if (count == 10)
+                        {
+                            sm_bar_full = true;
+                            count = 0;
+                        }
                     }
                 }
             }
-        }
-        if (move == "p1-Block" || Input.GetKeyDown(KeyCode.B))
-        {   
-            Debug.Log("BLOCK!");
-            animator.SetTrigger("isBlocking");
-            if (myCollider.IsTouching(enemyCollider))
+            if (move == "p1-Block" || Input.GetKeyDown(KeyCode.B))
             {
-                healthBar.SetHealth(healthBar.GetHealth());
+                Debug.Log("BLOCK!");
+                animator.SetTrigger("isBlocking");
+                if (myCollider.IsTouching(enemyCollider))
+                {
+                    healthBar.SetHealth(healthBar.GetHealth());
+                }
             }
-        }
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            currentHP--;
-            healthBar.SetHealth(currentHP);
-        }
-        if (move == "Idle")
-        {
-            move = "";
-        }
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                currentHP--;
+                healthBar.SetHealth(currentHP);
+            }
+            if (move == "Idle")
+            {
+                move = "";
+            }
 
-        if (activeSM)
-        {
-            StartCoroutine(SuperMoveCoroutine());       //if keyword is recognized start coroutine and set active to false
-            activeSM = false;
+            if (activeSM)
+            {
+                StartCoroutine(SuperMoveCoroutine());       //if keyword is recognized start coroutine and set active to false
+                activeSM = false;
+            }
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D target)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (target.tag == "Player")
+        if (collision.gameObject.tag == "Ground")
         {
-            Debug.Log("Hit ENEMY!!!");
+            lastMove = "";
         }
-
     }
 
     private IEnumerator runAnimation(string animation, float time)
