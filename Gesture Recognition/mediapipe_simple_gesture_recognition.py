@@ -107,9 +107,9 @@ def is_kick(landmarks):
 
 # Capture video from the webcam.
 if player == "p1":
-    cap = cv2.VideoCapture(0)
+    cap = cv2.VideoCapture(0) # 0 for Mac
 else:
-    cap = cv2.VideoCapture(1)
+    cap = cv2.VideoCapture(2) # 1 for Mac
 last_move = None
 while cap.isOpened():
     success, image = cap.read()

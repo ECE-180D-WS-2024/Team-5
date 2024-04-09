@@ -149,7 +149,7 @@ public class PlayerActionScript : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.A))
             {
                 myRigidBody.velocity = Vector2.left * 15;
-                animator.SetBool("isMoving", true);
+                StartCoroutine(runAnimation("isMoving", 2f));
             }
             if (Input.GetKeyDown(KeyCode.S))
             {
