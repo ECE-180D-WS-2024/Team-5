@@ -123,12 +123,15 @@ public class PlayerActionScript : MonoBehaviour
         currentHP = healthBar.GetHealth();
         if (currentHP < prevHP)
         {
-            //myRigidBody.velocity = Vector2.down * 15;
-
-            if (!isDead)
+            if (currentHP <= 0)
             {
-                animator.SetBool("isDead", true);
-                isDead = true;
+                //myRigidBody.velocity = Vector2.down * 15;
+
+                if (!isDead)
+                {
+                    animator.SetBool("isDead", true);
+                    isDead = true;
+                }
             }
             else
             {
