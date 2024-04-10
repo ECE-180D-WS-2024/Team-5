@@ -286,7 +286,7 @@ public class PlayerActionScript : MonoBehaviour
     private IEnumerator SuperMoveCoroutine()
     {
         myRigidBody.transform.localScale += new Vector3(1f, 1f, 1f);
-        GetComponent<SpriteRenderer>().color = new Color(1, 0, 0, 1);
+        GetComponent<SpriteRenderer>().color = new Color(0, 1, 0, 1);
 
         for (int i = 100; i >= 0; i = i - 10)
         {
