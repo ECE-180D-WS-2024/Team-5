@@ -8,6 +8,7 @@ using System.Net;
 using System.Net.Sockets;
 using System.Text;
 using System.Threading;
+using Unity.Burst.Intrinsics;
 
 public class Player2ActionScript : MonoBehaviour
 {
@@ -27,6 +28,7 @@ public class Player2ActionScript : MonoBehaviour
     public HealthBar healthBar;
     public String move;
     public bool isDead;
+    public bool combo;
 
     public int maxSM = 100;
     public int currentSM;
@@ -50,6 +52,8 @@ public class Player2ActionScript : MonoBehaviour
         StartReceiving();
 
         lastMove = "";
+
+        combo = false;
         currentHP = maxHP;
         healthBar.SetMaxHealth(maxHP);
         prevHP = healthBar.GetHealth();
@@ -163,8 +167,22 @@ public class Player2ActionScript : MonoBehaviour
             }
             if (move == "p2-Punch" || Input.GetKeyDown(KeyCode.Space))
             {
-                Debug.Log("PUNCH!");
-                animator.SetTrigger("isPunching");
+                Debug.Log(lastMove);
+                if (!combo)
+                {
+                    animator.ResetTrigger("isCombo");
+                    lastMove = "Punch";
+                    animator.SetTrigger("isPunching");
+                    combo = true;
+                }
+                else
+                {
+                    animator.ResetTrigger("isPunching");
+                    lastMove = "Combo";
+                    animator.SetTrigger("isCombo");
+                    combo = false;
+                }
+
                 if (myCollider.IsTouching(enemyCollider))
                 {
                     Debug.Log("Hit ENEMY!");

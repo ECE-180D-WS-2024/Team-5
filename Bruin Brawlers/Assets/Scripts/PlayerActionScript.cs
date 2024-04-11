@@ -48,8 +48,6 @@ public class PlayerActionScript : MonoBehaviour
         StartReceiving();
 
         lastMove = "";
-        currentHP = maxHP;
-        healthBar.SetMaxHealth(maxHP);
 
         combo = false;
         currentHP = maxHP;
