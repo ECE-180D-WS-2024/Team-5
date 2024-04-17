@@ -43,7 +43,7 @@ def send_message(message):
 # Initialize MediaPipe Pose solution.
 mp_pose = mp.solutions.pose
 pose = mp_pose.Pose(
-    static_image_mode=False, min_detection_confidence=0.5, min_tracking_confidence=0.5
+    static_image_mode=False, min_detection_confidence=0.8, min_tracking_confidence=0.8
 )
 mp_drawing = mp.solutions.drawing_utils
 
