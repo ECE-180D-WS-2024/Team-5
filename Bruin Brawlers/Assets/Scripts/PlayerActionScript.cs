@@ -34,6 +34,8 @@ public class PlayerActionScript : MonoBehaviour
     public bool isDead;
     public bool combo;
 
+    public AudioManager sfxSounds;
+
     private KeywordRecognizer keywordRecognizer;
     private Dictionary<string, Action> actions = new Dictionary<string, Action>();
     private Vector3 originalScale;
@@ -55,6 +57,7 @@ public class PlayerActionScript : MonoBehaviour
         prevHP = healthBar.GetHealth();
         currentSM = 0;
         sm_bar.SetStartSM(0);
+        sfxSounds = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
 
         actions.Add("bombastic", () => superMove());
 
@@ -197,6 +200,8 @@ public class PlayerActionScript : MonoBehaviour
                             count = 0;
                         }
                     }
+
+                    sfxSounds.playSound(sfxSounds.hitEffect);
                 }
             }
 
@@ -220,6 +225,7 @@ public class PlayerActionScript : MonoBehaviour
                             count = 0;
                         }
                     }
+                    sfxSounds.playSound(sfxSounds.hitEffect);
                 }
             }
             if (move == "p1-Block" || Input.GetKeyDown(KeyCode.B))

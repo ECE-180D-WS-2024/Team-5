@@ -30,6 +30,8 @@ public class Player2ActionScript : MonoBehaviour
     public bool isDead;
     public bool combo;
 
+    public AudioManager sfxSounds;
+
     public int maxSM = 100;
     public int currentSM;
     public SMBar sm_bar;
@@ -59,6 +61,7 @@ public class Player2ActionScript : MonoBehaviour
         prevHP = healthBar.GetHealth();
         currentSM = 0;
         sm_bar.SetStartSM(0);
+        sfxSounds = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
 
         actions.Add("fergalicious", () => superMove());
 
@@ -199,6 +202,7 @@ public class Player2ActionScript : MonoBehaviour
                             count = 0;
                         }
                     }
+                    sfxSounds.playSound(sfxSounds.hitEffect);
                 }
             }
             if (move == "p2-Kick" || Input.GetKeyDown(KeyCode.M))
@@ -221,6 +225,7 @@ public class Player2ActionScript : MonoBehaviour
                             count = 0;
                         }
                     }
+                    sfxSounds.playSound(sfxSounds.hitEffect);
                 }
             }
             if (move == "p2-Block" || Input.GetKeyDown(KeyCode.L))
