@@ -5,6 +5,37 @@ import time
 import struct
 from bleak import BleakClient, BleakScanner
 from bleak.backends.characteristic import BleakGATTCharacteristic
+from collections import deque
+import socket
+import threading
+import argparse
+
+# Set up argument parsing
+parser = argparse.ArgumentParser(description="Process player argument.")
+parser.add_argument(
+    "--player",
+    type=str,
+    choices=["p1", "p2"],
+    required=True,
+    help="Player identifier (p1 or p2)",
+)
+args = parser.parse_args()
+
+# Now you can use args.player to access the "player" variable
+player = args.player
+print(f"Player set to: {player}")
+
+# Create a UDP socket
+sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+
+if player == "p1":
+    # Server address and port
+    server_address = ("127.0.0.1", 5000)  # Example port, change as needed
+else:
+    # Server address and port
+    server_address = ("127.0.0.1", 6000)  # Example port, change as needed
+
+sliding_window = deque(maxlen=int(2/0.1))
 
 async def connect_arduino(name="Nano 33 IoT", macos_use_bdaddr=False):
     print("starting scan...")
@@ -22,18 +53,33 @@ async def connect_arduino(name="Nano 33 IoT", macos_use_bdaddr=False):
 
 async def read_imu(user_input, device):
     async with BleakClient(device) as client:
+        global sliding_window
         while True:
             data = await client.read_gatt_char("00002745-0000-1000-8000-00805f9b34fb")
             #print(f"Received value: {user_input}")
             data = struct.unpack("f", data)
             user_input = data
             print(user_input)
+            sliding_window.append(user_input)
             #await asyncio.sleep(0.1)
+
+def send_message(message):
+    message = f"{player}-{message}"
+    try:
+        print(f"Sending: {message}")
+        sent = sock.sendto(message.encode(), server_address)
+    except Exception as e:
+        print(e)
 
 async def run():
     user_input = 0
     device = await connect_arduino()
     await read_imu(user_input, device)
+    
+    max_value = max(sliding_window)
+    message = "maxAcc" + max_value
+    send_message(message)
+    
 
 if __name__ == "__main__":
     asyncio.run(run())
