@@ -1,7 +1,6 @@
 import cv2
 import mediapipe as mp
 import os
-import time
 
 # Initialize MediaPipe Pose and drawing utilities
 mp_pose = mp.solutions.pose
@@ -20,6 +19,12 @@ def clear_screen():
     else:
         _ = os.system('clear')
 
+# Landmark indices
+LEFT_SHOULDER_INDEX = mp_pose.PoseLandmark.LEFT_SHOULDER.value
+RIGHT_SHOULDER_INDEX = mp_pose.PoseLandmark.RIGHT_SHOULDER.value
+LEFT_HIP_INDEX = mp_pose.PoseLandmark.LEFT_HIP.value
+RIGHT_HIP_INDEX = mp_pose.PoseLandmark.RIGHT_HIP.value
+
 while cap.isOpened():
     ret, frame = cap.read()
     if not ret:
@@ -28,29 +33,40 @@ while cap.isOpened():
 
     # Convert the frame to RGB
     frame_rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
-    
+
     # Process the frame for pose landmarks
     results = pose.process(frame_rgb)
-    
+
     # Clear the terminal screen
     clear_screen()
-    
+
     # Draw pose landmarks on the frame
     if results.pose_landmarks:
         mp_drawing.draw_landmarks(frame, results.pose_landmarks, mp_pose.POSE_CONNECTIONS)
+        
+        landmarks = results.pose_landmarks.landmark
+        
+        # Access and print selected landmarks directly
+        shoulders_and_hips = [
+            (LEFT_SHOULDER_INDEX, "LEFT_SHOULDER"),
+            (RIGHT_SHOULDER_INDEX, "RIGHT_SHOULDER"),
+            (LEFT_HIP_INDEX, "LEFT_HIP"),
+            (RIGHT_HIP_INDEX, "RIGHT_HIP")
+        ]
 
-        for idx, landmark in enumerate(results.pose_landmarks.landmark):
-            # Get the label for the landmark
-            landmark_label = mp_pose.PoseLandmark(idx).name
-            print(f'{landmark_label} | x: {landmark.x}, y: {landmark.y}, z: {landmark.z}')
-            if hasattr(landmark, 'visibility'):
-                print(f'  - visibility: {landmark.visibility}')
-            print()  # Empty line for better readability
+        z_pos = 0
+
+        for idx, label in shoulders_and_hips:
+            landmark = landmarks[idx]
+            if landmark.visibility > 0.8:
+                print(f'{label} | x: {landmark.x:.4f}, y: {landmark.y:.4f}, z: {landmark.z:.4f}, visibility: {landmark.visibility:.2f}')
+                z_pos += landmark.z
+
+        print(f"Final z position: {z_pos}")
+        print(f'Position to send: {z_pos // 0.05}')
 
     # Display the annotated frame
     cv2.imshow('Pose', frame)
-
-    # time.sleep(0.1)  # Refresh rate (you can adjust this as needed)
 
     if cv2.waitKey(1) & 0xFF == ord('q'):
         break
