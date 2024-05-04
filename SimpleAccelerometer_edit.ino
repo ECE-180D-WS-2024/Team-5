@@ -35,7 +35,8 @@ void setup() {
     Serial.println("Starting Bluetooth® Low Energy module failed!");
     while (1)
       ;
-
+  }
+  
   // set advertised local name and service UUID
   BLE.setDeviceName(BLE_DEVICE_NAME);
   BLE.setLocalName(BLE_DEVICE_NAME);
