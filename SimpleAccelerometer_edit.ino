@@ -61,8 +61,7 @@ void loop() {
 
   // if a central is connected to peripheral:
   if (central) {
-    float maxAcc = 0.0;
-    float currentAcc = 0.0;
+    
 
     Serial.print("Connected to central: ");
     // print the central's MAC address:
@@ -70,6 +69,8 @@ void loop() {
 
     // while the central is still connected to peripheral:
     while (central.connected()) {
+      float maxAcc = 0.0;
+      float currentAcc = 0.0;
       unsigned long startTime = millis();
       unsigned long sampleDuration = 1000;
 
@@ -80,8 +81,11 @@ void loop() {
 
           if (currentAcc > maxAcc) {
             maxAcc = currentAcc;
+          }
+          if (maxAcc > 3.0) {
             maxAccCharacteristic.writeValue(maxAcc);
           }
+          
         }
       }
       if (maxAcc > 3.0) {
