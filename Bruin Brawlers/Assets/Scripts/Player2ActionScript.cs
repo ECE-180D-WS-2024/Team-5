@@ -147,27 +147,28 @@ public class Player2ActionScript : MonoBehaviour
 
         if (!isDead)
         {
-            if (Input.GetKeyDown(KeyCode.UpArrow) && lastMove != "JUMP")
+            float horizontalInput = Input.GetAxis("Horizontal");
+            Debug.Log(horizontalInput);
+            float verticalInput = Input.GetAxis("Vertical");
+            float moveSpeed = 40f;
+
+            Vector2 movement = new Vector2(horizontalInput, verticalInput) * moveSpeed;
+
+            myRigidBody.MovePosition(myRigidBody.position + movement * Time.fixedDeltaTime);
+            if (Math.Abs(horizontalInput) > 0)
+            {
+                StartCoroutine(runAnimation("isMoving", 1f));
+            }
+
+            /*if (Input.GetKeyDown(KeyCode.UpArrow) && lastMove != "JUMP")
             {
                 Debug.Log("JUMP");
                 animator.SetTrigger("isJumping");
                 myRigidBody.velocity = Vector2.up * 5;
                 lastMove = "JUMP";
             }
-            if (Input.GetKeyDown(KeyCode.LeftArrow))
-            {
-                myRigidBody.velocity = Vector2.left * 15;
-                animator.SetBool("isMoving", true);
-            }
-            if (Input.GetKeyDown(KeyCode.DownArrow))
-            {
-                myRigidBody.velocity = Vector2.down * 15;
-            }
-            if (Input.GetKeyDown(KeyCode.RightArrow))
-            {
-                myRigidBody.velocity = Vector2.right * 15;
-                StartCoroutine(runAnimation("isMoving", 2f));
-            }
+            */
+
             if (move == "p2-Punch" || Input.GetKeyDown(KeyCode.Space))
             {
                 Debug.Log(lastMove);

@@ -143,29 +143,27 @@ public class PlayerActionScript : MonoBehaviour
 
         if (!isDead)
         {
-            if (Input.GetKeyDown(KeyCode.W) && lastMove != "JUMP")
+            float horizontalInput = Input.GetAxis("P1-Horizontal");
+            Debug.Log(horizontalInput);
+            float verticalInput = Input.GetAxis("Vertical");
+            float moveSpeed = 40f;
+
+            Vector2 movement = new Vector2(horizontalInput, verticalInput) * moveSpeed;
+
+            myRigidBody.MovePosition(myRigidBody.position + movement * Time.fixedDeltaTime);
+            if (Math.Abs(horizontalInput) > 0)
+            {
+                StartCoroutine(runAnimation("isMoving", 1f));
+            }
+
+            /*if (Input.GetKeyDown(KeyCode.W) && lastMove != "JUMP")
             {
                 Debug.Log("JUMP");
                 animator.SetTrigger("isJumping");
                 myRigidBody.velocity = Vector2.up * 5;
                 lastMove = "JUMP";
-            }
-            if (Input.GetKeyDown(KeyCode.A))
-            {
-                myRigidBody.velocity = Vector2.left * 15;
-                StartCoroutine(runAnimation("isMoving", 2f));
-            }
-            if (Input.GetKeyDown(KeyCode.S))
-            {
-                myRigidBody.velocity = Vector2.down * 15;
-            }
-            if (Input.GetKeyDown(KeyCode.D))
-            {
-                //Vector3 m_Input = new Vector3(100, 0, 0);
-                //myRigidBody.MovePosition(transform.position + m_Input * Time.deltaTime * 10f);
-                myRigidBody.velocity = Vector2.right * 15;
-                StartCoroutine(runAnimation("isMoving", 2f));
-            }
+            }*/
+            
             if (move == "p1-Punch" || Input.GetKeyDown(KeyCode.P))
             {
                 Debug.Log(lastMove);
