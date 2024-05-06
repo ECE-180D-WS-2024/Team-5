@@ -79,8 +79,11 @@ void loop() {
 
           if (currentAcc > maxAcc) {
             maxAcc = currentAcc;
+          }
+          if (maxAcc > 3.0) {
             maxAccCharacteristic.writeValue(maxAcc);
           }
+          
         }
       }
       if (maxAcc > 3.0) {
