@@ -3100,6 +3100,8 @@ MonoBehaviour:
   move: 
   isDead: 0
   combo: 0
+  block: 0
+  player2: {fileID: 1743646140}
   sfxSounds: {fileID: 0}
 --- !u!61 &1471571008
 BoxCollider2D:
@@ -3914,6 +3916,8 @@ MonoBehaviour:
   move: 
   isDead: 0
   combo: 0
+  block: 0
+  player1: {fileID: 1471571007}
   sfxSounds: {fileID: 0}
   maxSM: 50
   currentSM: 0

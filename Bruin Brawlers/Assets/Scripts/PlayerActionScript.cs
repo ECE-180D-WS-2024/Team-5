@@ -33,7 +33,8 @@ public class PlayerActionScript : MonoBehaviour
     public String move;
     public bool isDead;
     public bool combo;
-
+    public bool block;
+    public Player2ActionScript player2;
     public AudioManager sfxSounds;
 
     private KeywordRecognizer keywordRecognizer;
@@ -52,6 +53,7 @@ public class PlayerActionScript : MonoBehaviour
         lastMove = "";
 
         combo = false;
+        block = false;
         currentHP = maxHP;
         healthBar.SetMaxHealth(maxHP);
         prevHP = healthBar.GetHealth();
@@ -185,8 +187,7 @@ public class PlayerActionScript : MonoBehaviour
                 if (myCollider.IsTouching(enemyCollider))
                 {
                     Debug.Log("Hit ENEMY!");
-                    int enemyHP = enemyHealthBar.GetHealth() - 4;
-                    enemyHealthBar.SetHealth(enemyHP);
+                    player2.TakeDamage(4);
                     if (!cooldownSM)
                     {
                         mySM = sm_bar.GetSM() + 10;
@@ -210,8 +211,7 @@ public class PlayerActionScript : MonoBehaviour
                 if (myCollider.IsTouching(enemyCollider))
                 {
                     Debug.Log("Hit ENEMY!");
-                    int enemyHP = enemyHealthBar.GetHealth() - 8;
-                    enemyHealthBar.SetHealth(enemyHP);
+                    player2.TakeDamage(8);
                     if (!cooldownSM)
                     {
                         mySM = sm_bar.GetSM() + 10;
@@ -226,7 +226,7 @@ public class PlayerActionScript : MonoBehaviour
                     sfxSounds.playSound(sfxSounds.hitEffect);
                 }
             }
-            if (move == "p1-Block" || Input.GetKeyDown(KeyCode.B))
+            if (move == "p1-Block" || Input.GetKey(KeyCode.B))
             {
                 Debug.Log("BLOCK!");
                 animator.SetTrigger("isBlocking");
@@ -234,6 +234,11 @@ public class PlayerActionScript : MonoBehaviour
                 {
                     healthBar.SetHealth(healthBar.GetHealth());
                 }
+                block = true;
+            }
+            else
+            {
+                block = false;
             }
             if (Input.GetKeyDown(KeyCode.E))
             {
@@ -250,6 +255,14 @@ public class PlayerActionScript : MonoBehaviour
                 StartCoroutine(SuperMoveCoroutine());       //if keyword is recognized start coroutine and set active to false
                 activeSM = false;
             }
+        }
+    }
+
+    public void TakeDamage(int damage)
+    {
+        if (block == false)
+        {
+            healthBar.SetHealth(healthBar.GetHealth() - damage);
         }
     }
 

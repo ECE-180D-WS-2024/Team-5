@@ -9,6 +9,7 @@ using System.Net.Sockets;
 using System.Text;
 using System.Threading;
 using Unity.Burst.Intrinsics;
+using static Unity.Collections.AllocatorManager;
 
 public class Player2ActionScript : MonoBehaviour
 {
@@ -29,6 +30,8 @@ public class Player2ActionScript : MonoBehaviour
     public String move;
     public bool isDead;
     public bool combo;
+    public bool block;
+    public PlayerActionScript player1;
 
     public AudioManager sfxSounds;
 
@@ -56,6 +59,7 @@ public class Player2ActionScript : MonoBehaviour
         lastMove = "";
 
         combo = false;
+        block = false;
         currentHP = maxHP;
         healthBar.SetMaxHealth(maxHP);
         prevHP = healthBar.GetHealth();
@@ -190,8 +194,7 @@ public class Player2ActionScript : MonoBehaviour
                 if (myCollider.IsTouching(enemyCollider))
                 {
                     Debug.Log("Hit ENEMY!");
-                    int enemyHP = enemyHealthBar.GetHealth() - 4;
-                    enemyHealthBar.SetHealth(enemyHP);
+                    player1.TakeDamage(4);
                     if (!cooldownSM)
                     {
                         mySM = sm_bar.GetSM() + 10;
@@ -209,6 +212,7 @@ public class Player2ActionScript : MonoBehaviour
             if (move == "p2-Kick" || Input.GetKeyDown(KeyCode.M))
             {
                 Debug.Log("KICK!");
+                player1.TakeDamage(8);
                 animator.SetTrigger("isKicking");
                 if (myCollider.IsTouching(enemyCollider))
                 {
@@ -229,7 +233,7 @@ public class Player2ActionScript : MonoBehaviour
                     sfxSounds.playSound(sfxSounds.hitEffect);
                 }
             }
-            if (move == "p2-Block" || Input.GetKeyDown(KeyCode.L))
+            if (move == "p2-Block" || Input.GetKey(KeyCode.L))
             {
                 Debug.Log("BLOCK!");
                 animator.SetTrigger("isBlocking");
@@ -237,6 +241,11 @@ public class Player2ActionScript : MonoBehaviour
                 {
                     healthBar.SetHealth(healthBar.GetHealth());
                 }
+                block = true;
+            }
+            else
+            {
+                block = false;
             }
             if (activeSM)
             {
@@ -247,6 +256,13 @@ public class Player2ActionScript : MonoBehaviour
 
     }
 
+    public void TakeDamage(int damage)
+    {
+        if (block == false)
+        {
+            healthBar.SetHealth(healthBar.GetHealth() - damage);
+        }
+    }
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "Ground")
