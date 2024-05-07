@@ -47,23 +47,22 @@ while cap.isOpened():
         landmarks = results.pose_landmarks.landmark
         
         # Access and print selected landmarks directly
-        shoulders_and_hips = [
-            (LEFT_SHOULDER_INDEX, "LEFT_SHOULDER"),
-            (RIGHT_SHOULDER_INDEX, "RIGHT_SHOULDER"),
+        hips = [
+            # (LEFT_SHOULDER_INDEX, "LEFT_SHOULDER"),
+            # (RIGHT_SHOULDER_INDEX, "RIGHT_SHOULDER"),
             (LEFT_HIP_INDEX, "LEFT_HIP"),
             (RIGHT_HIP_INDEX, "RIGHT_HIP")
         ]
 
         z_pos = 0
 
-        for idx, label in shoulders_and_hips:
+        for idx, label in hips:
             landmark = landmarks[idx]
             if landmark.visibility > 0.8:
                 print(f'{label} | x: {landmark.x:.4f}, y: {landmark.y:.4f}, z: {landmark.z:.4f}, visibility: {landmark.visibility:.2f}')
                 z_pos += landmark.z
 
-        print(f"Final z position: {z_pos}")
-        print(f'Position to send: {z_pos // 0.05}')
+        print(f"Final z position: {z_pos / 2:.4f}")
 
     # Display the annotated frame
     cv2.imshow('Pose', frame)
