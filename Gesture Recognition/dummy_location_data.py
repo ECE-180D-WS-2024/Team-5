@@ -1,5 +1,6 @@
 import socket
 import random
+import time
 
 # Function to send a UDP packet
 def send_udp_packet():
@@ -26,4 +27,6 @@ def send_udp_packet():
     sock.close()
 
 # Example usage
-send_udp_packet()
+while True:
+    send_udp_packet()
+    time.sleep(1)
