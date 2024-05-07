@@ -1124,7 +1124,7 @@ TextureImporter:
         x: 1562
         y: 1267
         width: 155
-        height: 67
+        height: 68
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1460,7 +1460,7 @@ TextureImporter:
         x: 819
         y: 882
         width: 127
-        height: 138
+        height: 131
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2293,6 +2293,27 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: trainingGuy_104
+      rect:
+        serializedVersion: 2
+        x: 996
+        y: 101
+        width: 139
+        height: 147
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fa4a669ef18988d48bab8f1195a57cc7
+      internalID: 2092245309
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -2311,6 +2332,7 @@ TextureImporter:
       trainingGuy_101: 1428903908
       trainingGuy_102: 1867251557
       trainingGuy_103: -1684871077
+      trainingGuy_104: 2092245309
       trainingGuy_11: 1332665183
       trainingGuy_12: -62202581
       trainingGuy_13: 1275945772

@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading;
 using Unity.Burst.Intrinsics;
 using static Unity.Collections.AllocatorManager;
+using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class Player2ActionScript : MonoBehaviour
 {
@@ -30,6 +31,7 @@ public class Player2ActionScript : MonoBehaviour
     public String move;
     public bool isDead;
     public bool combo;
+    public int attackDamage;
     public bool block;
     public PlayerActionScript player1;
 
@@ -129,13 +131,13 @@ public class Player2ActionScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        animator.SetBool("isStrongPunching", false);
+        attackDamage = 4;
         currentHP = healthBar.GetHealth();
         if (currentHP < prevHP)
         {
             if (currentHP <= 0)
             {
-                //myRigidBody.velocity = Vector2.down * 15;
-
                 if (!isDead)
                 {
                     animator.SetBool("isDead", true);
@@ -153,10 +155,9 @@ public class Player2ActionScript : MonoBehaviour
         {
             float horizontalInput = Input.GetAxis("Horizontal");
             Debug.Log(horizontalInput);
-            float verticalInput = Input.GetAxis("Vertical");
             float moveSpeed = 40f;
 
-            Vector2 movement = new Vector2(horizontalInput, verticalInput) * moveSpeed;
+            Vector2 movement = new Vector2(horizontalInput, 0) * moveSpeed;
 
             myRigidBody.MovePosition(myRigidBody.position + movement * Time.fixedDeltaTime);
             if (Math.Abs(horizontalInput) > 0)
@@ -164,14 +165,27 @@ public class Player2ActionScript : MonoBehaviour
                 StartCoroutine(runAnimation("isMoving", 1f));
             }
 
-            /*if (Input.GetKeyDown(KeyCode.UpArrow) && lastMove != "JUMP")
+            if (move.Contains("p1-StrongPunch") || Input.GetKeyDown(KeyCode.P) && Input.GetKeyDown(KeyCode.LeftShift))
             {
-                Debug.Log("JUMP");
-                animator.SetTrigger("isJumping");
-                myRigidBody.velocity = Vector2.up * 5;
-                lastMove = "JUMP";
+                animator.SetBool("isStrongPunching", true);
+                if (move.Contains("p1-StrongPunch"))
+                {
+                    attackDamage = int.Parse(move.Substring(13, move.Length));
+                }
+                else
+                {
+                    attackDamage += 8;
+                }
+
+                if (myCollider.IsTouching(enemyCollider))
+                {
+                    Debug.Log("Hit ENEMY!");
+                    player1.TakeDamage(attackDamage);
+                    ChargeSMBar(10);
+
+                    sfxSounds.playSound(sfxSounds.strongHitEffect);
+                }
             }
-            */
 
             if (move == "p2-Punch" || Input.GetKeyDown(KeyCode.Space))
             {
@@ -193,53 +207,28 @@ public class Player2ActionScript : MonoBehaviour
 
                 if (myCollider.IsTouching(enemyCollider))
                 {
-                    Debug.Log("Hit ENEMY!");
-                    //player1.TakeDamage(4);
-                    if (!cooldownSM)
+                    if (cooldownSM)
                     {
-                        player1.TakeDamage(4);
-                        mySM = sm_bar.GetSM() + 10;
-                        sm_bar.SetSM(mySM);
-                        count++;
-                        if (count == 10)
-                        {
-                            sm_bar_full = true;
-                            count = 0;
-                        }
+                        attackDamage += 4;
                     }
-                    else
-                    {
-                        player1.TakeDamage(8);
-                    }
+                    player1.TakeDamage(attackDamage);
+                    ChargeSMBar(10);
+
                     sfxSounds.playSound(sfxSounds.hitEffect);
                 }
             }
             if (move == "p2-Kick" || Input.GetKeyDown(KeyCode.M))
             {
-                Debug.Log("KICK!");
-                //player1.TakeDamage(8);
                 animator.SetTrigger("isKicking");
                 if (myCollider.IsTouching(enemyCollider))
                 {
-                    Debug.Log("Hit ENEMY!");
-                    //int enemyHP = enemyHealthBar.GetHealth() - 8;
-                    //enemyHealthBar.SetHealth(enemyHP);
-                    if (!cooldownSM)
+                    if (cooldownSM)
                     {
-                        player1.TakeDamage(8);
-                        mySM = sm_bar.GetSM() + 10;
-                        sm_bar.SetSM(mySM);
-                        count++;
-                        if (count == 10)
-                        {
-                            sm_bar_full = true;
-                            count = 0;
-                        }
+                        attackDamage += 4;
                     }
-                    else
-                    {
-                        player1.TakeDamage(12);
-                    }
+                    player1.TakeDamage(attackDamage);
+                    ChargeSMBar(10);
+                    
                     sfxSounds.playSound(sfxSounds.hitEffect);
                 }
             }
@@ -273,11 +262,19 @@ public class Player2ActionScript : MonoBehaviour
             healthBar.SetHealth(healthBar.GetHealth() - damage);
         }
     }
-    private void OnCollisionEnter2D(Collision2D collision)
+
+    private void ChargeSMBar(int amount)
     {
-        if (collision.gameObject.tag == "Ground")
+        if (!cooldownSM)
         {
-            lastMove = "";
+            mySM = sm_bar.GetSM() + amount;
+            sm_bar.SetSM(mySM);
+            count++;
+            if (count == 10)
+            {
+                sm_bar_full = true;
+                count = 0;
+            }
         }
     }
 

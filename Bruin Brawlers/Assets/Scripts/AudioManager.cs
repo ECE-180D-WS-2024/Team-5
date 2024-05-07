@@ -9,6 +9,7 @@ public class AudioManager : MonoBehaviour
 
     public AudioClip background;
     public AudioClip hitEffect;
+    public AudioClip strongHitEffect;
 
     private void Start()
     {
