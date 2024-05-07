@@ -147,24 +147,34 @@ public class PlayerActionScript : MonoBehaviour
 
         if (!isDead)
         {
+            //float horizontalInput = Input.GetAxis("P1-Horizontal");
+            //Debug.Log(horizontalInput);
+            float moveSpeed = 30f;
             float horizontalInput = Input.GetAxis("P1-Horizontal");
-            Debug.Log(horizontalInput);
-            float moveSpeed = 40f;
-
-            Vector2 movement = new Vector2(horizontalInput, 0) * moveSpeed;
-
-            myRigidBody.MovePosition(myRigidBody.position + movement * Time.fixedDeltaTime);
-            if (Math.Abs(horizontalInput) > 0)
+            if (move.Contains("p1-Move"))
             {
-                StartCoroutine(runAnimation("isMoving", 1f));
+                int horizontalMove = int.Parse(move.Substring(13, move.Length));
             }
+            else if (horizontalInput > 0)
+            {
+                horizontalInput = 30;
+                if (Math.Abs(horizontalInput) > 0)
+                {
+                    StartCoroutine(runAnimation("isMoving", 1f));
+                }
+
+            }
+
+            Vector2 movement = new Vector2(horizontalInput, 0);
+            myRigidBody.MovePosition(myRigidBody.position + movement * Time.fixedDeltaTime);
+
 
             if (move.Contains("p1-StrongPunch") || Input.GetKeyDown(KeyCode.O))
             {
                 animator.SetBool("isStrongPunching", true);
                 if (move.Contains("p1-StrongPunch"))
                 {
-                    attackDamage = int.Parse(move.Substring(13, move.Length));
+                    attackDamage += int.Parse(move.Substring(13, move.Length));
                 }
                 else
                 {
@@ -261,6 +271,10 @@ public class PlayerActionScript : MonoBehaviour
         if (block == false)
         {
             healthBar.SetHealth(healthBar.GetHealth() - damage);
+        }
+        else
+        {
+            healthBar.SetHealth(healthBar.GetHealth() - (damage / 8));
         }
     }
 

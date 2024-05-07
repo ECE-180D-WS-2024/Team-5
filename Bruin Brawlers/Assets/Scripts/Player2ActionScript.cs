@@ -170,7 +170,7 @@ public class Player2ActionScript : MonoBehaviour
                 animator.SetBool("isStrongPunching", true);
                 if (move.Contains("p1-StrongPunch"))
                 {
-                    attackDamage = int.Parse(move.Substring(13, move.Length));
+                    attackDamage += int.Parse(move.Substring(13, move.Length));
                 }
                 else
                 {
@@ -260,6 +260,10 @@ public class Player2ActionScript : MonoBehaviour
         if (block == false)
         {
             healthBar.SetHealth(healthBar.GetHealth() - damage);
+        }
+        else
+        {
+            healthBar.SetHealth(healthBar.GetHealth() - (damage / 8));
         }
     }
 
