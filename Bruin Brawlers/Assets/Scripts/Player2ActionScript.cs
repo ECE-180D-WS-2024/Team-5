@@ -194,9 +194,10 @@ public class Player2ActionScript : MonoBehaviour
                 if (myCollider.IsTouching(enemyCollider))
                 {
                     Debug.Log("Hit ENEMY!");
-                    player1.TakeDamage(4);
+                    //player1.TakeDamage(4);
                     if (!cooldownSM)
                     {
+                        player1.TakeDamage(4);
                         mySM = sm_bar.GetSM() + 10;
                         sm_bar.SetSM(mySM);
                         count++;
@@ -206,21 +207,26 @@ public class Player2ActionScript : MonoBehaviour
                             count = 0;
                         }
                     }
+                    else
+                    {
+                        player1.TakeDamage(8);
+                    }
                     sfxSounds.playSound(sfxSounds.hitEffect);
                 }
             }
             if (move == "p2-Kick" || Input.GetKeyDown(KeyCode.M))
             {
                 Debug.Log("KICK!");
-                player1.TakeDamage(8);
+                //player1.TakeDamage(8);
                 animator.SetTrigger("isKicking");
                 if (myCollider.IsTouching(enemyCollider))
                 {
                     Debug.Log("Hit ENEMY!");
-                    int enemyHP = enemyHealthBar.GetHealth() - 8;
-                    enemyHealthBar.SetHealth(enemyHP);
+                    //int enemyHP = enemyHealthBar.GetHealth() - 8;
+                    //enemyHealthBar.SetHealth(enemyHP);
                     if (!cooldownSM)
                     {
+                        player1.TakeDamage(8);
                         mySM = sm_bar.GetSM() + 10;
                         sm_bar.SetSM(mySM);
                         count++;
@@ -229,6 +235,10 @@ public class Player2ActionScript : MonoBehaviour
                             sm_bar_full = true;
                             count = 0;
                         }
+                    }
+                    else
+                    {
+                        player1.TakeDamage(12);
                     }
                     sfxSounds.playSound(sfxSounds.hitEffect);
                 }

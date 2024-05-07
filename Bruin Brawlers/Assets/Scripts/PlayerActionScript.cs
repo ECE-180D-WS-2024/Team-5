@@ -187,9 +187,10 @@ public class PlayerActionScript : MonoBehaviour
                 if (myCollider.IsTouching(enemyCollider))
                 {
                     Debug.Log("Hit ENEMY!");
-                    player2.TakeDamage(4);
+                    //player2.TakeDamage(4);
                     if (!cooldownSM)
                     {
+                        player2.TakeDamage(4);
                         mySM = sm_bar.GetSM() + 10;
                         sm_bar.SetSM(mySM);
                         count++;
@@ -198,6 +199,10 @@ public class PlayerActionScript : MonoBehaviour
                             sm_bar_full = true;
                             count = 0;
                         }
+                    }
+                    else
+                    {
+                        player2.TakeDamage(8);
                     }
 
                     sfxSounds.playSound(sfxSounds.hitEffect);
@@ -211,9 +216,10 @@ public class PlayerActionScript : MonoBehaviour
                 if (myCollider.IsTouching(enemyCollider))
                 {
                     Debug.Log("Hit ENEMY!");
-                    player2.TakeDamage(8);
+                    //player2.TakeDamage(8);
                     if (!cooldownSM)
                     {
+                        player2.TakeDamage(8);
                         mySM = sm_bar.GetSM() + 10;
                         sm_bar.SetSM(mySM);
                         count++;
@@ -222,6 +228,10 @@ public class PlayerActionScript : MonoBehaviour
                             sm_bar_full = true;
                             count = 0;
                         }
+                    }
+                    else
+                    {
+                        player2.TakeDamage(12);
                     }
                     sfxSounds.playSound(sfxSounds.hitEffect);
                 }
