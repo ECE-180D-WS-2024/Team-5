@@ -56,7 +56,7 @@ try:
             # Determine movement command based on height
             if player_height > 0.65:
                 send_udp_packet("Forward")
-            elif player_height < 0.45:
+            elif player_height < 0.55:
                 send_udp_packet("Backward")
             else:
                 send_udp_packet("Still")
