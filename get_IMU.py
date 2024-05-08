@@ -55,12 +55,13 @@ async def read_imu(user_input, device):
     async with BleakClient(device) as client:
         global sliding_window
         while True:
-            data = await client.read_gatt_char("00002745-0000-1000-8000-00805f9b34fb")
+            data = await client.read_gatt_char("00002101-0000-1000-8000-00805f9b34fb")
             #print(f"Received value: {user_input}")
             data = struct.unpack("f", data)
             user_input = data
-            print(user_input)
+            #print(user_input)
             sliding_window.append(user_input)
+            print(sliding_window)
             #await asyncio.sleep(0.1)
 
 def send_message(message):
@@ -76,9 +77,11 @@ async def run():
     device = await connect_arduino()
     await read_imu(user_input, device)
     
+    print(sliding_window)
     max_value = max(sliding_window)
-    message = "maxAcc" + max_value
-    send_message(message)
+    
+    #message = "maxAcc" + max_value
+    #send_message(message)
     
 
 if __name__ == "__main__":

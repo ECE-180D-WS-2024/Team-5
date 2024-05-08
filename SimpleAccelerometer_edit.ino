@@ -2,33 +2,32 @@
 #include <Arduino_LSM6DS3.h>
 
 #define BLE_UUID_ACCELEROMETER_SERVICE "1101"
-#define BLE_UUID_MAX_ACC "2101"
+#define BLE_UUID_ACCELEROMETER_X "2101"
 
 #define BLE_DEVICE_NAME "Nano 33 IoT"
 #define BLE_LOCAL_NAME "Nano 33 IoT"
 
 BLEService accelerometerService(BLE_UUID_ACCELEROMETER_SERVICE);
 
-BLEFloatCharacteristic maxAccCharacteristic(BLE_UUID_MAX_ACC, BLERead | BLENotify);
+BLEFloatCharacteristic accelerometerCharacteristicX(BLE_UUID_ACCELEROMETER_X, BLERead | BLENotify);
 
 float ax, ay, az;
 
 void setup() {
   Serial.begin(9600);
-  while (!Serial);
+  while (!Serial)
+    ;
 
+  // initialize IMU
   if (!IMU.begin()) {
     Serial.println("Failed to initialize IMU!");
-
-    while (1);
+    while (1)
+      ;
   }
 
   Serial.print("Accelerometer sample rate = ");
   Serial.print(IMU.accelerationSampleRate());
-  Serial.println(" Hz");
-  Serial.println();
-  Serial.println("Acceleration in g's");
-  //Serial.println("ax\tY\tZ");
+  Serial.println("Hz");
 
   // initialize BLE
   if (!BLE.begin()) {
@@ -36,20 +35,23 @@ void setup() {
     while (1)
       ;
   }
-  
+
   // set advertised local name and service UUID
+  //
   BLE.setDeviceName(BLE_DEVICE_NAME);
   BLE.setLocalName(BLE_DEVICE_NAME);
   BLE.setAdvertisedService(accelerometerService);
 
   // add characteristics and service
-  accelerometerService.addCharacteristic(maxAccCharacteristic);
+  //
+  accelerometerService.addCharacteristic(accelerometerCharacteristicX);
   
-  maxAccCharacteristic.writeValue(0);
+  accelerometerCharacteristicX.writeValue(0);
 
   BLE.addService(accelerometerService);
 
   // start advertising
+  //
   BLE.advertise();
 
   Serial.println("BLE Accelerometer Peripheral");
@@ -59,36 +61,31 @@ void loop() {
   BLE.poll();
   BLEDevice central = BLE.central();
 
+  // obtain and write accelerometer data
+  // 
+
   // if a central is connected to peripheral:
   if (central) {
+    float maxAcc = 0.0;
+    float currentAcc = 0.0;
     Serial.print("Connected to central: ");
     // print the central's MAC address:
     Serial.println(central.address());
 
     // while the central is still connected to peripheral:
     while (central.connected()) {
-      float maxAcc = 0.0;
-      float currentAcc = 0.0;
-      unsigned long startTime = millis();
-      unsigned long sampleDuration = 1000;
-
-      while(millis() - startTime < sampleDuration) {
-        if (IMU.accelerationAvailable()) {
-          IMU.readAcceleration(ax, ay, az);
-          currentAcc = sqrt(ax*ax + ay*ay + az*az);
-
-          if (currentAcc > maxAcc) {
-            maxAcc = currentAcc;
-          }
-          if (maxAcc > 3.0) {
-            maxAccCharacteristic.writeValue(maxAcc);
-          }
-          
+      if (IMU.accelerationAvailable()) {
+        IMU.readAcceleration(ax, ay, az);
+        currentAcc = sqrt(ax*ax + ay*ay + az*az);
+        Serial.println(ax);
+        if (currentAcc > 6.5) {
+          accelerometerCharacteristicX.writeValue(currentAcc);
         }
       }
-      if (maxAcc > 3.0) {
-        Serial.println(maxAcc);
-      }
     }
+
+    // when the central disconnects, print it out:
+    Serial.print(F("Disconnected from central: "));
+    Serial.println(central.address());
   }
 }

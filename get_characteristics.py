@@ -45,7 +45,7 @@ async def main(args: argparse.Namespace):
         logger.info("connected")
 
         for service in client.services:
-            '''logger.info("[Service] %s", service)
+            logger.info("[Service] %s", service)
 
             for char in service.characteristics:
                 if "read" in char.properties:
@@ -72,7 +72,7 @@ async def main(args: argparse.Namespace):
                         value = await client.read_gatt_descriptor(descriptor.handle)
                         logger.info("    [Descriptor] %s, Value: %r", descriptor, value)
                     except Exception as e:
-                        logger.error("    [Descriptor] %s, Error: %s", descriptor, e)'''
+                        logger.error("    [Descriptor] %s, Error: %s", descriptor, e)
 
         logger.info("disconnecting...")
 
