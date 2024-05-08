@@ -7,7 +7,7 @@ def send_udp_packet():
     # Choose 1 or 2 randomly
     player_no = random.choice([1, 2])
     # Generate a random integer from 0 to 10
-    move_num = random.randint(0, 10)
+    move_num = random.choice(["Forward", "Backward"])
     # Construct the message
     message = f"p{player_no}-Move{move_num}"
     # Select the port based on the value of dollar
