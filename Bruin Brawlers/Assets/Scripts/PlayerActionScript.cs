@@ -49,7 +49,7 @@ public class PlayerActionScript : MonoBehaviour
 
     // Start is called before the first frame update
     void Start()
-    {
+    {   
         StartReceiving();
 
         lastMove = "";
@@ -93,7 +93,6 @@ public class PlayerActionScript : MonoBehaviour
 
                 string text = Encoding.UTF8.GetString(data);
                 move = text;
-                Debug.Log(">> " + text);
 
                 // Process the data received (e.g., by parsing text) here
             }
@@ -151,21 +150,30 @@ public class PlayerActionScript : MonoBehaviour
             //Debug.Log(horizontalInput);
             float moveSpeed = 30f;
             float horizontalInput = Input.GetAxis("P1-Horizontal");
-            if (move.Contains("p1-Move"))
+            Vector2 movement = new Vector2(0, 0);
+            if (move == "p1-MoveForward")
             {
-                int horizontalMove = int.Parse(move.Substring(13, move.Length));
+                Debug.Log("forward");
+                movement = new Vector2(6, 0);
+                StartCoroutine(runAnimation("isMoving", 1f));
             }
-            else if (horizontalInput > 0)
+            else if (move == "p1-MoveBackward")
             {
-                horizontalInput = 30;
-                if (Math.Abs(horizontalInput) > 0)
-                {
-                    StartCoroutine(runAnimation("isMoving", 1f));
-                }
-
+                Debug.Log("backward");
+                movement = new Vector2(-6, 0);
+                StartCoroutine(runAnimation("isMoving", 1f));
+            }
+            else if (move == "p1-MoveStill")
+            {
+                Debug.Log("Still");
+                movement = new Vector2(0, 0);                
+            }
+            else if (Math.Abs(horizontalInput) > 0)
+            {
+                movement = new Vector2(horizontalInput, 0) * moveSpeed;
+                StartCoroutine(runAnimation("isMoving", 1f));
             }
 
-            Vector2 movement = new Vector2(horizontalInput, 0);
             myRigidBody.MovePosition(myRigidBody.position + movement * Time.fixedDeltaTime);
 
 
@@ -183,7 +191,6 @@ public class PlayerActionScript : MonoBehaviour
 
                 if (myCollider.IsTouching(enemyCollider))
                 {
-                    Debug.Log("Hit ENEMY!");
                     player2.TakeDamage(attackDamage);
                     ChargeSMBar(10);
 
@@ -236,7 +243,6 @@ public class PlayerActionScript : MonoBehaviour
             }
             if (move == "p1-Block" || Input.GetKey(KeyCode.B))
             {
-                Debug.Log("BLOCK!");
                 animator.SetTrigger("isBlocking");
                 if (myCollider.IsTouching(enemyCollider))
                 {
