@@ -36,7 +36,6 @@ public class Player2ActionScript : MonoBehaviour
     public PlayerActionScript player1;
 
     public AudioManager sfxSounds;
-
     public int maxSM = 100;
     public int currentSM;
     public SMBar sm_bar;
