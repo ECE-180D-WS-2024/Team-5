@@ -192,7 +192,7 @@ public class PlayerActionScript : MonoBehaviour
                 if (myCollider.IsTouching(enemyCollider))
                 {
                     player2.TakeDamage(attackDamage);
-                    ChargeSMBar(10);
+                    ChargeSMBar(15);
 
                     sfxSounds.playSound(sfxSounds.strongHitEffect);
                 }
