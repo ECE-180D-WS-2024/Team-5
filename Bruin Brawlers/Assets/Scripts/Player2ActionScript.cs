@@ -98,7 +98,6 @@ public class Player2ActionScript : MonoBehaviour
 
                 string text = Encoding.UTF8.GetString(data);
                 move = text;
-                Debug.Log(">> " + text);
 
                 // Process the data received (e.g., by parsing text) here
             }
@@ -152,13 +151,34 @@ public class Player2ActionScript : MonoBehaviour
 
         if (!isDead)
         {
+            float moveSpeed = 30f;
             float horizontalInput = Input.GetAxis("Horizontal");
-            Debug.Log(horizontalInput);
-            float moveSpeed = 40f;
-
-            Vector2 movement = new Vector2(horizontalInput, 0) * moveSpeed;
+            Vector2 movement = new Vector2(0, 0);
+            if (move == "p2-MoveForward")
+            {
+                Debug.Log("forward");
+                movement = new Vector2(6, 0);
+                StartCoroutine(runAnimation("isMoving", 1f));
+            }
+            else if (move == "p2-MoveBackward")
+            {
+                Debug.Log("backward");
+                movement = new Vector2(6, 0);
+                StartCoroutine(runAnimation("isMoving", 1f));
+            }
+            else if (move == "p2-MoveStill")
+            {
+                Debug.Log("Still");
+                movement = new Vector2(0, 0);
+            }
+            else if (Math.Abs(horizontalInput) > 0)
+            {
+                movement = new Vector2(horizontalInput, 0) * moveSpeed;
+                StartCoroutine(runAnimation("isMoving", 1f));
+            }
 
             myRigidBody.MovePosition(myRigidBody.position + movement * Time.fixedDeltaTime);
+
             if (Math.Abs(horizontalInput) > 0)
             {
                 StartCoroutine(runAnimation("isMoving", 1f));
@@ -178,7 +198,6 @@ public class Player2ActionScript : MonoBehaviour
 
                 if (myCollider.IsTouching(enemyCollider))
                 {
-                    Debug.Log("Hit ENEMY!");
                     player1.TakeDamage(attackDamage);
                     ChargeSMBar(10);
 
@@ -188,7 +207,6 @@ public class Player2ActionScript : MonoBehaviour
 
             if (move == "p2-Punch" || Input.GetKeyDown(KeyCode.Space))
             {
-                Debug.Log(lastMove);
                 if (!combo)
                 {
                     animator.ResetTrigger("isCombo");
@@ -233,7 +251,6 @@ public class Player2ActionScript : MonoBehaviour
             }
             if (move == "p2-Block" || Input.GetKey(KeyCode.L))
             {
-                Debug.Log("BLOCK!");
                 animator.SetTrigger("isBlocking");
                 if (myCollider.IsTouching(enemyCollider))
                 {
