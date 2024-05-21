@@ -1515,6 +1515,53 @@ Transform:
   - {fileID: 1833173007}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &766650763
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 766650765}
+  - component: {fileID: 766650764}
+  m_Layer: 0
+  m_Name: UDP Reciever
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &766650764
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 766650763}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c566c56f90086ef499f388a643e17c96, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  port: 5000
+  p1Move: 
+  p2Move: 
+--- !u!4 &766650765
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 766650763}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 442.8577, y: 219.9154, z: -2.7236984}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &862470809
 GameObject:
   m_ObjectHideFlags: 0
@@ -3082,7 +3129,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2fbaf9a7f9d26f045ae4800d04d4d198, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  port: 5000
   myRigidBody: {fileID: 1471571012}
   myCollider: {fileID: 1471571008}
   enemyCollider: {fileID: 1743646137}
@@ -3904,7 +3950,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6226759ac31400b439ee7c9c9886bcd4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  port: 6000
   myRigidBody: {fileID: 1743646138}
   myCollider: {fileID: 1743646137}
   enemyCollider: {fileID: 1471571008}
@@ -4861,3 +4906,4 @@ SceneRoots:
   - {fileID: 147091944}
   - {fileID: 1621868682}
   - {fileID: 734121260}
+  - {fileID: 766650765}

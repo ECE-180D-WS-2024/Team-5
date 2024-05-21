@@ -12,10 +12,6 @@ using UnityEngine.UIElements;
 
 public class PlayerActionScript : MonoBehaviour
 {
-    Thread receiveThread;
-    UdpClient client;
-    public int port = 5000; // Select a port to listen on
-
     public Rigidbody2D myRigidBody;
     public BoxCollider2D myCollider;
     public BoxCollider2D enemyCollider;
@@ -50,7 +46,7 @@ public class PlayerActionScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {   
-        StartReceiving();
+        //StartReceiving();
 
         lastMove = "";
 
@@ -71,49 +67,6 @@ public class PlayerActionScript : MonoBehaviour
 
         originalScale = myRigidBody.transform.localScale;
         originalColor = GetComponent<SpriteRenderer>().color;
-    }
-
-    private void StartReceiving()
-    {
-        receiveThread = new Thread(new ThreadStart(ReceiveData));
-        receiveThread.IsBackground = true;
-        receiveThread.Start();
-    }
-
-    private void ReceiveData()
-    {
-        client = new UdpClient(port);
-        while (true)
-        {
-            try
-            {
-                // Blocks until a message returns on this socket from a remote host.
-                IPEndPoint anyIP = new IPEndPoint(IPAddress.Any, 0);
-                byte[] data = client.Receive(ref anyIP);
-
-                string text = Encoding.UTF8.GetString(data);
-                move = text;
-
-                // Process the data received (e.g., by parsing text) here
-            }
-            catch (Exception e)
-            {
-                Debug.LogError(e.ToString());
-            }
-        }
-    }
-
-    void OnApplicationQuit()
-    {
-        if (receiveThread != null && receiveThread.IsAlive)
-        {
-            receiveThread.Abort();
-        }
-
-        if (client != null)
-        {
-            client.Close();
-        }
     }
     private void RecognizedSpeech(PhraseRecognizedEventArgs speech)
     {

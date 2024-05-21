@@ -14,10 +14,6 @@ using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class Player2ActionScript : MonoBehaviour
 {
-    Thread receiveThread;
-    UdpClient client;
-    public int port = 6000; // Select a port to listen on
-
     public Rigidbody2D myRigidBody;
     public BoxCollider2D myCollider;
     public BoxCollider2D enemyCollider;
@@ -55,7 +51,7 @@ public class Player2ActionScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        StartReceiving();
+        //StartReceiving();
 
         lastMove = "";
 
@@ -76,49 +72,6 @@ public class Player2ActionScript : MonoBehaviour
 
         originalScale = myRigidBody.transform.localScale;
         originalColor = GetComponent<SpriteRenderer>().color;
-    }
-
-    private void StartReceiving()
-    {
-        receiveThread = new Thread(new ThreadStart(ReceiveData));
-        receiveThread.IsBackground = true;
-        receiveThread.Start();
-    }
-
-    private void ReceiveData()
-    {
-        client = new UdpClient(port);
-        while (true)
-        {
-            try
-            {
-                // Blocks until a message returns on this socket from a remote host.
-                IPEndPoint anyIP = new IPEndPoint(IPAddress.Any, 0);
-                byte[] data = client.Receive(ref anyIP);
-
-                string text = Encoding.UTF8.GetString(data);
-                move = text;
-
-                // Process the data received (e.g., by parsing text) here
-            }
-            catch (Exception e)
-            {
-                Debug.LogError(e.ToString());
-            }
-        }
-    }
-
-    void OnApplicationQuit()
-    {
-        if (receiveThread != null && receiveThread.IsAlive)
-        {
-            receiveThread.Abort();
-        }
-
-        if (client != null)
-        {
-            client.Close();
-        }
     }
     private void RecognizedSpeech(PhraseRecognizedEventArgs speech)
     {

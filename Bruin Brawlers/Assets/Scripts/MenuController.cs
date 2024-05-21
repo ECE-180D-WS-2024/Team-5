@@ -19,6 +19,7 @@ public class MenuController : MonoBehaviour
 
     public void PlayButton()
     {
+        SceneManager.UnloadSceneAsync("Main Menu");
         SceneManager.LoadScene("Game");
     }
 
