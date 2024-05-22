@@ -3151,6 +3151,7 @@ MonoBehaviour:
   block: 0
   player2: {fileID: 1743646140}
   sfxSounds: {fileID: 0}
+  udpReciever: {fileID: 766650764}
 --- !u!61 &1471571008
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3966,6 +3967,7 @@ MonoBehaviour:
   attackDamage: 0
   block: 0
   player1: {fileID: 1471571007}
+  udpReciever: {fileID: 766650764}
   sfxSounds: {fileID: 0}
   maxSM: 50
   currentSM: 0

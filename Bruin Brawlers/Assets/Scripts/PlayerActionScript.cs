@@ -34,6 +34,7 @@ public class PlayerActionScript : MonoBehaviour
     public bool block;
     public Player2ActionScript player2;
     public AudioManager sfxSounds;
+    public UDPReciever udpReciever;
 
     private KeywordRecognizer keywordRecognizer;
     private Dictionary<string, Action> actions = new Dictionary<string, Action>();
@@ -77,6 +78,7 @@ public class PlayerActionScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        move = udpReciever.p1Move;
         animator.SetBool("isStrongPunching", false);
         attackDamage = 4;
         currentHP = healthBar.GetHealth();

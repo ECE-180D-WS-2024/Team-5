@@ -30,6 +30,7 @@ public class Player2ActionScript : MonoBehaviour
     public int attackDamage;
     public bool block;
     public PlayerActionScript player1;
+    public UDPReciever udpReciever; 
 
     public AudioManager sfxSounds;
     public int maxSM = 100;
@@ -54,7 +55,7 @@ public class Player2ActionScript : MonoBehaviour
         //StartReceiving();
 
         lastMove = "";
-
+        
         combo = false;
         block = false;
         currentHP = maxHP;
@@ -82,6 +83,7 @@ public class Player2ActionScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        move = udpReciever.p2Move;
         animator.SetBool("isStrongPunching", false);
         attackDamage = 4;
         currentHP = healthBar.GetHealth();
