@@ -189,7 +189,7 @@ public class PlayerActionScript : MonoBehaviour
                     {
                         attackDamage += 4;
                     }
-                    player2.TakeDamage(8);
+                    player2.TakeDamage(attackDamage);
                     ChargeSMBar(10);
                     sfxSounds.playSound(sfxSounds.hitEffect);
                 }
