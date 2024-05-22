@@ -220,18 +220,20 @@ public class PlayerActionScript : MonoBehaviour
                 activeSM = false;
             }
         }
-        Debug.Log(attackDamage);
     }
 
     public void TakeDamage(int damage)
     {
+        damage = Mathf.Clamp(damage, 0, 15);
         if (block == false)
         {
-            healthBar.SetHealth(healthBar.GetHealth() - damage);
+            currentHP -= damage;
+            healthBar.SetHealth(currentHP);
         }
         else
         {
-            healthBar.SetHealth(healthBar.GetHealth() - (damage / 8));
+            currentHP -= damage / 8;
+            healthBar.SetHealth(currentHP);
         }
     }
 
