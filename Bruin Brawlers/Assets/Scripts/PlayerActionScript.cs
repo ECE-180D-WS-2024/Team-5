@@ -47,8 +47,6 @@ public class PlayerActionScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {   
-        //StartReceiving();
-
         lastMove = "";
 
         combo = false;
@@ -80,7 +78,7 @@ public class PlayerActionScript : MonoBehaviour
     {
         move = udpReciever.p1Move;
         animator.SetBool("isStrongPunching", false);
-        attackDamage = 4;
+        attackDamage = 2;
         currentHP = healthBar.GetHealth();
         if (currentHP < prevHP)
         {
@@ -108,19 +106,16 @@ public class PlayerActionScript : MonoBehaviour
             Vector2 movement = new Vector2(0, 0);
             if (move == "p1-MoveForward")
             {
-                Debug.Log("forward");
                 movement = new Vector2(6, 0);
                 StartCoroutine(runAnimation("isMoving", 1f));
             }
             else if (move == "p1-MoveBackward")
             {
-                Debug.Log("backward");
                 movement = new Vector2(-6, 0);
                 StartCoroutine(runAnimation("isMoving", 1f));
             }
             else if (move == "p1-MoveStill")
             {
-                Debug.Log("Still");
                 movement = new Vector2(0, 0);                
             }
             else if (Math.Abs(horizontalInput) > 0)
@@ -137,7 +132,7 @@ public class PlayerActionScript : MonoBehaviour
                 animator.SetBool("isStrongPunching", true);
                 if (move.Contains("p1-StrongPunch"))
                 {
-                    attackDamage += int.Parse(move.Substring(13, move.Length));
+                    attackDamage += int.Parse(move.Substring(14));
                 }
                 else
                 {
@@ -191,7 +186,7 @@ public class PlayerActionScript : MonoBehaviour
                     {
                         attackDamage += 4;
                     }
-                    player2.TakeDamage(8);
+                    player2.TakeDamage(attackDamage);
                     ChargeSMBar(10);
                     sfxSounds.playSound(sfxSounds.hitEffect);
                 }
@@ -225,6 +220,7 @@ public class PlayerActionScript : MonoBehaviour
                 activeSM = false;
             }
         }
+        Debug.Log(attackDamage);
     }
 
     public void TakeDamage(int damage)

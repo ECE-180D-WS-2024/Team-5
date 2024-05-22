@@ -60,6 +60,7 @@ public class UDPReciever : MonoBehaviour
                 else if (text.Contains("p2"))
                 {
                     p2Move = text;
+                    Debug.Log(p2Move);
                 }
                 // Process the data received (e.g., by parsing text) here
             }

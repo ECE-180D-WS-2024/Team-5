@@ -5,13 +5,13 @@ import time
 # Function to send a UDP packet
 def send_udp_packet():
     # Choose 1 or 2 randomly
-    player_no = 1 #random.choice([1, 2])
+    player_no = random.choice([1, 2])
     # Generate a random integer from 0 to 10
-    move_num = random.choice(["Forward", "Backward", "Still"])
+    move_num = random.choice(["MoveForward", "MoveBackward", "MoveStill", "Punch", "StrongPunch6", "Kick", "Block"])
     # Construct the message
-    message = f"p{player_no}-Move{move_num}"
+    message = f"p{player_no}-{move_num}"
     # Select the port based on the value of dollar
-    port = 5000 if player_no == 1 else 6000
+    port = 5000
     
     # IP address you want to send the UDP packet to
     ip_address = "127.0.0.1"  # Using localhost for demonstration; replace with your target IP

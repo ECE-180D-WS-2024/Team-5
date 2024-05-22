@@ -52,8 +52,6 @@ public class Player2ActionScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //StartReceiving();
-
         lastMove = "";
         
         combo = false;
@@ -85,7 +83,7 @@ public class Player2ActionScript : MonoBehaviour
     {
         move = udpReciever.p2Move;
         animator.SetBool("isStrongPunching", false);
-        attackDamage = 4;
+        attackDamage = 2;
         currentHP = healthBar.GetHealth();
         if (currentHP < prevHP)
         {
@@ -111,19 +109,16 @@ public class Player2ActionScript : MonoBehaviour
             Vector2 movement = new Vector2(0, 0);
             if (move == "p2-MoveForward")
             {
-                Debug.Log("forward");
-                movement = new Vector2(6, 0);
+                movement = new Vector2(-6, 0);
                 StartCoroutine(runAnimation("isMoving", 1f));
             }
             else if (move == "p2-MoveBackward")
             {
-                Debug.Log("backward");
                 movement = new Vector2(6, 0);
                 StartCoroutine(runAnimation("isMoving", 1f));
             }
             else if (move == "p2-MoveStill")
             {
-                Debug.Log("Still");
                 movement = new Vector2(0, 0);
             }
             else if (Math.Abs(horizontalInput) > 0)
@@ -144,7 +139,7 @@ public class Player2ActionScript : MonoBehaviour
                 animator.SetBool("isStrongPunching", true);
                 if (move.Contains("p1-StrongPunch"))
                 {
-                    attackDamage += int.Parse(move.Substring(13, move.Length));
+                    attackDamage += int.Parse(move.Substring(14));
                 }
                 else
                 {
@@ -223,7 +218,7 @@ public class Player2ActionScript : MonoBehaviour
                 activeSM = false;
             }
         }
-
+        Debug.Log(attackDamage);
     }
 
     public void TakeDamage(int damage)
