@@ -220,6 +220,7 @@ public class PlayerActionScript : MonoBehaviour
                 activeSM = false;
             }
         }
+        move = "";
     }
 
     public void TakeDamage(int damage)
