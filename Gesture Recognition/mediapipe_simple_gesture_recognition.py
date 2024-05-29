@@ -1,52 +1,14 @@
 import cv2
 import mediapipe as mp
 import socket
-import threading
-import argparse
-
-# Set up argument parsing
-parser = argparse.ArgumentParser(description="Process player argument.")
-parser.add_argument(
-    "--player",
-    type=str,
-    choices=["p1", "p2"],
-    required=True,
-    help="Player identifier (p1 or p2)",
-)
-args = parser.parse_args()
-
-# Now you can use args.player to access the "player" variable
-player = args.player
-print(f"Player set to: {player}")
-
-# Create a UDP socket
-sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-
-if player == "p1":
-    # Server address and port
-    server_address = ("127.0.0.1", 5000)  # Example port, change as needed
-
-else:
-    # Server address and port
-    server_address = ("127.0.0.1", 6000)  # Example port, change as needed
-
-
-def send_message(message):
-    message = f"{player}-{message}"
-    try:
-        print(f"Sending: {message}")
-        sent = sock.sendto(message.encode(), server_address)
-    except Exception as e:
-        print(e)
-
+import platform
+from multiprocessing import Process
 
 # Initialize MediaPipe Pose solution.
+min_confidence = 0.6
 mp_pose = mp.solutions.pose
-pose = mp_pose.Pose(
-    static_image_mode=False, min_detection_confidence=0.8, min_tracking_confidence=0.8
-)
+pose = mp_pose.Pose(static_image_mode=False, min_detection_confidence=min_confidence)
 mp_drawing = mp.solutions.drawing_utils
-
 
 # Helper function to check if a punch gesture is detected.
 def is_punch(landmarks):
@@ -56,7 +18,10 @@ def is_punch(landmarks):
     right_elbow = landmarks.landmark[mp_pose.PoseLandmark.RIGHT_ELBOW]
 
     # Check if right wrist is above the right shoulder and in front of the right elbow
-    right_punch = right_wrist.y < right_shoulder.y and right_wrist.x > right_elbow.x
+    right_punch = right_wrist.y < right_shoulder.y and right_wrist.x > right_elbow.x \
+        and right_wrist.visibility > min_confidence\
+        and right_shoulder.visibility > min_confidence\
+        and right_elbow.visibility > min_confidence
 
     # Left punch detection (similar logic to right punch, but mirrored for left side).
     left_wrist = landmarks.landmark[mp_pose.PoseLandmark.LEFT_WRIST]
@@ -64,7 +29,10 @@ def is_punch(landmarks):
     left_elbow = landmarks.landmark[mp_pose.PoseLandmark.LEFT_ELBOW]
 
     # For the left side, check if left wrist is above the left shoulder and in front of the left elbow
-    left_punch = left_wrist.y < left_shoulder.y and left_wrist.x < left_elbow.x
+    left_punch = left_wrist.y < left_shoulder.y and left_wrist.x < left_elbow.x\
+        and left_wrist.visibility > min_confidence\
+        and left_shoulder.visibility > min_confidence\
+        and left_elbow.visibility > min_confidence
 
     # Using XOR to return True if either, but not both, punches are detected
     return right_punch ^ left_punch
@@ -76,19 +44,12 @@ def is_block(landmarks):
     head_top = landmarks.landmark[
         mp_pose.PoseLandmark.NOSE
     ]  # Can use NOSE as a proxy for the head's top position.
-    block = right_hand.y < head_top.y and left_hand.y < head_top.y
+    block = right_hand.y < head_top.y and left_hand.y < head_top.y\
+        and right_hand.visibility > min_confidence\
+        and left_hand.visibility > min_confidence\
+        and head_top.visibility > min_confidence
+    
     return block
-
-
-def is_duck(landmarks):
-    nose = landmarks.landmark[mp_pose.PoseLandmark.NOSE]
-    shoulders_midpoint_y = (
-        landmarks.landmark[mp_pose.PoseLandmark.RIGHT_SHOULDER].y
-        + landmarks.landmark[mp_pose.PoseLandmark.LEFT_SHOULDER].y
-    ) / 2
-    # Assuming a threshold for ducking (this might need adjustment).
-    duck = nose.y > shoulders_midpoint_y + 0.1
-    return duck
 
 
 def is_kick(landmarks):
@@ -100,117 +61,86 @@ def is_kick(landmarks):
     # Kick detection logic.
     # Assumes a kick when the ankle is close to the knee.
     # The threshold for detection (e.g., 0.1 here) might need to be adjusted based on actual use cases.
-    right_kick = right_ankle.y < right_knee.y + 0.1  # Adjust the threshold as needed.
-    left_kick = left_ankle.y < left_knee.y + 0.1  # Adjust the threshold as needed.
+    right_kick = right_ankle.y < right_knee.y + 0.1\
+        and right_ankle.visibility > min_confidence\
+        and right_knee.visibility > min_confidence
+    
+    left_kick = left_ankle.y < left_knee.y + 0.1\
+        and left_knee.visibility > min_confidence\
+        and left_ankle.visibility > min_confidence
+    
     return right_kick or left_kick
 
-
-# Capture video from the webcam.
-if player == "p1":
-    cap = cv2.VideoCapture(0) # 0 for Mac
-else:
-    cap = cv2.VideoCapture(2) # 1 for Mac
-last_move = None
-while cap.isOpened():
-    success, image = cap.read()
-    if not success:
-        print("Ignoring empty camera frame.")
-        continue
-    # Convert the BGR image to RGB, and process it with MediaPipe Pose.
-    image_height, image_width, _ = image.shape
-    image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
-    image.flags.writeable = False
-    results = pose.process(image)
-    # Draw the pose annotations on the image.
-    image.flags.writeable = True
-    image = cv2.cvtColor(image, cv2.COLOR_RGB2BGR)
-    if results.pose_landmarks:
-        mp_drawing.draw_landmarks(
-            image, results.pose_landmarks, mp_pose.POSE_CONNECTIONS
-        )
-        # Check for punch gesture.
-        if is_punch(results.pose_landmarks):
-            cv2.putText(
-                image,
-                "PUNCH!",
-                (50, 50),
-                cv2.FONT_HERSHEY_SIMPLEX,
-                1,
-                (0, 255, 0),
-                2,
-                cv2.LINE_AA,
-            )
-            if last_move != "Punch":
-                last_move = "Punch"
-                message = "Punch"
-                threading.Thread(target=send_message, args=(message,)).start()
-
-        elif is_kick(results.pose_landmarks):
-            cv2.putText(
-                image,
-                "KICK!",
-                (50, 100),
-                cv2.FONT_HERSHEY_SIMPLEX,
-                1,
-                (255, 0, 0),
-                2,
-                cv2.LINE_AA,
-            )
-            if last_move != "Kick":
-                last_move = "Kick"
-                message = "Kick"
-                threading.Thread(target=send_message, args=(message,)).start()
-
-        elif is_duck(results.pose_landmarks):
-            cv2.putText(
-                image,
-                "DUCK!",
-                (50, 150),
-                cv2.FONT_HERSHEY_SIMPLEX,
-                1,
-                (0, 0, 255),
-                2,
-                cv2.LINE_AA,
-            )
-            if last_move != "Duck":
-                last_move = "Duck"
-                message = "Duck"
-                threading.Thread(target=send_message, args=(message,)).start()
-
-        elif is_block(results.pose_landmarks):
-            cv2.putText(
-                image,
-                "BLOCK!",
-                (50, 200),
-                cv2.FONT_HERSHEY_SIMPLEX,
-                1,
-                (0, 128, 128),
-                2,
-                cv2.LINE_AA,
-            )
-            if last_move != "Block":
-                last_move = "Block"
-                message = "Block"
-                threading.Thread(target=send_message, args=(message,)).start()
-
-        else:
-            cv2.putText(
-                image,
-                "IDLE",
-                (50, 200),
-                cv2.FONT_HERSHEY_SIMPLEX,
-                1,
-                (0, 128, 128),
-                2,
-                cv2.LINE_AA,
-            )
-            if last_move != "IDLE":
-                last_move = "IDLE"
-                message = "IDLE"
-                threading.Thread(target=send_message, args=(message,)).start()
-
-    cv2.imshow("MediaPipe Pose with Gesture Recognition", image)
-    if cv2.waitKey(5) & 0xFF == 27:
+def send_message(player, server_address, message):
+    message = f"{player}-{message}"
+    sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+    try:
+        print(f"Sending: {message}")
+        sent = sock.sendto(message.encode(), server_address)
+    finally:
         sock.close()
-        break
-cap.release()
+
+def check_gestures(results):
+    punch = is_punch(results.pose_landmarks)
+    kick = is_kick(results.pose_landmarks)
+    block = is_block(results.pose_landmarks)
+    return punch, kick, block
+
+def player_process(player, cam_no, port):
+    server_address = ("127.0.0.1", port)
+    cap = cv2.VideoCapture(cam_no)
+
+    last_move = None
+    while cap.isOpened():
+        success, image = cap.read()
+        if not success:
+            print("Ignoring empty camera frame.")
+            continue
+
+        # Process image with MediaPipe Pose
+        image_height, image_width, _ = image.shape
+        image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
+        image.flags.writeable = False
+        results = pose.process(image)
+        image.flags.writeable = True
+        image = cv2.cvtColor(image, cv2.COLOR_RGB2BGR)
+
+        if results.pose_landmarks:
+            mp_drawing.draw_landmarks(image, results.pose_landmarks, mp_pose.POSE_CONNECTIONS)
+            punch, kick, block = check_gestures(results)
+
+            if punch and last_move != "Punch":
+                last_move = "Punch"
+                send_message(player, server_address, "Punch")
+            elif kick and last_move != "Kick":
+                last_move = "Kick"
+                send_message(player, server_address, "Kick")
+            elif block and last_move != "Block":
+                last_move = "Block"
+                send_message(player, server_address, "Block")
+            elif not any([punch, kick, block]) and last_move != "IDLE":
+                last_move = "IDLE"
+                send_message(player, server_address, "IDLE")
+
+        cv2.imshow(f"MediaPipe Pose with Gesture Recognition - {player}", image)
+        if cv2.waitKey(5) & 0xFF == 27:
+            break
+
+    cap.release()
+    cv2.destroyAllWindows()
+
+if __name__ == '__main__':
+    system = platform.system()
+    if system == 'Darwin':  # macOS
+        cam_numbers = [0, 1]
+    elif system == 'Windows':
+        cam_numbers = [1, 2]
+    else:
+        cam_numbers = [0, 1]  # Default for other OS
+
+    p1 = Process(target=player_process, args=('p1', cam_numbers[0], 5000))
+    # p2 = Process(target=player_process, args=('p2', cam_numbers[1], 5000))
+    p1.start()
+    # p2.start()
+    p1.join()
+    # p2.join()
