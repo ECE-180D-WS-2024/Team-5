@@ -7,9 +7,13 @@ import platform
 from localization import get_player_movement
 from imu import init_imu, get_imu_val
 from gesture import get_gesture
-import threading
+import concurrent.futures
 
 LAST_MOVE = None
+
+# Create a thread pool with a maximum number of worker threads
+max_workers = 8  # Adjust based on your requirements and system capabilities
+executor = concurrent.futures.ThreadPoolExecutor(max_workers=max_workers)
 
 # Initialize MediaPipe Pose solution.
 min_confidence = 0.8
@@ -61,8 +65,9 @@ def player_process(player, cam_no, port=5000):
         if results.pose_landmarks:
             mp_drawing.draw_landmarks(image, results.pose_landmarks, mp_pose.POSE_CONNECTIONS)
             landmarks = results.pose_landmarks.landmark
-            threading.Thread(target=get_and_send_gesture, args=(landmarks, player)).start()
-            threading.Thread(target=get_and_send_movement, args=(landmarks, player)).start()
+            # Submit tasks to the thread pool
+            executor.submit(get_and_send_gesture, landmarks, player)
+            executor.submit(get_and_send_movement, landmarks, player)
 
         cv2.imshow(f"MediaPipe Pose with Gesture Recognition - {player}", image)
         if cv2.waitKey(5) & 0xFF == 27:
@@ -70,6 +75,7 @@ def player_process(player, cam_no, port=5000):
 
     cap.release()
     cv2.destroyAllWindows()
+    executor.shutdown(wait=True)
 
 if __name__ == '__main__':
     system = platform.system()

@@ -33,5 +33,5 @@ async def init_imu(player):
     device = await connect_arduino(player)
     await read_imu(device)
 
-async def get_imu():
+def get_imu_val():
     return max(sliding_window)
