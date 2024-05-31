@@ -18,6 +18,8 @@ public class UDPReciever : MonoBehaviour
     public int port = 5000; // Select a port to listen on
     public String p1Move;
     public String p2Move;
+    public String p1Action = "";
+    public String p2Action = "";
 
     public static UDPReciever Instance { get; private set; }
 
@@ -53,14 +55,25 @@ public class UDPReciever : MonoBehaviour
                 byte[] data = client.Receive(ref anyIP);
 
                 string text = Encoding.UTF8.GetString(data);
-                if (text.Contains("p1"))
+                if (text.Contains("p1-Move"))
                 {
                     p1Move = text;
+                    Debug.Log(p1Move);
                 }
-                else if (text.Contains("p2"))
+                else if (text.Contains("p2-Move"))
                 {
                     p2Move = text;
                     Debug.Log(p2Move);
+                }
+                else if (text.Contains("p1"))
+                {
+                    p1Action = text;
+                    Debug.Log(p1Action);
+                }
+                else if (text.Contains("p2"))
+                {
+                    p2Action = text;
+                    Debug.Log(p2Action);
                 }
                 // Process the data received (e.g., by parsing text) here
             }

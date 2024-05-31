@@ -10,6 +10,7 @@ from gesture import get_gesture
 import concurrent.futures
 
 LAST_MOVE = None
+LAST_ACTION = None
 
 # Create a thread pool with a maximum number of worker threads
 max_workers = 8  # Adjust based on your requirements and system capabilities
@@ -35,14 +36,19 @@ def send_message(player, message, port=5000, server_address="127.0.0.1"):
 def get_and_send_gesture(landmarks, player):
     # Recognize gesture
     gesture = get_gesture(landmarks)
-    
+    if LAST_ACTION == gesture:
+        return
     if gesture == "Punch" and get_imu_val() > 0:
-        gesture = "StrongPunch"
+        gesture = f"StrongPunch{int(get_imu_val())}"
+    LAST_ACTION = gesture
     send_message(player, gesture)
 
 def get_and_send_movement(landmarks, player):
     # Get player movement through localization
     movement = get_player_movement(landmarks)
+    if LAST_MOVE == movement:
+        return
+    LAST_MOVE = movement
     send_message(player, movement)
 
 def player_process(player, cam_no, port=5000):
