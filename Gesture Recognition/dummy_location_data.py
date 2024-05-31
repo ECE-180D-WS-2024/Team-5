@@ -29,4 +29,4 @@ def send_udp_packet():
 # Example usage
 while True:
     send_udp_packet()
-    time.sleep(1)
+    time.sleep(0.2)

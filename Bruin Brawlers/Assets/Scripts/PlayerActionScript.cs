@@ -35,7 +35,6 @@ public class PlayerActionScript : MonoBehaviour
     public bool block;
     public Player2ActionScript player2;
     public AudioManager sfxSounds;
-    public UDPReciever udpReciever;
 
     private KeywordRecognizer keywordRecognizer;
     private Dictionary<string, Action> actions = new Dictionary<string, Action>();
@@ -77,8 +76,8 @@ public class PlayerActionScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        move = udpReciever.p1Move;
-        action = udpReciever.p1Action;
+        string move = UDPReciever.p1Move;
+        string action = UDPReciever.p1Action;
         animator.SetBool("isStrongPunching", false);
         attackDamage = 2;
         currentHP = healthBar.GetHealth();
@@ -131,7 +130,7 @@ public class PlayerActionScript : MonoBehaviour
 
             if (action.Contains("p1-StrongPunch") || Input.GetKeyDown(KeyCode.O))
             {
-                udpReciever.p1Action = "";
+                UDPReciever.p1Action = "";
                 animator.SetBool("isStrongPunching", true);
                 if (action.Contains("p1-StrongPunch"))
                 {
@@ -152,7 +151,7 @@ public class PlayerActionScript : MonoBehaviour
             }
             if (action == "p1-Punch" || Input.GetKeyDown(KeyCode.P))
             {
-                udpReciever.p1Action = "";
+                UDPReciever.p1Action = "";
                 if (!combo)
                 {
                     animator.ResetTrigger("isCombo");
@@ -183,7 +182,7 @@ public class PlayerActionScript : MonoBehaviour
 
             if (action == "p1-Kick" || Input.GetKeyDown(KeyCode.K))
             {
-                udpReciever.p1Action = "";
+                UDPReciever.p1Action = "";
                 animator.SetTrigger("isKicking");
                 if (myCollider.IsTouching(enemyCollider))
                 {
@@ -198,7 +197,6 @@ public class PlayerActionScript : MonoBehaviour
             }
             if (action == "p1-Block" || Input.GetKey(KeyCode.B))
             {
-                udpReciever.p1Action = "";
                 animator.SetTrigger("isBlocking");
                 if (myCollider.IsTouching(enemyCollider))
                 {

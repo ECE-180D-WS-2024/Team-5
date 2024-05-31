@@ -27,7 +27,6 @@ public class Player2ActionScript : MonoBehaviour
     public int attackDamage;
     public bool block;
     public PlayerActionScript player1;
-    public UDPReciever udpReciever; 
 
     public AudioManager sfxSounds;
     public int maxSM = 100;
@@ -78,8 +77,8 @@ public class Player2ActionScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        move = udpReciever.p2Move;
-        action = udpReciever.p2Action;
+        string move = UDPReciever.p2Move;
+        string action = UDPReciever.p2Action;
         animator.SetBool("isStrongPunching", false);
         attackDamage = 2;
         currentHP = healthBar.GetHealth();
@@ -134,7 +133,7 @@ public class Player2ActionScript : MonoBehaviour
 
             if (action.Contains("p2-StrongPunch") || Input.GetKeyDown(KeyCode.P) && Input.GetKeyDown(KeyCode.LeftShift))
             {
-                udpReciever.p2Action = "";
+                UDPReciever.p2Action = "";
                 animator.SetBool("isStrongPunching", true);
                 if (action.Contains("p2-StrongPunch"))
                 {
@@ -156,7 +155,7 @@ public class Player2ActionScript : MonoBehaviour
 
             if (action == "p2-Punch" || Input.GetKeyDown(KeyCode.Space))
             {
-                udpReciever.p2Action = "";
+                UDPReciever.p2Action = "";
                 if (!combo)
                 {
                     animator.ResetTrigger("isCombo");
@@ -186,7 +185,7 @@ public class Player2ActionScript : MonoBehaviour
             }
             if (action == "p2-Kick" || Input.GetKeyDown(KeyCode.M))
             {
-                udpReciever.p2Action = "";
+                UDPReciever.p2Action = "";
                 animator.SetTrigger("isKicking");
                 if (myCollider.IsTouching(enemyCollider))
                 {
@@ -201,7 +200,6 @@ public class Player2ActionScript : MonoBehaviour
             }
             if (action == "p2-Block" || Input.GetKey(KeyCode.L))
             {
-                udpReciever.p2Action = "";
                 animator.SetTrigger("isBlocking");
                 if (myCollider.IsTouching(enemyCollider))
                 {
