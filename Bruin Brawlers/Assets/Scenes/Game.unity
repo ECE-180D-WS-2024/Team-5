@@ -1515,53 +1515,6 @@ Transform:
   - {fileID: 1833173007}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &766650763
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 766650765}
-  - component: {fileID: 766650764}
-  m_Layer: 0
-  m_Name: UDP Reciever
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &766650764
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 766650763}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c566c56f90086ef499f388a643e17c96, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  port: 5000
-  p1Move: 
-  p2Move: 
---- !u!4 &766650765
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 766650763}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 442.8577, y: 219.9154, z: -2.7236984}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &862470809
 GameObject:
   m_ObjectHideFlags: 0
@@ -2872,6 +2825,53 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 999980625}
   m_CullTransparentMesh: 1
+--- !u!1 &1059638356
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1059638358}
+  - component: {fileID: 1059638357}
+  m_Layer: 0
+  m_Name: UDP Reciever
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1059638357
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1059638356}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c566c56f90086ef499f388a643e17c96, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  port: 5000
+  p1Move: 
+  p2Move: 
+--- !u!4 &1059638358
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1059638356}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 442.8577, y: 219.9154, z: -2.7236981}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1324289936
 GameObject:
   m_ObjectHideFlags: 0
@@ -3151,7 +3151,7 @@ MonoBehaviour:
   block: 0
   player2: {fileID: 1743646140}
   sfxSounds: {fileID: 0}
-  udpReciever: {fileID: 766650764}
+  udpReciever: {fileID: 1059638357}
 --- !u!61 &1471571008
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3967,7 +3967,7 @@ MonoBehaviour:
   attackDamage: 0
   block: 0
   player1: {fileID: 1471571007}
-  udpReciever: {fileID: 766650764}
+  udpReciever: {fileID: 1059638357}
   sfxSounds: {fileID: 0}
   maxSM: 50
   currentSM: 0
@@ -4908,4 +4908,4 @@ SceneRoots:
   - {fileID: 147091944}
   - {fileID: 1621868682}
   - {fileID: 734121260}
-  - {fileID: 766650765}
+  - {fileID: 1059638358}
