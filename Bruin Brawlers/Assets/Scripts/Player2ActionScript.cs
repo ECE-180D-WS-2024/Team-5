@@ -21,6 +21,7 @@ public class Player2ActionScript : MonoBehaviour
     public HealthBar enemyHealthBar;
     public HealthBar healthBar;
     public String move;
+    public String action;
     public bool isDead;
     public bool combo;
     public int attackDamage;
@@ -78,6 +79,7 @@ public class Player2ActionScript : MonoBehaviour
     void Update()
     {
         move = udpReciever.p2Move;
+        action = udpReciever.p2Action;
         animator.SetBool("isStrongPunching", false);
         attackDamage = 2;
         currentHP = healthBar.GetHealth();
@@ -130,12 +132,13 @@ public class Player2ActionScript : MonoBehaviour
                 StartCoroutine(runAnimation("isMoving", 1f));
             }
 
-            if (move.Contains("p1-StrongPunch") || Input.GetKeyDown(KeyCode.P) && Input.GetKeyDown(KeyCode.LeftShift))
+            if (action.Contains("p2-StrongPunch") || Input.GetKeyDown(KeyCode.P) && Input.GetKeyDown(KeyCode.LeftShift))
             {
+                udpReciever.p2Action = "";
                 animator.SetBool("isStrongPunching", true);
-                if (move.Contains("p1-StrongPunch"))
+                if (action.Contains("p2-StrongPunch"))
                 {
-                    attackDamage += int.Parse(move.Substring(14));
+                    attackDamage += int.Parse(action.Substring(14));
                 }
                 else
                 {
@@ -151,8 +154,9 @@ public class Player2ActionScript : MonoBehaviour
                 }
             }
 
-            if (move == "p2-Punch" || Input.GetKeyDown(KeyCode.Space))
+            if (action == "p2-Punch" || Input.GetKeyDown(KeyCode.Space))
             {
+                udpReciever.p2Action = "";
                 if (!combo)
                 {
                     animator.ResetTrigger("isCombo");
@@ -180,8 +184,9 @@ public class Player2ActionScript : MonoBehaviour
                     sfxSounds.playSound(sfxSounds.hitEffect);
                 }
             }
-            if (move == "p2-Kick" || Input.GetKeyDown(KeyCode.M))
+            if (action == "p2-Kick" || Input.GetKeyDown(KeyCode.M))
             {
+                udpReciever.p2Action = "";
                 animator.SetTrigger("isKicking");
                 if (myCollider.IsTouching(enemyCollider))
                 {
@@ -191,12 +196,12 @@ public class Player2ActionScript : MonoBehaviour
                     }
                     player1.TakeDamage(attackDamage);
                     ChargeSMBar(10);
-                    
                     sfxSounds.playSound(sfxSounds.hitEffect);
                 }
             }
-            if (move == "p2-Block" || Input.GetKey(KeyCode.L))
+            if (action == "p2-Block" || Input.GetKey(KeyCode.L))
             {
+                udpReciever.p2Action = "";
                 animator.SetTrigger("isBlocking");
                 if (myCollider.IsTouching(enemyCollider))
                 {
@@ -225,7 +230,6 @@ public class Player2ActionScript : MonoBehaviour
         {
             currentHP -= damage;
             healthBar.SetHealth(currentHP);
-            Debug.Log(currentHP);
         }
         else
         {
@@ -290,5 +294,10 @@ public class Player2ActionScript : MonoBehaviour
         GetComponent<SpriteRenderer>().color = originalColor;
 
         cooldownSM = false;
+    }
+
+    private void OnDestroy()
+    {
+        keywordRecognizer.Stop();
     }
 }
