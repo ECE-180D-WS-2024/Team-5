@@ -295,4 +295,9 @@ public class Player2ActionScript : MonoBehaviour
 
         cooldownSM = false;
     }
+
+    private void OnDestroy()
+    {
+        keywordRecognizer.Stop();
+    }
 }

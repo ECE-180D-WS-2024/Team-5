@@ -293,4 +293,9 @@ public class PlayerActionScript : MonoBehaviour
 
         cooldownSM = false;
     }
+
+    private void OnDestroy()
+    {
+        keywordRecognizer.Stop();
+    }
 }
