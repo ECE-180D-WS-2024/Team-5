@@ -89,7 +89,7 @@ public class UDPReciever : MonoBehaviour
         StartReceiving();
     }
 
-    void OnApplicationQuit()
+    private void closeSocket()
     {
         if (receiveThread != null && receiveThread.IsAlive)
         {
@@ -100,5 +100,15 @@ public class UDPReciever : MonoBehaviour
         {
             client.Close();
         }
+    }
+
+    void OnApplicationQuit()
+    {
+        closeSocket();
+    }
+
+    private void OnDestroy()
+    {
+        closeSocket();
     }
 }

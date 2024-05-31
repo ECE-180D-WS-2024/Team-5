@@ -5,6 +5,7 @@ using System.Linq;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.Windows.Speech;
 
 public class TutorialController : MonoBehaviour
@@ -13,7 +14,9 @@ public class TutorialController : MonoBehaviour
     private int tutIndex;
     private KeywordRecognizer keywordRecognizer;
     private Dictionary<string, Action> actions = new Dictionary<string, Action>();
-    private string[] instructions = new string[] { "Move Forward!", "Move Backward!", "Throw a Punch!", "Block!", "Kick!", "Throw Your Strongest Punch!"};
+    private string[] instructions = new string[] { "Move Forward!", "Move Backward!",
+        "Throw a Punch!", "Block!", "Kick!", "Throw Your Strongest Punch!",
+        "Say Ready to Start Game!"};
 
     private void RecognizedSpeech(PhraseRecognizedEventArgs speech)
     {
@@ -24,11 +27,16 @@ public class TutorialController : MonoBehaviour
     private void getNextInstruction()
     {
         tutIndex++;
-        if (tutIndex < instructions.Length - 1)
+        if (tutIndex < instructions.Length)
         {
             tutInstruction.text = instructions[tutIndex];
         }
         Debug.Log(instructions.Length);
+    }
+
+    private void endTutorial()
+    {
+        SceneManager.LoadScene("Scenes/Game");
     }
 
     // Start is called before the first frame update
@@ -37,6 +45,7 @@ public class TutorialController : MonoBehaviour
         tutInstruction.text = "Tutorial";
         tutIndex = -1;
         actions.Add("Continue", () => getNextInstruction());
+        actions.Add("Ready", () => endTutorial());
 
         keywordRecognizer = new KeywordRecognizer(actions.Keys.ToArray());
         keywordRecognizer.OnPhraseRecognized += RecognizedSpeech;
