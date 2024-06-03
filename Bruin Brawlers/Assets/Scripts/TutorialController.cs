@@ -15,8 +15,12 @@ public class TutorialController : MonoBehaviour
     private int tutIndex;
     private KeywordRecognizer keywordRecognizer;
     private Dictionary<string, Action> actions = new Dictionary<string, Action>();
-    private string[] instructions = new string[] { "Move Forward!", "Move Backward!",
-        "Throw a Punch!", "Block!", "Kick!", "Throw Your Strongest Punch!",
+    private string[] instructions = new string[] { "In Bruin Brawlers you control a boxer with the goal of defeating your ultimate rival in this final match! When your HP bar reaches 0 you lose!",
+        "You also have a special move meter that charges as you land attacks! Once it fully charges you can unleash your special move to gain extra damage on attacks!",
+        "Tutorial: Try to move your player forward by taking a step!", "Tutorial: Try to still your player by staying in the idle zone", 
+        "Tutorial: Try to move your player backward by taking a step backward!",
+        "Tutorial: Throw a Punch!", "Tutorial: Block!", "Tutorial: Kick!", "Tutorial: Throw your strongest punch to activate your players FIRE FIST!",
+        "Once players have fully charged their SM Bar by dealing damage they can activate their SUPER MOVE!", "Player 1 can activate their super by shouting BOMBASTIC & Player 2 can activate their super by shouting FERGALICIOUS",
         "Say Ready to Start Game!"};
 
     public Image PunchImg;
@@ -56,13 +60,13 @@ public class TutorialController : MonoBehaviour
         {
             switch (instructions[tutIndex])
             {
-                case "Throw a Punch!":
+                case "Tutorial: Throw a Punch!":
                     PunchImg.gameObject.SetActive(true);
                     break;
-                case "Block!":
+                case "Tutorial: Block!":
                     BlockImg.gameObject.SetActive(true);
                     break;
-                case "Kick!":
+                case "Tutorial: Kick!":
                     KickImg.gameObject.SetActive(true);
                     break;
             }
@@ -72,7 +76,7 @@ public class TutorialController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        tutInstruction.text = "Tutorial";
+        tutInstruction.text = "Welcome to Bruin Brawlers! In this tutorial we have disabled the health bars so we can focus on teaching you the game fundamentals!";
         tutIndex = -1;
         actions.Add("Continue", () => getNextInstruction());
         actions.Add("Ready", () => endTutorial());
@@ -89,6 +93,9 @@ public class TutorialController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetKeyDown(KeyCode.N))
+        {
+            getNextInstruction();
+        }   
     }
 }
