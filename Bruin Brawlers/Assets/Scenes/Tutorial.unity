@@ -363,7 +363,7 @@ Transform:
   m_GameObject: {fileID: 225840950}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -6, y: -4.6, z: 0}
+  m_LocalPosition: {x: -6, y: -4, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -424,7 +424,7 @@ MonoBehaviour:
   combo: 0
   block: 0
   player2: {fileID: 676023323}
-  sfxSounds: {fileID: 0}
+  sfxSounds: {fileID: 1554269172}
 --- !u!61 &225840954
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -811,7 +811,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -4}
+  m_Offset: {x: 0, y: -3.8}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -1016,7 +1016,7 @@ MonoBehaviour:
   attackDamage: 0
   block: 0
   player1: {fileID: 225840953}
-  sfxSounds: {fileID: 0}
+  sfxSounds: {fileID: 1554269172}
   maxSM: 50
   currentSM: 0
   sm_bar: {fileID: 1512140259}
@@ -1033,7 +1033,7 @@ Animator:
   m_GameObject: {fileID: 676023322}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: e4cb6754d57af33409217069b03aedb8, type: 2}
+  m_Controller: {fileID: 9100000, guid: c3ff4b68f1cac5e49aa97b6f4ae8987e, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -1112,7 +1112,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 522248188, guid: 7fbe7b9aa90ab64428b9c855e36f8b2d, type: 3}
+  m_Sprite: {fileID: 775046320, guid: d5555aa9854360c4da8d3e739816954d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -1132,8 +1132,8 @@ Transform:
   m_GameObject: {fileID: 676023322}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: 6, y: -4.6, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 6, y: -3.5, z: 0}
+  m_LocalScale: {x: 0.94, y: 0.94, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1434040044}
@@ -1174,14 +1174,14 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 4.4008727, y: 7.6}
+    oldSize: {x: 9.6, y: 9.6023445}
     newSize: {x: 4.4008727, y: 7.6}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 4, y: 6}
+  m_Size: {x: 4, y: 7.25}
   m_EdgeRadius: 0
 --- !u!1 &701843023
 GameObject:
@@ -4514,11 +4514,11 @@ SceneRoots:
   m_Roots:
   - {fileID: 752723648}
   - {fileID: 587462412}
+  - {fileID: 701843024}
   - {fileID: 1434040044}
   - {fileID: 1350134912}
   - {fileID: 1852765078}
   - {fileID: 271286721}
   - {fileID: 1554269173}
-  - {fileID: 701843024}
   - {fileID: 1395907246}
   - {fileID: 1017894460}

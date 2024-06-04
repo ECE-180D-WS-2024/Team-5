@@ -8,7 +8,7 @@ public class MenuController : MonoBehaviour
     public void PlayButton()
     {
         Debug.Log("CLICK");
-        SceneManager.LoadScene("Scenes/Game");
+        SceneManager.LoadScene("Scenes/Tutorial");
     }
 
     public void QuitButton()
