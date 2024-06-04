@@ -36,5 +36,10 @@ public class GameController : MonoBehaviour
         {
             EndGame("Player 1");
         }
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            gameOverScreen.Pause();
+        }
     }
 }

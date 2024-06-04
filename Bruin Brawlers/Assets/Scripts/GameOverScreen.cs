@@ -12,7 +12,20 @@ public class GameOverScreen : MonoBehaviour
     public void Setup(string winner)
     {
         gameObject.SetActive(true);
-        winText.text = winner + "WINS!";
+        winText.text = winner + " WINS!";
+    }
+
+    public void Pause()
+    {
+        if (gameObject.activeSelf)
+        {
+            gameObject.SetActive(false);
+        }
+        else
+        {
+            gameObject.SetActive(true);
+            winText.text = "PAUSE (ESC to Resume)";
+        }
     }
 
     public void RestartButton()

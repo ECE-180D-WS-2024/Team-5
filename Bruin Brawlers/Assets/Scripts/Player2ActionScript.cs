@@ -14,18 +14,17 @@ public class Player2ActionScript : MonoBehaviour
     public BoxCollider2D myCollider;
     public BoxCollider2D enemyCollider;
     public Animator animator;
-    public string lastMove;
     public int maxHP = 100;
     public int prevHP;
     public int currentHP;
-    public HealthBar enemyHealthBar;
+    public string lastMove;
     public HealthBar healthBar;
     public String move;
     public String action;
     public bool isDead;
     public bool combo;
-    public int attackDamage;
     public bool block;
+    public int attackDamage;
     public PlayerActionScript player1;
 
     public AudioManager sfxSounds;
@@ -60,6 +59,7 @@ public class Player2ActionScript : MonoBehaviour
         sfxSounds = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
 
         actions.Add("fergalicious", () => superMove());
+        actions.Add("pause", () => gameOverScreen.Pause());
 
         keywordRecognizer = new KeywordRecognizer(actions.Keys.ToArray());
         keywordRecognizer.OnPhraseRecognized += RecognizedSpeech;
@@ -79,8 +79,10 @@ public class Player2ActionScript : MonoBehaviour
     {
         string move = UDPReciever.p2Move;
         string action = UDPReciever.p2Action;
+
         animator.SetBool("isStrongPunching", false);
         attackDamage = 2;
+        
         currentHP = healthBar.GetHealth();
         if (currentHP < prevHP)
         {

@@ -16,17 +16,11 @@ public class PlayerActionScript : MonoBehaviour
     public BoxCollider2D myCollider;
     public BoxCollider2D enemyCollider;
     public Animator animator;
-    public string lastMove;
     public int maxHP = 100;
     public int currentHP;
     public int prevHP;
-    public HealthBar enemyHealthBar;
+    public string lastMove;
     public HealthBar healthBar;
-    public int maxSM = 100;
-    public int currentSM;
-    public SMBar sm_bar;
-    public int count = 0;
-    public int mySM = 0;
     public String move;
     public String action;
     public int attackDamage;
@@ -34,7 +28,13 @@ public class PlayerActionScript : MonoBehaviour
     public bool combo;
     public bool block;
     public Player2ActionScript player2;
+    
     public AudioManager sfxSounds;
+    public int maxSM = 100;
+    public int currentSM;
+    public SMBar sm_bar;
+    public int count = 0;
+    public int mySM = 0;
 
     private KeywordRecognizer keywordRecognizer;
     private Dictionary<string, Action> actions = new Dictionary<string, Action>();
@@ -43,6 +43,8 @@ public class PlayerActionScript : MonoBehaviour
     private bool activeSM = false;
     private bool cooldownSM = false;
     private bool sm_bar_full = false;
+
+    public GameOverScreen gameOverScreen;
 
     // Start is called before the first frame update
     void Start()
@@ -59,6 +61,7 @@ public class PlayerActionScript : MonoBehaviour
         sfxSounds = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
 
         actions.Add("bombastic", () => superMove());
+        actions.Add("pause", () => gameOverScreen.Pause());
 
         keywordRecognizer = new KeywordRecognizer(actions.Keys.ToArray());
         keywordRecognizer.OnPhraseRecognized += RecognizedSpeech;
@@ -78,8 +81,10 @@ public class PlayerActionScript : MonoBehaviour
     {
         string move = UDPReciever.p1Move;
         string action = UDPReciever.p1Action;
+
         animator.SetBool("isStrongPunching", false);
         attackDamage = 2;
+
         currentHP = healthBar.GetHealth();
         if (currentHP < prevHP)
         {
@@ -100,8 +105,6 @@ public class PlayerActionScript : MonoBehaviour
 
         if (!isDead)
         {
-            //float horizontalInput = Input.GetAxis("P1-Horizontal");
-            //Debug.Log(horizontalInput);
             float moveSpeed = 30f;
             float horizontalInput = Input.GetAxis("P1-Horizontal");
             Vector2 movement = new Vector2(0, 0);

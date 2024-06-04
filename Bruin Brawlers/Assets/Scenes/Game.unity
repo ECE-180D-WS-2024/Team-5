@@ -225,7 +225,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -97, y: 41}
+  m_AnchoredPosition: {x: -97, y: 90}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &47650525
@@ -481,18 +481,17 @@ MonoBehaviour:
   myCollider: {fileID: 104240091}
   enemyCollider: {fileID: 1471571008}
   animator: {fileID: 104240090}
-  lastMove: 
   maxHP: 100
   prevHP: 0
   currentHP: 0
-  enemyHealthBar: {fileID: 281484472}
+  lastMove: 
   healthBar: {fileID: 1565052723}
   move: 
   action: 
   isDead: 0
   combo: 0
-  attackDamage: 0
   block: 0
+  attackDamage: 0
   player1: {fileID: 1471571007}
   sfxSounds: {fileID: 734121259}
   maxSM: 50
@@ -3348,17 +3347,11 @@ MonoBehaviour:
   myCollider: {fileID: 1471571008}
   enemyCollider: {fileID: 104240091}
   animator: {fileID: 1471571011}
-  lastMove: 
   maxHP: 20
   currentHP: 0
   prevHP: 0
-  enemyHealthBar: {fileID: 1565052723}
+  lastMove: 
   healthBar: {fileID: 281484472}
-  maxSM: 100
-  currentSM: 0
-  sm_bar: {fileID: 1643562901}
-  count: 0
-  mySM: 0
   move: 
   action: 
   attackDamage: 0
@@ -3367,6 +3360,12 @@ MonoBehaviour:
   block: 0
   player2: {fileID: 104240089}
   sfxSounds: {fileID: 734121259}
+  maxSM: 100
+  currentSM: 0
+  sm_bar: {fileID: 1643562901}
+  count: 0
+  mySM: 0
+  gameOverScreen: {fileID: 379715503}
 --- !u!61 &1471571008
 BoxCollider2D:
   m_ObjectHideFlags: 0
