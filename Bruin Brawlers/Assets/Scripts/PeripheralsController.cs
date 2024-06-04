@@ -3,45 +3,56 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using System.Diagnostics;
+using System.Threading.Tasks;
+using Debug = UnityEngine.Debug;
+using UnityEditor;
 
 public class PeripheralsController : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private Process gesture_recog;
+    async void Start()
+    {
+        await RunPythonScriptAsync();
+    }
+
+    // Asynchronous method to run the Python script
+    private async Task RunPythonScriptAsync()
     {
         // Path to the Python script
-        string scriptPath = @"../../../Gesture Recognition/mediapipe_height_relative.py";
+        string scriptPath = @"../Gesture_Recognition/mediapipe_simple_gesture_recognition.py";
 
         // Arguments to pass to the script
         string scriptArgs = "";
 
         // Create a new process
-        ProcessStartInfo start = new ProcessStartInfo();
-        start.FileName = "python";
-        start.Arguments = $"{scriptPath} {scriptArgs}";
-        start.UseShellExecute = false;
-        start.RedirectStandardOutput = true;
-        start.RedirectStandardError = true;
-        start.CreateNoWindow = true;
-
-        using (Process process = Process.Start(start))
+        ProcessStartInfo start = new ProcessStartInfo
         {
+            FileName = "python",
+            Arguments = $"{scriptPath} {scriptArgs}",
+            UseShellExecute = false,
+            RedirectStandardOutput = true,
+            RedirectStandardError = true,
+            CreateNoWindow = true
+        };
+
+        using (gesture_recog = new Process { StartInfo = start })
+        {
+            gesture_recog.Start();
+
             // Read the output (or the error)
-            string stdout = process.StandardOutput.ReadToEnd();
-            string stderr = process.StandardError.ReadToEnd();
-
-            process.WaitForExit();
-
-            Console.WriteLine("Output:");
-            Console.WriteLine(stdout);
-            Console.WriteLine("Errors:");
-            Console.WriteLine(stderr);
+            string stdout = await gesture_recog.StandardOutput.ReadToEndAsync();
+            string stderr = await gesture_recog.StandardError.ReadToEndAsync();
         }
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
+    }
+
+    private void OnApplicationQuit()
+    {
+        gesture_recog.Kill();
     }
 }
