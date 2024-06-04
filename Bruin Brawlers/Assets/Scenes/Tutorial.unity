@@ -1227,6 +1227,7 @@ GameObject:
   - component: {fileID: 752723647}
   - component: {fileID: 752723646}
   - component: {fileID: 752723650}
+  - component: {fileID: 752723651}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1324,6 +1325,18 @@ MonoBehaviour:
   PunchImg: {fileID: 1481229273}
   BlockImg: {fileID: 1521517936}
   KickImg: {fileID: 86972366}
+--- !u!114 &752723651
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 752723645}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1bce4f4f167445140a36bde43baf5c83, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &842201732
 GameObject:
   m_ObjectHideFlags: 0
