@@ -55,7 +55,7 @@ while cap.isOpened():
     height, width, _ = frame.shape
     
     # Calculate the width to be half of the height
-    new_width = height // 2
+    new_width = height * 2 // 3
     start_x = (width - new_width) // 2
     end_x = start_x + new_width
     

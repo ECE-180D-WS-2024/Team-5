@@ -1,7 +1,7 @@
 import cv2
 
 # Initialize the webcam (0 is the default camera)
-cap = cv2.VideoCapture(1)
+cap = cv2.VideoCapture(0)
 
 # Define the codec and create VideoWriter object (will be initialized later)
 fourcc = cv2.VideoWriter_fourcc(*'XVID')
@@ -47,7 +47,7 @@ while cap.isOpened():
         if not is_recording:
             is_recording = True
             # Initialize the VideoWriter object
-            out = cv2.VideoWriter('boelter_ryan.avi', fourcc, 20.0, (frame_width, frame_height))
+            out = cv2.VideoWriter('apartment_ryan.avi', fourcc, 20.0, (frame_width, frame_height))
             print("Recording started...")
         else:
             print("Already recording...")
