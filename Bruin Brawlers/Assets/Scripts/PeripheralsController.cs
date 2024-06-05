@@ -16,7 +16,7 @@ public class PeripheralsController : MonoBehaviour
     }
 
     // Asynchronous method to run the Python script
-    private async Task RunPythonScriptAsync()
+    public async Task RunPythonScriptAsync()
     {
         // Path to the Python script
         string scriptPath = @"../Gesture_Recognition/mediapipe_simple_gesture_recognition.py";
@@ -35,6 +35,7 @@ public class PeripheralsController : MonoBehaviour
             CreateNoWindow = true
         };
 
+        Debug.Log("Starting script...");
         using (gesture_recog = new Process { StartInfo = start })
         {
             gesture_recog.Start();
@@ -48,7 +49,7 @@ public class PeripheralsController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+     
     }
 
     private void OnApplicationQuit()

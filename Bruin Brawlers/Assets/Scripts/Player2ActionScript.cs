@@ -59,7 +59,7 @@ public class Player2ActionScript : MonoBehaviour
         sfxSounds = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
 
         actions.Add("fergalicious", () => superMove());
-        actions.Add("pause", () => gameOverScreen.Pause());
+        actions.Add("wait", () => gameOverScreen.Pause());
 
         keywordRecognizer = new KeywordRecognizer(actions.Keys.ToArray());
         keywordRecognizer.OnPhraseRecognized += RecognizedSpeech;

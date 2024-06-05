@@ -11,6 +11,7 @@ using System.Threading;
 using static Unity.Collections.AllocatorManager;
 using Unity.Burst.Intrinsics;
 using Unity.Mathematics;
+using UnityEditor.VersionControl;
 public class UDPReciever : MonoBehaviour
 {
     Thread receiveThread;
@@ -81,6 +82,25 @@ public class UDPReciever : MonoBehaviour
             {
                 Debug.LogError(e.ToString());
             }
+        }
+    }
+
+    private void sendMessage(string message)
+    {
+        try
+        {
+            if (client == null)
+            {
+                Debug.LogError("UDP client not initialized!");
+                return;
+            }
+
+            byte[] data = Encoding.UTF8.GetBytes(message);
+            client.Send(data, data.Length);
+        }
+        catch (Exception err)
+        {
+            Debug.LogError(err.ToString());
         }
     }
 

@@ -406,17 +406,11 @@ MonoBehaviour:
   myCollider: {fileID: 225840954}
   enemyCollider: {fileID: 676023328}
   animator: {fileID: 225840952}
-  lastMove: 
   maxHP: 20
   currentHP: 0
   prevHP: 0
-  enemyHealthBar: {fileID: 93642125}
+  lastMove: 
   healthBar: {fileID: 1892714851}
-  maxSM: 100
-  currentSM: 0
-  sm_bar: {fileID: 1412309684}
-  count: 0
-  mySM: 0
   move: 
   action: 
   attackDamage: 0
@@ -425,6 +419,12 @@ MonoBehaviour:
   block: 0
   player2: {fileID: 676023323}
   sfxSounds: {fileID: 1554269172}
+  maxSM: 100
+  currentSM: 0
+  sm_bar: {fileID: 1412309684}
+  count: 0
+  mySM: 0
+  gameOverScreen: {fileID: 0}
 --- !u!61 &225840954
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -669,6 +669,52 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 386538117}
   m_CullTransparentMesh: 1
+--- !u!1 &419614595
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 419614597}
+  - component: {fileID: 419614596}
+  m_Layer: 0
+  m_Name: UDP Sender
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &419614596
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 419614595}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a284cd3d86f54647a5de9db12822a20, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ipAddress: 127.0.0.1
+  port: 5000
+--- !u!4 &419614597
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 419614595}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 942.1256, y: 540.0476, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &587462407
 GameObject:
   m_ObjectHideFlags: 0
@@ -1003,18 +1049,17 @@ MonoBehaviour:
   myCollider: {fileID: 676023328}
   enemyCollider: {fileID: 225840954}
   animator: {fileID: 676023324}
-  lastMove: 
   maxHP: 100
   prevHP: 0
   currentHP: 0
-  enemyHealthBar: {fileID: 1892714851}
+  lastMove: 
   healthBar: {fileID: 93642125}
   move: 
   action: 
   isDead: 0
   combo: 0
-  attackDamage: 0
   block: 0
+  attackDamage: 0
   player1: {fileID: 225840953}
   sfxSounds: {fileID: 1554269172}
   maxSM: 50
@@ -1322,6 +1367,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tutInstruction: {fileID: 842201734}
+  calibrationMode: 1
+  UDPSender: {fileID: 419614596}
   PunchImg: {fileID: 1481229273}
   BlockImg: {fileID: 1521517936}
   KickImg: {fileID: 86972366}
@@ -4531,7 +4578,8 @@ SceneRoots:
   - {fileID: 1434040044}
   - {fileID: 1350134912}
   - {fileID: 1852765078}
-  - {fileID: 271286721}
   - {fileID: 1554269173}
   - {fileID: 1395907246}
   - {fileID: 1017894460}
+  - {fileID: 271286721}
+  - {fileID: 419614597}
