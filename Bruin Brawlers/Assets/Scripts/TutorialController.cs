@@ -22,13 +22,13 @@ public class TutorialController : MonoBehaviour
     private string[] instructions = new string[] { "In Bruin Brawlers you control a kickboxer with the goal of defeating your ultimate rival in this final match! When your HP bar reaches 0 you lose!",
         "You also have a special move meter that charges as you land attacks! Once it fully charges you can unleash your special move to gain extra damage on attacks!",
         "Before we begin we need to calibrate player movement!",
-        "Calibration: Let's begin by having Player 1 move to the forward threshold and say NEXT!",
+        "Calibration: Let's begin by having Player 1 move to the forward threshold and say CONTINUE OR NEXT!",
         "Calibrating forward Player 1...",
-        "Calibration: Let's begin by having Player 2 move to the forward threshold and say NEXT!",
+        "Calibration: Let's begin by having Player 2 move to the forward threshold and say CONTINUE OR NEXT!",
         "Calibrating forward Player 2...",
-        "Calibration: Next Player 1 move to the backward threshold! and say NEXT",
+        "Calibration: Next Player 1 move to the backward threshold and say CONTINUE OR NEXT!",
         "Calibrating backward Player 1...",
-        "Calibration: Next Player 2 move to the backward threshold and say NEXT!",
+        "Calibration: Next Player 2 move to the backward threshold and say CONTINUE OR NEXT!",
         "Calibrating backward Player 2...",
         "Calibration Completed! Let's Begin the tutorial!",
         "Tutorial: Try to move your player forward by taking a step!", "Tutorial: Try to still your player by staying in the idle zone", 
@@ -76,16 +76,16 @@ public class TutorialController : MonoBehaviour
             switch (instructions[tutIndex])
             {
                 case "Calibrating forward Player 1...":
-                    UDPSender.SendUDPPacket("p1-ForwardThreshold");
+                    UDPSender.SendUDPPacket("p1-ForwardThreshold", 6000);
                     break;
                 case "Calibrating forward Player 2...":
-                    UDPSender.SendUDPPacket("p2-BackwardThreshold");
+                    UDPSender.SendUDPPacket("p2-BackwardThreshold", 6001);
                     break;
                 case "Calibrating backward Player 1...":
-                    UDPSender.SendUDPPacket("p1-BackwardThreshold");
+                    UDPSender.SendUDPPacket("p1-BackwardThreshold", 6000);
                     break;
                 case "Calibrating backward Player 2...":
-                    UDPSender.SendUDPPacket("p2-BackwardThreshold");
+                    UDPSender.SendUDPPacket("p2-BackwardThreshold", 6001);
                     UDPSender.closeSocket();
                     break;
                 case "Tutorial: Throw a Punch!":
@@ -109,10 +109,10 @@ public class TutorialController : MonoBehaviour
         tutInstruction.text = "Welcome to Bruin Brawlers! In this tutorial we have disabled the health bars so we can focus on teaching you the game fundamentals!";
         tutIndex = -1;
         actions.Add("Continue", () => getNextInstruction());
+        actions.Add("Next", () => getNextInstruction());
         actions.Add("Start Game", () => endTutorial());
-        actions.Add("background", () => backgroundSelect.changeMap());
+        actions.Add("Background", () => backgroundSelect.changeMap());
         actions.Add("Switch it up", () => backgroundSelect.changeMap());
-        actions.Add("Nah I'd win", () => backgroundSelect.changeMap());
 
         keywordRecognizer = new KeywordRecognizer(actions.Keys.ToArray());
         keywordRecognizer.OnPhraseRecognized += RecognizedSpeech;

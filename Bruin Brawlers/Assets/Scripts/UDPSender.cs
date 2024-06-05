@@ -12,18 +12,17 @@ public class UDPSender : MonoBehaviour
 
     void Start()
     {
-        Debug.Log(port);
         udpClient = new UdpClient();
     }
 
-    public void SendUDPPacket(string message)
+    public void SendUDPPacket(string message, int endPort)
     {
         try
         {
-            IPEndPoint endPoint = new IPEndPoint(IPAddress.Parse(ipAddress), port);
+            IPEndPoint endPoint = new IPEndPoint(IPAddress.Parse(ipAddress), endPort);
             byte[] sendBytes = Encoding.ASCII.GetBytes(message);
             udpClient.Send(sendBytes, sendBytes.Length, endPoint);
-            Debug.Log("Packet sent to " + ipAddress + ":" + port);
+            Debug.Log("Packet sent to " + ipAddress + ":" + endPort);
         }
         catch (System.Exception e)
         {
