@@ -19,7 +19,7 @@ public class PeripheralsController : MonoBehaviour
     public async Task RunPythonScriptAsync()
     {
         // Path to the Python script
-        string scriptPath = @"../Gesture_Recognition/mediapipe_simple_gesture_recognition.py";
+        string scriptPath = @"../Data_Transmission/main.py";
 
         // Arguments to pass to the script
         string scriptArgs = "";
