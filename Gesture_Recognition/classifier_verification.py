@@ -32,15 +32,26 @@ def preprocess_landmarks(landmarks):
     return data
 
 # Open the video file
-cap = cv2.VideoCapture('aisle_1.mp4')
+cap = cv2.VideoCapture(0)
 
 while cap.isOpened():
     ret, frame = cap.read()
     if not ret:
         break
+
+    # Get frame dimensions
+    height, width, _ = frame.shape
+    
+    # Calculate the width to be half of the height
+    new_width = height * 2 // 3
+    start_x = (width - new_width) // 2
+    end_x = start_x + new_width
+    
+    # Crop the frame to the calculated dimensions
+    image = frame[:, start_x:end_x]
     
     # Convert the frame to RGB
-    image = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+    image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
     image.flags.writeable = False
     
     # Process the image to extract pose landmarks

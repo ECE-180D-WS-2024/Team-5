@@ -8,7 +8,7 @@ mp_pose = mp.solutions.pose
 pose = mp_pose.Pose(min_detection_confidence=0.8, min_tracking_confidence=0.8)
 
 # Open the video file
-cap = cv2.VideoCapture('aisle_2.mp4')
+cap = cv2.VideoCapture('gayley_patrick.mp4')
 
 # Define output data files
 output_files = {
@@ -51,7 +51,18 @@ while cap.isOpened():
     ret, frame = cap.read()
     if not ret:
         break
-    frames.append(frame)
+    # Get frame dimensions
+    height, width, _ = frame.shape
+    
+    # Calculate the width to be half of the height
+    new_width = height * 2 // 3
+    start_x = (width - new_width) // 2
+    end_x = start_x + new_width
+    
+    # Crop the frame to the calculated dimensions
+    cropped_frame = frame[:, start_x:end_x]
+    
+    frames.append(cropped_frame)
 
 cap.release()
 

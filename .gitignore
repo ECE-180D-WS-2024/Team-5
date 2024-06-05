@@ -12,8 +12,8 @@ Bruin Brawlers/Bruin Brawlers.sln
 
 # Recordings can be very large
 Bruin Brawlers/[Rr]ecordings/
-Gesture Recognition/*.mp4
-Gesture Recognition/*.avi
+Gesture_Recognition/*.mp4
+Gesture_Recognition/*.avi
 
 # MemoryCaptures can be very large
 Bruin Brawlers/[Mm]emoryCaptures/
