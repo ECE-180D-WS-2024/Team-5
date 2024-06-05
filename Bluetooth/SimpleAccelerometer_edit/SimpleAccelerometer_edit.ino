@@ -4,8 +4,8 @@
 #define BLE_UUID_ACCELEROMETER_SERVICE "1101"
 #define BLE_UUID_ACCELEROMETER_X "2101"
 
-#define BLE_DEVICE_NAME "player_1"
-#define BLE_LOCAL_NAME "player_1"
+#define BLE_DEVICE_NAME "player_2"
+#define BLE_LOCAL_NAME "player_2"
 
 BLEService accelerometerService(BLE_UUID_ACCELEROMETER_SERVICE);
 
@@ -75,7 +75,7 @@ void loop() {
         IMU.readAcceleration(ax, ay, az);
         currentAcc = sqrt(ax*ax + ay*ay + az*az);
         //Serial.println(ax);
-        if (currentAcc > 6.5) {
+        if (currentAcc > 6.0) {
           accelerometerCharacteristicX.writeValue(currentAcc);
         }
         else {

@@ -7,7 +7,7 @@ gesture_map = {0:"Block", 1:"Idle", 2:"Kick", 3:"Punch"}
 
 # Load the model from a file
 xgb_clf = xgb.XGBClassifier()
-xgb_clf.load_model('xgb_model_v2.json')
+xgb_clf.load_model('xgb_model_v3.json')
 
 # Function to preprocess landmarks for prediction
 def preprocess_landmarks(landmarks):
@@ -24,7 +24,7 @@ def preprocess_landmarks(landmarks):
     
     # Stack and reshape the coordinates to interleave them
     stacked_coords = np.stack((x_coords, y_coords, visibility), axis=-1)
-    data = stacked_coords.reshape(-1)
+    data = stacked_coords.reshape(-1).reshape(1, -1)
     return data
 
 # Primary function to get gesture predictions
