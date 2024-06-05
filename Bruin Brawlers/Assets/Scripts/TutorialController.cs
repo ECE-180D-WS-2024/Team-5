@@ -37,7 +37,7 @@ public class TutorialController : MonoBehaviour
         "Once players have fully charged their SM Bar by dealing damage they can activate their SUPER MOVE!", "Player 1 can activate their super by shouting BOMBASTIC & Player 2 can activate their super by shouting FERGALICIOUS",
         "Tip: During the main game, Player 1 can pause the game by saying 'Pause' and Player 2 can puase the game by saying 'Wait'",
         "Option: Change Maps by shouting 'Next background'",
-        "Say Ready to Start Game!"};
+        "Say Start Game to Start the Game!"};
 
     public Image PunchImg;
     public Image BlockImg;
@@ -109,7 +109,7 @@ public class TutorialController : MonoBehaviour
         tutInstruction.text = "Welcome to Bruin Brawlers! In this tutorial we have disabled the health bars so we can focus on teaching you the game fundamentals!";
         tutIndex = -1;
         actions.Add("Continue", () => getNextInstruction());
-        actions.Add("Ready", () => endTutorial());
+        actions.Add("Start Game", () => endTutorial());
         actions.Add("background", () => backgroundSelect.changeMap());
         actions.Add("Switch it up", () => backgroundSelect.changeMap());
         actions.Add("Nah I'd win", () => backgroundSelect.changeMap());

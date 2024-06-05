@@ -500,7 +500,7 @@ MonoBehaviour:
   count: 0
   mySM: 0
   gameOverScreen: {fileID: 379715503}
-  outOfBoundsText: {fileID: 0}
+  outOfBoundsText: {fileID: 1591246382}
 --- !u!95 &104240090
 Animator:
   serializedVersion: 5
@@ -3368,7 +3368,7 @@ MonoBehaviour:
   count: 0
   mySM: 0
   gameOverScreen: {fileID: 379715503}
-  outOfBoundsText: {fileID: 0}
+  outOfBoundsText: {fileID: 1591246382}
 --- !u!61 &1471571008
 BoxCollider2D:
   m_ObjectHideFlags: 0
