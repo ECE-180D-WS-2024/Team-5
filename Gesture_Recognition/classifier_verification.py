@@ -9,7 +9,7 @@ pose = mp_pose.Pose(min_detection_confidence=0.8, min_tracking_confidence=0.8)
 
 # Load the model from a file
 xgb_clf = xgb.XGBClassifier()
-xgb_clf.load_model('xgb_model_v1.json')
+xgb_clf.load_model('xgb_model_v3.json')
 
 gesture_map = {0:"Block", 1:"Idle", 2:"Kick", 3:"Punch"}
 
