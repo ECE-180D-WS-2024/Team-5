@@ -75,7 +75,7 @@ void loop() {
         IMU.readAcceleration(ax, ay, az);
         currentAcc = sqrt(ax*ax + ay*ay + az*az);
         //Serial.println(ax);
-        if (currentAcc > 6.0) {
+        if (currentAcc > 5.25) {
           accelerometerCharacteristicX.writeValue(currentAcc);
         }
         else {

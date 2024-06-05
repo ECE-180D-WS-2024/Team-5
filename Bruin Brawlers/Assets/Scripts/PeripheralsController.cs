@@ -10,16 +10,17 @@ using UnityEditor;
 public class PeripheralsController : MonoBehaviour
 {
     private Process gesture_recog;
-    async void Start()
+    void Start()
     {
-        await RunPythonScriptAsync();
+        StartCoroutine(RunPythonCouroutine());
+        //await RunPythonScriptAsync();
     }
 
     // Asynchronous method to run the Python script
-    public async Task RunPythonScriptAsync()
+    private IEnumerator RunPythonCouroutine()
     {
         // Path to the Python script
-        string scriptPath = @"../Data_Transmission/main.py";
+        string scriptPath = @"./main.py";
 
         // Arguments to pass to the script
         string scriptArgs = "";
@@ -35,14 +36,29 @@ public class PeripheralsController : MonoBehaviour
             CreateNoWindow = true
         };
 
-        Debug.Log("Starting script...");
         using (gesture_recog = new Process { StartInfo = start })
         {
             gesture_recog.Start();
+            Debug.Log("Starting script...");
 
-            // Read the output (or the error)
-            string stdout = await gesture_recog.StandardOutput.ReadToEndAsync();
-            string stderr = await gesture_recog.StandardError.ReadToEndAsync();
+            // Read the output and error asynchronously
+            Task<string> stdoutTask = gesture_recog.StandardOutput.ReadToEndAsync();
+            Task<string> stderrTask = gesture_recog.StandardError.ReadToEndAsync();
+
+            yield return new WaitUntil(() => stdoutTask.IsCompleted && stderrTask.IsCompleted);
+
+            string stdout = stdoutTask.Result;
+            string stderr = stderrTask.Result;
+
+            if (!string.IsNullOrEmpty(stdout))
+            {
+                Debug.Log($"Python stdout: {stdout}");
+            }
+
+            if (!string.IsNullOrEmpty(stderr))
+            {
+                Debug.LogError($"Python stderr: {stderr}");
+            }
         }
     }
 

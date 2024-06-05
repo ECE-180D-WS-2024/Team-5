@@ -1,17 +1,9 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
-using UnityEngine.Windows.Speech;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
 using System.Threading;
-using static Unity.Collections.AllocatorManager;
-using Unity.Burst.Intrinsics;
-using Unity.Mathematics;
-using UnityEditor.VersionControl;
 public class UDPReciever : MonoBehaviour
 {
     Thread receiveThread;
@@ -85,22 +77,18 @@ public class UDPReciever : MonoBehaviour
         }
     }
 
-    private void sendMessage(string message)
+    public void SendUDPPacket(string message, int endPort)
     {
         try
         {
-            if (client == null)
-            {
-                Debug.LogError("UDP client not initialized!");
-                return;
-            }
-
-            byte[] data = Encoding.UTF8.GetBytes(message);
-            client.Send(data, data.Length);
+            IPEndPoint endPoint = new IPEndPoint(IPAddress.Parse("127.0.0.1"), endPort);
+            byte[] sendBytes = Encoding.ASCII.GetBytes(message);
+            client.Send(sendBytes, sendBytes.Length, endPoint);
+            Debug.Log("Packet sent to " + "127.0.0.1" + ":" + endPort);
         }
-        catch (Exception err)
+        catch (System.Exception e)
         {
-            Debug.LogError(err.ToString());
+            Debug.LogError("Error sending UDP packet: " + e.Message);
         }
     }
 

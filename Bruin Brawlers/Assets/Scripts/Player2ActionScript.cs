@@ -4,9 +4,6 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.Windows.Speech;
-using Unity.Burst.Intrinsics;
-using static Unity.Collections.AllocatorManager;
-using static UnityEditor.Experimental.GraphView.GraphView;
 using UnityEngine.SceneManagement;
 using TMPro;
 
@@ -114,12 +111,12 @@ public class Player2ActionScript : MonoBehaviour
             Vector2 movement = new Vector2(0, 0);
             if (move == "p2-MoveForward")
             {
-                movement = new Vector2(-6, 0);
+                movement = new Vector2(-10, 0);
                 StartCoroutine(runAnimation("isMoving", 1f));
             }
             else if (move == "p2-MoveBackward")
             {
-                movement = new Vector2(6, 0);
+                movement = new Vector2(10, 0);
                 StartCoroutine(runAnimation("isMoving", 1f));
             }
             else if (move == "p2-MoveStill")

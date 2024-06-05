@@ -22,6 +22,7 @@ public class TutorialController : MonoBehaviour
     private string[] instructions = new string[] { "In Bruin Brawlers you control a kickboxer with the goal of defeating your ultimate rival in this final match! When your HP bar reaches 0 you lose!",
         "You also have a special move meter that charges as you land attacks! Once it fully charges you can unleash your special move to gain extra damage on attacks!",
         "Before we begin we need to calibrate player movement!",
+        "TIP: Wait for camera to turn green before beginning!",
         "Calibration: Let's begin by having Player 1 move to the forward threshold and say CONTINUE OR NEXT!",
         "Calibrating forward Player 1...",
         "Calibration: Let's begin by having Player 2 move to the forward threshold and say CONTINUE OR NEXT!",
@@ -79,7 +80,7 @@ public class TutorialController : MonoBehaviour
                     UDPSender.SendUDPPacket("p1-ForwardThreshold", 6000);
                     break;
                 case "Calibrating forward Player 2...":
-                    UDPSender.SendUDPPacket("p2-BackwardThreshold", 6001);
+                    UDPSender.SendUDPPacket("p2-ForwardThreshold", 6001);
                     break;
                 case "Calibrating backward Player 1...":
                     UDPSender.SendUDPPacket("p1-BackwardThreshold", 6000);

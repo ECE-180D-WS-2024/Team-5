@@ -4,11 +4,6 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.Windows.Speech;
-using System.Net;
-using System.Net.Sockets;
-using System.Text;
-using System.Threading;
-using UnityEngine.UIElements;
 using UnityEngine.SceneManagement;
 using TMPro;
 
@@ -115,12 +110,12 @@ public class PlayerActionScript : MonoBehaviour
             Vector2 movement = new Vector2(0, 0);
             if (move == "p1-MoveForward")
             {
-                movement = new Vector2(6, 0);
+                movement = new Vector2(10, 0);
                 StartCoroutine(runAnimation("isMoving", 1f));
             }
             else if (move == "p1-MoveBackward")
             {
-                movement = new Vector2(-6, 0);
+                movement = new Vector2(-10, 0);
                 StartCoroutine(runAnimation("isMoving", 1f));
             }
             else if (move == "p1-MoveStill")

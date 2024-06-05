@@ -6,7 +6,6 @@ using UnityEngine;
 public class UDPSender : MonoBehaviour
 {
     public string ipAddress = "127.0.0.1"; // The IP address to send the packet to
-    public int port = 6000; // The port to send the packet to
 
     private UdpClient udpClient;
 
