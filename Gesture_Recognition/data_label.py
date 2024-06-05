@@ -8,7 +8,7 @@ mp_pose = mp.solutions.pose
 pose = mp_pose.Pose(min_detection_confidence=0.8, min_tracking_confidence=0.8)
 
 # Open the video file
-cap = cv2.VideoCapture('gayley_patrick.mp4')
+cap = cv2.VideoCapture('apartment_ryan.mp4')
 
 # Define output data files
 output_files = {
