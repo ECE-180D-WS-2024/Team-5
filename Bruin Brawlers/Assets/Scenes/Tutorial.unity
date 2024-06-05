@@ -157,7 +157,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 35}
+  m_AnchoredPosition: {x: 0, y: 50}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &86972366
@@ -406,17 +406,11 @@ MonoBehaviour:
   myCollider: {fileID: 225840954}
   enemyCollider: {fileID: 676023328}
   animator: {fileID: 225840952}
-  lastMove: 
   maxHP: 20
   currentHP: 0
   prevHP: 0
-  enemyHealthBar: {fileID: 93642125}
+  lastMove: 
   healthBar: {fileID: 1892714851}
-  maxSM: 100
-  currentSM: 0
-  sm_bar: {fileID: 1412309684}
-  count: 0
-  mySM: 0
   move: 
   action: 
   attackDamage: 0
@@ -425,6 +419,12 @@ MonoBehaviour:
   block: 0
   player2: {fileID: 676023323}
   sfxSounds: {fileID: 1554269172}
+  maxSM: 100
+  currentSM: 0
+  sm_bar: {fileID: 1412309684}
+  count: 0
+  mySM: 0
+  gameOverScreen: {fileID: 0}
 --- !u!61 &225840954
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1003,18 +1003,17 @@ MonoBehaviour:
   myCollider: {fileID: 676023328}
   enemyCollider: {fileID: 225840954}
   animator: {fileID: 676023324}
-  lastMove: 
   maxHP: 100
   prevHP: 0
   currentHP: 0
-  enemyHealthBar: {fileID: 1892714851}
+  lastMove: 
   healthBar: {fileID: 93642125}
   move: 
   action: 
   isDead: 0
   combo: 0
-  attackDamage: 0
   block: 0
+  attackDamage: 0
   player1: {fileID: 225840953}
   sfxSounds: {fileID: 1554269172}
   maxSM: 50
@@ -3319,7 +3318,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 35}
+  m_AnchoredPosition: {x: 0, y: 50}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1481229273
@@ -3498,7 +3497,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 35}
+  m_AnchoredPosition: {x: 0, y: 50}
   m_SizeDelta: {x: 175, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1521517936
