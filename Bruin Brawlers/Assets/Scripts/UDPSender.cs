@@ -31,6 +31,14 @@ public class UDPSender : MonoBehaviour
         }
     }
 
+    public void closeSocket()
+    {
+        if (udpClient != null)
+        {
+            udpClient.Close();
+        }
+    }
+
     void OnDestroy()
     {
         if (udpClient != null)

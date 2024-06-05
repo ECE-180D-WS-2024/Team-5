@@ -9,6 +9,8 @@ using System.Net.Sockets;
 using System.Text;
 using System.Threading;
 using UnityEngine.UIElements;
+using UnityEngine.SceneManagement;
+using TMPro;
 
 public class PlayerActionScript : MonoBehaviour
 {
@@ -45,10 +47,13 @@ public class PlayerActionScript : MonoBehaviour
     private bool sm_bar_full = false;
 
     public GameOverScreen gameOverScreen;
+    private Scene scene;
+    public TextMeshProUGUI outOfBoundsText;
 
     // Start is called before the first frame update
     void Start()
-    {   
+    {
+        scene = SceneManager.GetActiveScene();
         lastMove = "";
 
         combo = false;
@@ -216,6 +221,22 @@ public class PlayerActionScript : MonoBehaviour
                 StartCoroutine(SuperMoveCoroutine());       //if keyword is recognized start coroutine and set active to false
                 activeSM = false;
             }
+
+            if (move == "p1-MoveError")
+            {
+                if (outOfBoundsText.text == "p2-MoveError")
+                {
+                    outOfBoundsText.text = "P1 and P2 out of bounds!";
+                }
+                else
+                {
+                    outOfBoundsText.text = "P1 out of bounds!";
+                }
+            }
+            else
+            {
+                outOfBoundsText.text = "";
+            }
         }
         move = "";
     }
@@ -223,7 +244,7 @@ public class PlayerActionScript : MonoBehaviour
     public void TakeDamage(int damage)
     {
         damage = Mathf.Clamp(damage, 0, 15);
-        if (block == false)
+        if (block == false && scene.name == "Game")
         {
             currentHP -= damage;
             healthBar.SetHealth(currentHP);

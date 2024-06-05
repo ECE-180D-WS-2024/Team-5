@@ -7,6 +7,8 @@ using UnityEngine.Windows.Speech;
 using Unity.Burst.Intrinsics;
 using static Unity.Collections.AllocatorManager;
 using static UnityEditor.Experimental.GraphView.GraphView;
+using UnityEngine.SceneManagement;
+using TMPro;
 
 public class Player2ActionScript : MonoBehaviour
 {
@@ -43,10 +45,14 @@ public class Player2ActionScript : MonoBehaviour
     private bool sm_bar_full = false;
 
     public GameOverScreen gameOverScreen;
+    private Scene scene;
+    public TextMeshProUGUI outOfBoundsText;
 
     // Start is called before the first frame update
     void Start()
     {
+        scene = SceneManager.GetActiveScene();
+
         lastMove = "";
         
         combo = false;
@@ -133,7 +139,7 @@ public class Player2ActionScript : MonoBehaviour
                 StartCoroutine(runAnimation("isMoving", 1f));
             }
 
-            if (action.Contains("p2-StrongPunch") || Input.GetKeyDown(KeyCode.P) && Input.GetKeyDown(KeyCode.LeftShift))
+            if (action.Contains("p2-StrongPunch") || Input.GetKeyDown(KeyCode.C))
             {
                 UDPReciever.p2Action = "";
                 animator.SetBool("isStrongPunching", true);
@@ -218,6 +224,22 @@ public class Player2ActionScript : MonoBehaviour
                 StartCoroutine(SuperMoveCoroutine());
                 activeSM = false;
             }
+
+            if (move == "p2-MoveError")
+            {
+                if (outOfBoundsText.text == "p1-MoveError")
+                {
+                    outOfBoundsText.text = "P1 and P2 out of bounds!";
+                }
+                else
+                {
+                    outOfBoundsText.text = "P2 out of bounds!";
+                }
+            }
+            else
+            {
+                outOfBoundsText.text = "";
+            }
         }
         move = "";
     }
@@ -226,7 +248,7 @@ public class Player2ActionScript : MonoBehaviour
     {
         damage = Mathf.Clamp(damage, 0, 15);
         Debug.Log(currentHP);
-        if (block == false)
+        if (block == false && scene.name == "Game")
         {
             currentHP -= damage;
             healthBar.SetHealth(currentHP);

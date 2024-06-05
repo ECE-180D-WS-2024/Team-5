@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class BackgroundSelect : MonoBehaviour
@@ -8,6 +9,21 @@ public class BackgroundSelect : MonoBehaviour
     public SpriteRenderer fightBackground;
     private int index = 0;
     private List<Sprite> backgrounds = new List<Sprite>();
+
+    public static BackgroundSelect Instance { get; private set; }
+
+    void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -35,13 +51,19 @@ public class BackgroundSelect : MonoBehaviour
         }
     }
 
+    public void changeMap()
+    {
+        index = (index + 1) % backgrounds.Count;
+        fightBackground.sprite = backgrounds[index];
+    }
+
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.W))
+        Scene scene = SceneManager.GetActiveScene();
+        if (Input.GetKeyDown(KeyCode.W) && scene.name == "Tutorial")
         {
-            index = (index + 1) % backgrounds.Count;
-            fightBackground.sprite = backgrounds[index];
+            changeMap();
         }
     }
 }
