@@ -3,9 +3,9 @@ import mediapipe as mp
 # Mediapipe setup
 mp_pose = mp.solutions.pose
 
-# TODO: Determine thresholds dynamically based on player height
-forward_threshold = 0.7
-backward_theshold = 0.55
+# Forward and backward thresholds for each player
+forward_threshold = {"p1":0.7, "p2":0.7}
+backward_threshold = {"p1":0.5, "p2":0.5}
 
 # Calculate player height using heel and nose
 def get_player_height(landmarks):
@@ -26,14 +26,14 @@ def get_player_height(landmarks):
     return player_height, None
 
 # Get relative player movement based on height
-def get_player_movement(results):
-    player_height, error_message = get_player_height(results)
+def get_player_movement(player, landmarks):
+    player_height, error_message = get_player_height(landmarks)
     if error_message:
         print(f"Error: ", error_message)
         return "MoveError"
     # Determine movement command based on height
-    if player_height > forward_threshold:
+    if player_height > forward_threshold[player]:
         return "MoveForward"
-    if player_height < backward_theshold:
+    if player_height < backward_threshold[player]:
         return "MoveBackward"
     return "MoveStill"

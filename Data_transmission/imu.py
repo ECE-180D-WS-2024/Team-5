@@ -1,8 +1,10 @@
 import struct
 from bleak import BleakClient, BleakScanner
 from collections import deque
+import asyncio
 
 sliding_window = deque(maxlen=20)
+sliding_window.append(0.0) # Ensure sliding window is not empty
 name_map = {"p1": "player_1", "p2": "player_2"}
 device = None
 async def connect_arduino(player, macos_use_bdaddr=False):
@@ -24,13 +26,16 @@ async def read_imu(device):
         global sliding_window
         while True:
             # name: player_1, characteristic: 00002101-0000-1000-8000-00805f9b34fb
-            # name: player_2, characteristic: 
+            # name: player_2, characteristic: 00002101-0000-1000-8000-00805f9b34fb
             data = await client.read_gatt_char("00002101-0000-1000-8000-00805f9b34fb")
             data = struct.unpack("f", data)
             sliding_window.append(data)
+            await asyncio.sleep(0)  # Yield control to the event loop
 
 async def init_imu(player):
-    device = await connect_arduino(player)
+    global device
+    while device is None:
+        device = await connect_arduino(player)
     await read_imu(device)
 
 def get_imu_val():
